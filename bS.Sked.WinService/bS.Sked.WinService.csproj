@@ -102,6 +102,10 @@
       <Project>{d28d9ada-effd-4ab6-ac8a-28dfb261e3cc}</Project>
       <Name>bS.Sked.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Services\bS.Sked.Services.csproj">
+      <Project>{26a7c7d8-4927-4015-9ea0-39b4d0cd39f5}</Project>
+      <Name>bS.Sked.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

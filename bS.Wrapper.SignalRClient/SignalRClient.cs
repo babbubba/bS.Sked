@@ -5,7 +5,7 @@ using System;
 
 namespace bS.Wrapper.SignalRClient
 {
-    public class SignalRClient
+    public class SignalRClient  
     {
         static ILog log = LogManager.GetLogger<SignalRClient>();
 

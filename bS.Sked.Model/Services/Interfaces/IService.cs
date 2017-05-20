@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Model.Interfaces.Services
+namespace bS.Sked.Model.Services.Interfaces
 {
    public interface IService
     {

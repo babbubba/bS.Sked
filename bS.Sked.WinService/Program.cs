@@ -14,10 +14,12 @@ namespace bS.Sked.WinService
         /// </summary>
         static void Main()
         {
+            var service = new bS.Sked.Services.WindowsServiceService();
+
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new WinServiceImpl()
+                new WinServiceImpl(service)
             };
             ServiceBase.Run(ServicesToRun);
         }
