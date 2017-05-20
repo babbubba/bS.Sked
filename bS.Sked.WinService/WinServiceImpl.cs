@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.SignalR.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,27 +21,7 @@ namespace bS.Sked.WinService
 
         protected override async void OnStart(string[] args)
         {
-            try
-            {
-                var hubConnection = new HubConnection($"{WMCBaseUrl}/signalr", useDefaultUrl: false);
-                IHubProxy proxy = hubConnection.CreateHubProxy("DashboardHub");
-
-               await hubConnection.Start();
-
-                var messageModel = new Model.WMC.MessageModel
-                {
-                    Date = DateTime.Now,
-                    Message = "Messaggio di prova",
-                    MessageId = "12",
-                    Severity = "INFO",
-                    SeverityId = 0
-                };
-              await  proxy.Invoke("BroadcastMessage", messageModel);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+          
         }
 
         protected override void OnStop()

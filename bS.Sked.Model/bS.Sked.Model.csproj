@@ -62,10 +62,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extra\Wrapper\SignalRClient\Interfaces\ISignalRClientCommand.cs" />
+    <Compile Include="Extra\Wrapper\SignalRClient\Interfaces\ISignalRClientContext.cs" />
+    <Compile Include="Extra\Wrapper\SignalRClient\SignalRClientCommand.cs" />
+    <Compile Include="Extra\Wrapper\SignalRClient\SignalRClientContext.cs" />
+    <Compile Include="Interfaces\Services\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WMC\MessageModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\Extra\Wrappers\SignalRClient\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
