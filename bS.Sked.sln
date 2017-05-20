@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Services", "bS.Sked
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.ViewModel", "bS.Sked.ViewModel\bS.Sked.ViewModel.csproj", "{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.WinService", "bS.Sked.WinService\bS.Sked.WinService.csproj", "{40540812-9313-429B-B9A6-D28A80FC024F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40540812-9313-429B-B9A6-D28A80FC024F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40540812-9313-429B-B9A6-D28A80FC024F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40540812-9313-429B-B9A6-D28A80FC024F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40540812-9313-429B-B9A6-D28A80FC024F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
