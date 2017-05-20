@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,36 @@ namespace bS.Sked.WinService
 {
     public partial class WinServiceImpl : ServiceBase
     {
+        private string WMCBaseUrl = "http://localhost:55393";
+
         public WinServiceImpl()
         {
             InitializeComponent();
         }
 
-        protected override void OnStart(string[] args)
+        protected override async void OnStart(string[] args)
         {
+            try
+            {
+                var hubConnection = new HubConnection($"{WMCBaseUrl}/signalr", useDefaultUrl: false);
+                IHubProxy proxy = hubConnection.CreateHubProxy("DashboardHub");
+
+               await hubConnection.Start();
+
+                var messageModel = new Model.WMC.MessageModel
+                {
+                    Date = DateTime.Now,
+                    Message = "Messaggio di prova",
+                    MessageId = "12",
+                    Severity = "INFO",
+                    SeverityId = 0
+                };
+              await  proxy.Invoke("BroadcastMessage", messageModel);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         protected override void OnStop()
