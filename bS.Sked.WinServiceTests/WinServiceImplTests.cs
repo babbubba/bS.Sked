@@ -15,8 +15,7 @@ namespace bS.Sked.WinService.Tests
         {
             CR.SingletonInstance()
                 .RegisterInstance<
-                    Model.Extra.Wrapper.SignalRClient.SignalRClientContext,
-                    Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClientContext>(
+                    Model.Extra.Wrapper.SignalRClient.SignalRClientContext, ISignalRClientContext>(
                 new Model.Extra.Wrapper.SignalRClient.SignalRClientContext { SignalServerUrl = "http://localhost:55393/signalr" });
 
             CR.SingletonInstance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
