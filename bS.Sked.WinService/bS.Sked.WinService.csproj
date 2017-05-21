@@ -98,6 +98,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.CompositionRoot\bS.Sked.CompositionRoot.csproj">
+      <Project>{ee23a5f8-93d9-47d7-a739-e41596ce9267}</Project>
+      <Name>bS.Sked.CompositionRoot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{d28d9ada-effd-4ab6-ac8a-28dfb261e3cc}</Project>
       <Name>bS.Sked.Model</Name>
@@ -105,6 +109,10 @@
     <ProjectReference Include="..\bS.Sked.Services\bS.Sked.Services.csproj">
       <Project>{26a7c7d8-4927-4015-9ea0-39b4d0cd39f5}</Project>
       <Name>bS.Sked.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Wrapper.SignalRClient\bS.Wrapper.SignalRClient.csproj">
+      <Project>{1f76a170-c8a0-4344-bfe6-84cfbb3fa6a2}</Project>
+      <Name>bS.Wrapper.SignalRClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

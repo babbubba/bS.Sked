@@ -6,10 +6,12 @@ namespace bS.Sked.Services
 {
     public class WindowsServiceService : IService
     {
+        private readonly Wrapper.SignalRClient.SignalRClient client;
         static ILog log = LogManager.GetLogger<WindowsServiceService>();
 
-        public WindowsServiceService()
+        public WindowsServiceService(Wrapper.SignalRClient.SignalRClient client)
         {
+            this.client = client;
         }
 
         public bool StartService(bool debug = false)

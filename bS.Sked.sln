@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Wrapper.SignalRClient", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.CompositionRoot", "bS.Sked.CompositionRoot\bS.Sked.CompositionRoot.csproj", "{EE23A5F8-93D9-47D7-A739-E41596CE9267}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.WinServiceTests", "bS.Sked.WinServiceTests\bS.Sked.WinServiceTests.csproj", "{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,14 @@ Global
 		{EE23A5F8-93D9-47D7-A739-E41596CE9267}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE23A5F8-93D9-47D7-A739-E41596CE9267}.Release|x64.ActiveCfg = Release|Any CPU
 		{EE23A5F8-93D9-47D7-A739-E41596CE9267}.Release|x64.Build.0 = Release|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Debug|x64.Build.0 = Debug|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Release|x64.ActiveCfg = Release|Any CPU
+		{28594CDD-0C96-4A00-BDF6-F2CE4FB8363E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

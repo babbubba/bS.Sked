@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bS.Sked.CompositionRoot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,11 @@ namespace bS.Sked.WinService
         private readonly bS.Sked.Services.WindowsServiceService service;
         private string WMCBaseUrl = "http://localhost:55393";
 
-        public WinServiceImpl(bS.Sked.Services.WindowsServiceService service)
+        public WinServiceImpl()
         {
             InitializeComponent();
-            this.service = service;
+            //this.service = service;
+            this.service = CR.SingletonInstance().Resolve<Services.WindowsServiceService>(); ;
         }
 
         protected override async void OnStart(string[] args)

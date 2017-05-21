@@ -13,16 +13,16 @@ namespace bS.Sked.Model.CompositionRoot.Interfaces
     }
     public interface ICompositionRoot
     {
-        void Register<T>(T component, RegistrationType type = RegistrationType.Transient);
-        void Register<T>(T component, string componentName, RegistrationType type = RegistrationType.Transient);
-        void RegisterInstance<T>(object instance);
+        void Register<Component>();
+        void Register<Component, Service>();
+        void RegisterInstance<Component, Service>(Component componentInstance) where Component : class;
         void RegisterIocModule<T>(T iocModule) where T:IIocModule;
         T Resolve<T>();
-        T Resolve<T>(string ComponentName);
+        object GetResolver();
         bool BuildContainer();
     }
 
-    public interface IIocModule
+    public interface IIocModule 
     {
 
     }
