@@ -4,12 +4,12 @@ using System;
 
 namespace bS.Sked.Services
 {
-    public class WindowsServiceService : IService
+    public class WindowsServiceService : IWindowsServiceService
     {
-        private readonly Wrapper.SignalRClient.SignalRClient client;
+        private readonly Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient client;
         static ILog log = LogManager.GetLogger<WindowsServiceService>();
 
-        public WindowsServiceService(Wrapper.SignalRClient.SignalRClient client)
+        public WindowsServiceService(Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient client)
         {
             this.client = client;
         }
@@ -18,12 +18,6 @@ namespace bS.Sked.Services
         {
             try
             {
-                var clientContext = new Model.Extra.Wrapper.SignalRClient.SignalRClientContext
-                {
-                    SignalServerUrl = "http://localhost:55393/signalr"
-                };
-                var client = new Wrapper.SignalRClient.SignalRClient(clientContext);
-
                 // Send message to WMC SignalR Server
                 var messageModel = new Model.WMC.MessageModel
                 {
@@ -42,7 +36,7 @@ namespace bS.Sked.Services
                 };
 
                 //messageClient.SendMessage(message);
-                client.SendMessage(command);
+                client.SendMessageAsync(command);
             }
             catch (Exception ex)
             {

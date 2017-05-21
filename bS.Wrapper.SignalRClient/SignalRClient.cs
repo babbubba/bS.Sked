@@ -2,10 +2,11 @@
 using Common.Logging;
 using Microsoft.AspNet.SignalR.Client;
 using System;
+using System.Threading.Tasks;
 
 namespace bS.Wrapper.SignalRClient
 {
-    public class SignalRClient  
+    public class SignalRClient : ISignalRClient
     {
         static ILog log = LogManager.GetLogger<SignalRClient>();
 
@@ -16,7 +17,7 @@ namespace bS.Wrapper.SignalRClient
             this.context = context;
         }
 
-        public async void SendMessage(ISignalRClientCommand command)
+        public async Task SendMessageAsync(ISignalRClientCommand command)
         {
             try
             {

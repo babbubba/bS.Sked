@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace bS.Sked.Model.CompositionRoot.Interfaces
 {
-    public enum RegistrationType
-    {
-        Singleton = 0,
-        Transient = 1
-    }
     public interface ICompositionRoot
     {
         void Register<Component>();

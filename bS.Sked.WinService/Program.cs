@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace bS.Sked.WinService
 {
-   static class Program
+    static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -29,7 +29,7 @@ namespace bS.Sked.WinService
             ServiceBase.Run(ServicesToRun);
         }
 
-        static void InitCompositionRoot()
+       static void InitCompositionRoot()
         {
 
             CR.SingletonInstance()
@@ -38,8 +38,8 @@ namespace bS.Sked.WinService
                     Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClientContext>(   
                 new Model.Extra.Wrapper.SignalRClient.SignalRClientContext {  SignalServerUrl = "http://localhost:55393/signalr" });
 
-            CR.SingletonInstance().Register<Wrapper.SignalRClient.SignalRClient>();
-            CR.SingletonInstance().Register < Services.WindowsServiceService> ();
+            CR.SingletonInstance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
+            CR.SingletonInstance().Register < Services.WindowsServiceService, Model.Services.Interfaces.IWindowsServiceService> ();
 
             CR.SingletonInstance().BuildContainer();
         }
