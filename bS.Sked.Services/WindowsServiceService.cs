@@ -30,8 +30,8 @@ namespace bS.Sked.Services
 
                 var command = new Model.Extra.Wrapper.SignalRClient.SignalRClientCommand
                 {
-                    SignalServerHub = "DashboardHub",
-                    SignalServerHubMethodToCall = "BroadcastMessage",
+                    SignalServerHub = "MessagesHub",
+                    SignalServerHubMethodToCall = "SendMessage",
                     SignalServerHubMethodParameters = new object[] { messageModel }
                 };
 

@@ -7,12 +7,12 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace bS.Sked.WMC.Hubs
 {
-    [HubName("DashboardHub")]
+    [HubName("MessagesHub")]
     public class MessagesHub : Hub
     {
         public void SendMessage(Model.WMC.MessageModel messageModel)
         {
-            Clients.All.broadcastMessage(messageModel);
+            Clients.All.sendMessage(messageModel);
         }
         public void SendPoupup(Model.WMC.MessageModel messageModel)
         {
