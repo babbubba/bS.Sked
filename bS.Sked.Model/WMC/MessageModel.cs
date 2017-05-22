@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace bS.Sked.Model.WMC
 {
-  public  class MessageModel
+  public class MessageModel
     {
         // We declare Left and Top as lowercase with 
         // JsonProperty to sync the client and server models
