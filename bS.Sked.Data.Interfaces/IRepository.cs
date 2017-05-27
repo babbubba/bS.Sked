@@ -4,7 +4,7 @@ using System.Data;
 namespace bS.Sked.Data.Interfaces
 {
     public interface IRepository<TItemBase>
-        where TItemBase : class, eOrk3.Models.Interfaces.Base.IPersisterEntity
+        where TItemBase : class, bS.Sked.Model.Interfaces.Entities.Base.IPersisterEntity
     {
         IQueryable<TItem> GetQuery<TItem>() where TItem : class, TItemBase;
         IQueryable<TItem> GetQuery<TItem>(IUnitOfWork uow) where TItem : class, TItemBase;

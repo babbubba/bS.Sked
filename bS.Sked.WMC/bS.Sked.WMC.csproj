@@ -1147,6 +1147,14 @@
       <Project>{ee23a5f8-93d9-47d7-a739-e41596ce9267}</Project>
       <Name>bS.Sked.CompositionRoot</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">
+      <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
+      <Name>bS.Sked.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Data\bS.Sked.Data.csproj">
+      <Project>{D9DE2435-9A84-4A39-B953-CB8B1C5DC354}</Project>
+      <Name>bS.Sked.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{d28d9ada-effd-4ab6-ac8a-28dfb261e3cc}</Project>
       <Name>bS.Sked.Model</Name>

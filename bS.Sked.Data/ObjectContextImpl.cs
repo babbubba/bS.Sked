@@ -6,7 +6,7 @@ using System.Text;
 using bS.Sked.Data.Interfaces;
 using NHibernate.Linq;
 using Common.Logging;
-using eOrk3.Models.Interfaces.Base;
+using bS.Sked.Model.Interfaces.Entities.Base;
 
 namespace bS.Sked.Data
 {

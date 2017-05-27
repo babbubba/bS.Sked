@@ -29,7 +29,7 @@ namespace bS.Sked.Data
             ISessionFactory lResult = null;
             try
             {
-                var MappingAssemblies = Shared.Functions.Reflection.GetNhibernateMappingAssemblies(foldersWereLookingForDll, true);
+                var MappingAssemblies = Shared.Reflection.GetORMMappingAssemblies(foldersWereLookingForDll, true);
 
                 lResult = Fluently.Configure()
                  .Database(MySQLConfiguration.Standard.ConnectionString(connectionString))

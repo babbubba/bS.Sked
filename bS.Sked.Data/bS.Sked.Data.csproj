@@ -48,6 +48,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
       <Private>True</Private>
@@ -112,6 +120,14 @@
     <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">
       <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
       <Name>bS.Sked.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
+      <Project>{2a078b06-6432-481c-949d-7f9f1f1018bd}</Project>
+      <Name>bS.Sked.Model.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Shared\bS.Sked.Shared.csproj">
+      <Project>{b87cc6bd-033a-44db-888a-ee6e1f93529e}</Project>
+      <Name>bS.Sked.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

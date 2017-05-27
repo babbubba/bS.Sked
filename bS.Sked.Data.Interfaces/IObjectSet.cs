@@ -1,4 +1,4 @@
-﻿using eOrk3.Models.Interfaces.Base;
+﻿using bS.Sked.Model.Interfaces.Entities.Base;
 using System.Linq;
 
 namespace bS.Sked.Data.Interfaces

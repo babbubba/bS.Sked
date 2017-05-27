@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</ProjectGuid>
+    <ProjectGuid>{2A078B06-6432-481C-949D-7F9F1F1018BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>bS.Sked.Data.Interfaces</RootNamespace>
-    <AssemblyName>bS.Sked.Data.Interfaces</AssemblyName>
+    <RootNamespace>bS.Sked.Model.Interfaces</RootNamespace>
+    <AssemblyName>bS.Sked.Model.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,19 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGenericTransaction.cs" />
-    <Compile Include="IObjectContext.cs" />
-    <Compile Include="IObjectSet.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Entities\Base\IDescribedEntity.cs" />
+    <Compile Include="Entities\Base\IExecutableEntity.cs" />
+    <Compile Include="Entities\Base\IHistoricalEntity.cs" />
+    <Compile Include="Entities\Base\IInterchangeablyEntity.cs" />
+    <Compile Include="Entities\Base\IParentsAlertEntity.cs" />
+    <Compile Include="Entities\Base\IPersisterEntity.cs" />
+    <Compile Include="Entities\Base\IPositionalEntity.cs" />
+    <Compile Include="Entities\Base\IToggledEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
-      <Project>{2a078b06-6432-481c-949d-7f9f1f1018bd}</Project>
-      <Name>bS.Sked.Model.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

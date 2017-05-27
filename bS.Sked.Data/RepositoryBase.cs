@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using bS.Sked.Data.Interfaces;
 using System.Data;
-using eOrk3.Models.Interfaces.Base;
+using bS.Sked.Model.Interfaces.Entities.Base;
 using Common.Logging;
 
 namespace bS.Sked.Data

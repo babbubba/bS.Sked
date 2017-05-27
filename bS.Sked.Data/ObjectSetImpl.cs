@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using NHibernate.Linq;
 using bS.Sked.Data.Interfaces;
-using eOrk3.Models.Interfaces.Base;
-using eOrk3.Shared;
+using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Shared.Extensions;
 
 namespace bS.Sked.Data
 {
@@ -24,7 +24,8 @@ namespace bS.Sked.Data
 
         public void Add(T item)
         {
-           item = item.SetCreationDateIfNeeded();
+          // item = item.SetCreationDateIfNeeded();
+           item.SetCreationDateIfNeeded();
                 _session.Save(item);
         }
 
@@ -32,7 +33,8 @@ namespace bS.Sked.Data
 
         public void Update(T item)
         {
-            item = item.SetUpdateDateIfNeeded();
+           // item = item.SetUpdateDateIfNeeded();
+            item.SetUpdateDateIfNeeded();
             _session.Update(item);
         }
 

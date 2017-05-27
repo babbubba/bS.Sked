@@ -1,4 +1,6 @@
 ﻿using bS.Sked.CompositionRoot;
+using bS.Sked.Data;
+using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Application;
 using System;
 using System.Collections.Generic;
@@ -49,28 +51,6 @@ namespace bS.Sked.WMC.CompositionRoot
             DependencyResolver.SetResolver(CR.Instance().GetMvcDependencyResolver());
         }
 
-        private interface IObjectContext
-        {
-        }
-
-        private interface IRepository<T>
-        {
-        }
-
-        private interface IUnitOfWork
-        {
-        }
-
-        private class ObjectContextImpl    : IObjectContext
-        {
-        }
-
-        private class RepositoryBase<T>   : IRepository<T>
-        {
-        }
-
-        private class UnitOfWork    : IUnitOfWork
-        {
-        }
+     
     }
 }
