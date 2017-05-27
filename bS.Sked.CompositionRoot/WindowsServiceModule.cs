@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Autofac.Core;
-using bS.Sked.Model.CompositionRoot.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

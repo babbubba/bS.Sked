@@ -144,6 +144,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CompositionRoot\CompositionRootInit.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1142,6 +1143,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.CompositionRoot\bS.Sked.CompositionRoot.csproj">
+      <Project>{ee23a5f8-93d9-47d7-a739-e41596ce9267}</Project>
+      <Name>bS.Sked.CompositionRoot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{d28d9ada-effd-4ab6-ac8a-28dfb261e3cc}</Project>
       <Name>bS.Sked.Model</Name>

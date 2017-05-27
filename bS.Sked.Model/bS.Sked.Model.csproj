@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompositionRoot\Interfaces\ICompositionRoot.cs" />
+    <Compile Include="Application\ApplicationContextConfigInfo.cs" />
     <Compile Include="Extra\Wrapper\SignalRClient\Interfaces\ISignalRClient.cs" />
     <Compile Include="Extra\Wrapper\SignalRClient\Interfaces\ISignalRClientCommand.cs" />
     <Compile Include="Extra\Wrapper\SignalRClient\Interfaces\ISignalRClientContext.cs" />

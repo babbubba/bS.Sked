@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CR.cs" />
+    <Compile Include="ICompositionRoot.cs" />
+    <Compile Include="IIocModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsServiceModule.cs" />
   </ItemGroup>

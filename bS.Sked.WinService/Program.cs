@@ -32,16 +32,16 @@ namespace bS.Sked.WinService
        static void InitCompositionRoot()
         {
 
-            CR.SingletonInstance()
+            CR.Instance()
                 .RegisterInstance<
                     Model.Extra.Wrapper.SignalRClient.SignalRClientContext, 
                     Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClientContext>(   
                 new Model.Extra.Wrapper.SignalRClient.SignalRClientContext {  SignalServerUrl = "http://localhost:55393/signalr" });
 
-            CR.SingletonInstance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
-            CR.SingletonInstance().Register < Services.WindowsServiceService, Model.Services.Interfaces.IWindowsServiceService> ();
+            CR.Instance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
+            CR.Instance().Register < Services.WindowsServiceService, Model.Services.Interfaces.IWindowsServiceService> ();
 
-            CR.SingletonInstance().BuildContainer();
+            CR.Instance().BuildContainer();
         }
     }
 }

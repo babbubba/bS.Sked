@@ -12,7 +12,7 @@ namespace bS.Sked.WinService
         public WinServiceImpl()
         {
             InitializeComponent();
-            this.service = CR.SingletonInstance().Resolve<IWindowsServiceService>(); 
+            this.service = CR.Instance().Resolve<IWindowsServiceService>(); 
         }
 
         protected override async void OnStart(string[] args)
