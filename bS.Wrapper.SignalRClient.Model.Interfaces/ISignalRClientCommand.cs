@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Model.Extra.Wrapper.SignalRClient.Interfaces
+namespace bS.Wrapper.SignalRClient.Model.Interfaces
 {
     public interface ISignalRClientCommand
     {

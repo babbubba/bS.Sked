@@ -1,4 +1,6 @@
 ﻿using bS.Sked.Model.Services.Interfaces;
+using bS.Wrapper.SignalRClient.Interfaces;
+using bS.Wrapper.SignalRClient.Model;
 using Common.Logging;
 using System;
 
@@ -6,10 +8,10 @@ namespace bS.Sked.Services
 {
     public class WindowsServiceService : IWindowsServiceService
     {
-        private readonly Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient client;
+        private readonly ISignalRClient client;
         static ILog log = LogManager.GetLogger<WindowsServiceService>();
 
-        public WindowsServiceService(Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient client)
+        public WindowsServiceService(ISignalRClient client)
         {
             this.client = client;
         }
@@ -28,7 +30,7 @@ namespace bS.Sked.Services
                     SeverityId = 1
                 };
 
-                var command = new Model.Extra.Wrapper.SignalRClient.SignalRClientCommand
+                var command = new SignalRClientCommand
                 {
                     SignalServerHub = "MessagesHub",
                     SignalServerHubMethodToCall = "SendMessage",

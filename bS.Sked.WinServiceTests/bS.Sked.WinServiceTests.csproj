@@ -71,6 +71,18 @@
       <Project>{40540812-9313-429B-B9A6-D28A80FC024F}</Project>
       <Name>bS.Sked.WinService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Wrapper.SignalRClient.Interfaces\bS.Wrapper.SignalRClient.Interfaces.csproj">
+      <Project>{9BD78715-DDE9-4CCD-A292-5D56A25730D1}</Project>
+      <Name>bS.Wrapper.SignalRClient.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Wrapper.SignalRClient.Model.Interfaces\bS.Wrapper.SignalRClient.Model.Interfaces.csproj">
+      <Project>{91CA7D60-2B7B-4ED9-9C9A-53C80EB6CCD3}</Project>
+      <Name>bS.Wrapper.SignalRClient.Model.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Wrapper.SignalRClient.Model\bS.Wrapper.SignalRClient.Model.csproj">
+      <Project>{4128CD77-7891-4CA1-ACD0-42296C4C2D52}</Project>
+      <Name>bS.Wrapper.SignalRClient.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Wrapper.SignalRClient\bS.Wrapper.SignalRClient.csproj">
       <Project>{1f76a170-c8a0-4344-bfe6-84cfbb3fa6a2}</Project>
       <Name>bS.Wrapper.SignalRClient</Name>

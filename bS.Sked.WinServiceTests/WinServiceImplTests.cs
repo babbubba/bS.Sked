@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using bS.Sked.CompositionRoot;
+using bS.Wrapper.SignalRClient.Model;
+using bS.Wrapper.SignalRClient.Model.Interfaces;
+using bS.Wrapper.SignalRClient.Interfaces;
 using bS.Sked.Model.Services.Interfaces;
-using System;
-using bS.Sked.Model.Extra.Wrapper.SignalRClient.Interfaces;
-using System.Threading.Tasks;
+using bS.Sked.Services;
 
 namespace bS.Sked.WinService.Tests
 {
@@ -15,11 +15,11 @@ namespace bS.Sked.WinService.Tests
         {
             CompositionRoot.CompositionRoot.Instance()
                 .RegisterInstance<
-                    Model.Extra.Wrapper.SignalRClient.SignalRClientContext, ISignalRClientContext>(
-                new Model.Extra.Wrapper.SignalRClient.SignalRClientContext { SignalServerUrl = "http://localhost:55393/signalr" });
+                   SignalRClientContext, ISignalRClientContext>(
+                new SignalRClientContext { SignalServerUrl = "http://localhost:55393/signalr" });
 
-            CompositionRoot.CompositionRoot.Instance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
-            CompositionRoot.CompositionRoot.Instance().Register<Services.WindowsServiceService, Model.Services.Interfaces.IWindowsServiceService>();
+            CompositionRoot.CompositionRoot.Instance().Register<Wrapper.SignalRClient.SignalRClient, ISignalRClient>();
+            CompositionRoot.CompositionRoot.Instance().Register<WindowsServiceService, IWindowsServiceService>();
 
             CompositionRoot.CompositionRoot.Instance().BuildContainer();
         }

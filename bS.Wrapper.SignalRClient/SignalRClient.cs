@@ -1,4 +1,5 @@
-﻿using bS.Sked.Model.Extra.Wrapper.SignalRClient.Interfaces;
+﻿using bS.Wrapper.SignalRClient.Interfaces;
+using bS.Wrapper.SignalRClient.Model.Interfaces;
 using Common.Logging;
 using Microsoft.AspNet.SignalR.Client;
 using System;

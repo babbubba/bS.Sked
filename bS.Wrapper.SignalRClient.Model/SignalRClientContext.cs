@@ -1,12 +1,13 @@
-﻿using System;
+﻿using bS.Wrapper.SignalRClient.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Model.Extra.Wrapper.SignalRClient
+namespace bS.Wrapper.SignalRClient.Model
 {
-    public class SignalRClientContext : Interfaces.ISignalRClientContext
+    public class SignalRClientContext : ISignalRClientContext
     {
         public string SignalServerUrl { get; set; }
     }
