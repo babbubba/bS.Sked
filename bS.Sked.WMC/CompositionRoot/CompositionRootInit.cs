@@ -20,35 +20,35 @@ namespace bS.Sked.WMC.CompositionRoot
         {
             #region MVC
             // Register your MVC controllers. 
-            CR.Instance().RegisterControllers(typeof(MvcApplication).Assembly);
-            
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterControllers(typeof(MvcApplication).Assembly);
+
             // OPTIONAL: Register model binders that require DI.
-            CR.Instance().RegisterModelBinders(typeof(MvcApplication).Assembly);
-            CR.Instance().RegisterModelBinderProvider();
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterModelBinders(typeof(MvcApplication).Assembly);
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterModelBinderProvider();
 
             // OPTIONAL: Register web abstractions like HttpContextBase.
-            CR.Instance().RegisterWebAbstractionModule();
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterWebAbstractionModule();
 
             // OPTIONAL: Enable property injection in view pages.
-            CR.Instance().RegisterView();
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterView();
 
             // OPTIONAL: Enable property injection into action filters.
-            CR.Instance().RegisterFilterProvider();
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterFilterProvider();
             #endregion
 
             // Context and Unit Of Work
-            CR.Instance().RegisterInstance(new ApplicationContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = @"C:\eOrk3\PLUGINS\" });
-            CR.Instance().Register<ObjectContextImpl, IObjectContext>();
-            CR.Instance().Register<UnitOfWork, IUnitOfWork>();
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new ApplicationContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = @"C:\eOrk3\PLUGINS\" });
+            Sked.CompositionRoot.CompositionRoot.Instance().Register<ObjectContextImpl, IObjectContext>();
+            Sked.CompositionRoot.CompositionRoot.Instance().Register<UnitOfWork, IUnitOfWork>();
 
             //Repositories
-            CR.Instance().RegisterGeneric (typeof(RepositoryBase<>), typeof(IRepository<>));
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterGeneric (typeof(RepositoryBase<>), typeof(IRepository<>));
 
             //Build the CompositionRoot IOC Container
-            CR.Instance().BuildContainer();
+            Sked.CompositionRoot.CompositionRoot.Instance().BuildContainer();
 
             // Set the dependency resolver to the Composition Root Container.
-            DependencyResolver.SetResolver(CR.Instance().GetMvcDependencyResolver());
+            DependencyResolver.SetResolver(Sked.CompositionRoot.CompositionRoot.Instance().GetMvcDependencyResolver());
         }
 
      

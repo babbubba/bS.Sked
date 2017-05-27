@@ -84,7 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CR.cs" />
+    <Compile Include="CompositionRoot.cs" />
     <Compile Include="ICompositionRoot.cs" />
     <Compile Include="IIocModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

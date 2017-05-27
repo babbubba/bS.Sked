@@ -107,7 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericTransaction.cs" />
-    <Compile Include="ObjectContextConfigInfo.cs" />
+    <Compile Include="DataContextConfigInfo.cs" />
     <Compile Include="ObjectContextImpl.cs" />
     <Compile Include="ObjectSetImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

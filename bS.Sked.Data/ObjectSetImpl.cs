@@ -8,39 +8,37 @@ using bS.Sked.Shared.Extensions;
 
 namespace bS.Sked.Data
 {
-    public class ObjectSetImpl<T>
-        :
-        IObjectSet<T> where T : class, IPersisterEntity
+    public class ObjectSetImpl<T> : IObjectSet<T> where T : class, IPersisterEntity
     {
-        NHibernate.ISession _session;
+        NHibernate.ISession session;
 
         public ObjectSetImpl(
             NHibernate.ISession session)
         {
-            _session = session;
+            this.session = session;
         }
 
         #region IObjectSet<T> Members
 
         public void Add(T item)
         {
-          // item = item.SetCreationDateIfNeeded();
-           item.SetCreationDateIfNeeded();
-                _session.Save(item);
+            // item = item.SetCreationDateIfNeeded();
+            item.SetCreationDateIfNeeded();
+            session.Save(item);
         }
 
-      
+
 
         public void Update(T item)
         {
-           // item = item.SetUpdateDateIfNeeded();
+            // item = item.SetUpdateDateIfNeeded();
             item.SetUpdateDateIfNeeded();
-            _session.Update(item);
+            session.Update(item);
         }
 
         public void Delete(T item)
         {
-            _session.Delete(item);
+            session.Delete(item);
         }
 
         #endregion IObjectSet<T> Members
@@ -49,7 +47,7 @@ namespace bS.Sked.Data
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _session.Query<T>().GetEnumerator();
+            return session.Query<T>().GetEnumerator();
         }
 
         #endregion IEnumerable<T> Members
@@ -58,7 +56,7 @@ namespace bS.Sked.Data
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return _session.Query<T>().GetEnumerator();
+            return session.Query<T>().GetEnumerator();
         }
 
         #endregion IEnumerable Members
@@ -69,7 +67,7 @@ namespace bS.Sked.Data
         {
             get
             {
-                return _session.Query<T>().ElementType;
+                return session.Query<T>().ElementType;
             }
         }
 
@@ -77,7 +75,7 @@ namespace bS.Sked.Data
         {
             get
             {
-                return _session.Query<T>().Expression;
+                return session.Query<T>().Expression;
             }
         }
 
@@ -85,7 +83,7 @@ namespace bS.Sked.Data
         {
             get
             {
-                return _session.Query<T>().Provider;
+                return session.Query<T>().Provider;
             }
         }
 

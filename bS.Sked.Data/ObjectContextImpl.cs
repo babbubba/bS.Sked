@@ -21,7 +21,7 @@ namespace bS.Sked.Data
         NHibernate.ISessionFactory _sessionFactory;
 
         public ObjectContextImpl(
-            ObjectContextConfigInfo configInfo)
+            DataContextConfigInfo configInfo)
         {
             _sessionFactory =
                 SessionFactoryInitializer.GetFactory(

@@ -8,7 +8,7 @@ namespace bS.Sked.Data
     /// <summary>
     /// Database Configuration for a repositories and units of work.
     /// </summary>
-    public class ObjectContextConfigInfo
+    public class DataContextConfigInfo
     {
         /// <summary>
         /// May be the Connection string for database like MySql or Sql Server or the file path for database like SqlLite.

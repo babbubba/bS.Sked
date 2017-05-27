@@ -5,7 +5,7 @@ using System.Data;
 namespace bS.Sked.Data.Interfaces
 {
     /// <summary>
-    /// this contain the ORM Session and call factory to build/retrieve the right session for current config info (the connection string value)
+    /// Contains the ORM Session and call factory to build/retrieve the right session for current config info (the connection string value)
     /// </summary>
     public interface IObjectContext 
         : 

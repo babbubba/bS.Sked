@@ -1,34 +1,50 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Common.Logging;
 using System;
 using System.Reflection;
 using System.Web.Mvc;
 
 namespace bS.Sked.CompositionRoot
 {
-    public class CR : ICompositionRoot
+    public class CompositionRoot : ICompositionRoot
     {
+        private static ILog log = LogManager.GetLogger<CompositionRoot>();
+
         ContainerBuilder builder;
         IContainer iocContainer;
 
-        public CR()
+        public CompositionRoot()
         {
             builder = new ContainerBuilder();
+            log.Trace($"IOC container initialized.");
         }
 
         #region Singleton
-        static CR singletonInstance;
+        static CompositionRoot singletonInstance;
 
-        public static CR Instance()
+        public static CompositionRoot Instance()
         {
-            return (singletonInstance != null) ? singletonInstance : singletonInstance = new CR();
+            if (singletonInstance != null)
+            {
+                return singletonInstance;
+            }
+            log.Trace($"Composition Root singleton instance created.");
+            return new CompositionRoot();
         }
         #endregion
 
         public bool BuildContainer()
         {
-            iocContainer = builder.Build();
-
+            try
+            {
+                iocContainer = builder.Build();
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Error building IOC container: {ex.GetBaseException().Message}", ex);
+                return false;
+            }
             return true;
         }
 

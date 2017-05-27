@@ -13,15 +13,15 @@ namespace bS.Sked.WinService.Tests
         [TestInitialize]
         public void InitCompositionRoot()
         {
-            CR.Instance()
+            CompositionRoot.CompositionRoot.Instance()
                 .RegisterInstance<
                     Model.Extra.Wrapper.SignalRClient.SignalRClientContext, ISignalRClientContext>(
                 new Model.Extra.Wrapper.SignalRClient.SignalRClientContext { SignalServerUrl = "http://localhost:55393/signalr" });
 
-            CR.Instance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
-            CR.Instance().Register<Services.WindowsServiceService, Model.Services.Interfaces.IWindowsServiceService>();
+            CompositionRoot.CompositionRoot.Instance().Register<Wrapper.SignalRClient.SignalRClient, Model.Extra.Wrapper.SignalRClient.Interfaces.ISignalRClient>();
+            CompositionRoot.CompositionRoot.Instance().Register<Services.WindowsServiceService, Model.Services.Interfaces.IWindowsServiceService>();
 
-            CR.Instance().BuildContainer();
+            CompositionRoot.CompositionRoot.Instance().BuildContainer();
         }
 
         [TestMethod()]
