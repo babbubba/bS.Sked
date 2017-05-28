@@ -48,8 +48,20 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,13 +75,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\ApplicationContextConfigInfo.cs" />
+    <Compile Include="Elements\Base\ExecutableElementBaseModel.cs" />
+    <Compile Include="Elements\Base\ExecutableInstanceModel.cs" />
+    <Compile Include="Elements\ElementInstanceModel.cs" />
+    <Compile Include="Elements\ElementTypeModel.cs" />
+    <Compile Include="Elements\EmailComponentModel.cs" />
+    <Compile Include="Elements\Properties\AttachableFileModel.cs" />
+    <Compile Include="Elements\SmtpSettingModel.cs" />
+    <Compile Include="Jobs\JobInstanceModel.cs" />
+    <Compile Include="Jobs\JobModel.cs" />
+    <Compile Include="MainObjects\Base\MainObjectBaseModel.cs" />
+    <Compile Include="MainObjects\MainObjectTypeModel.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interfaces\IWindowsServiceService.cs" />
+    <Compile Include="Tasks\TaskInstanceModel.cs" />
+    <Compile Include="Tasks\TaskModel.cs" />
+    <Compile Include="Triggers\TriggerModel.cs" />
+    <Compile Include="Triggers\TriggerTypeModel.cs" />
     <Compile Include="WMC\MessageModel.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
+      <Project>{2A078B06-6432-481C-949D-7F9F1F1018BD}</Project>
+      <Name>bS.Sked.Model.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.WMC.Model.Interfaces\bS.Sked.WMC.Model.Interfaces.csproj">
+      <Project>{00699600-A7BD-449B-A4AA-D17C841027E8}</Project>
+      <Name>bS.Sked.WMC.Model.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

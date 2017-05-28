@@ -66,16 +66,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsServiceService.cs" />
+    <Compile Include="WMC\LeftSidebarService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">
+      <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
+      <Name>bS.Sked.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
+      <Project>{2A078B06-6432-481C-949D-7F9F1F1018BD}</Project>
+      <Name>bS.Sked.Model.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{D28D9ADA-EFFD-4AB6-AC8A-28DFB261E3CC}</Project>
       <Name>bS.Sked.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.WMC.Model.Interfaces\bS.Sked.WMC.Model.Interfaces.csproj">
+      <Project>{00699600-A7BD-449B-A4AA-D17C841027E8}</Project>
+      <Name>bS.Sked.WMC.Model.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Wrapper.SignalRClient.Interfaces\bS.Wrapper.SignalRClient.Interfaces.csproj">
       <Project>{9BD78715-DDE9-4CCD-A292-5D56A25730D1}</Project>

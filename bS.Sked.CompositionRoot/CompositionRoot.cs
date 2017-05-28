@@ -25,12 +25,12 @@ namespace bS.Sked.CompositionRoot
 
         public static CompositionRoot Instance()
         {
-            if (singletonInstance != null)
+            if (singletonInstance == null)
             {
-                return singletonInstance;
+                log.Trace($"Composition Root singleton instance created.");
+                singletonInstance = new CompositionRoot();
             }
-            log.Trace($"Composition Root singleton instance created.");
-            return new CompositionRoot();
+            return singletonInstance;
         }
         #endregion
 
