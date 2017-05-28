@@ -9,13 +9,13 @@ namespace bS.Sked.WMC.Model.Interfaces
     public enum Colours
     {
         Default = 0,
-        Blue = 1,
-        Yellow = 2,
-        Green = 2,
-        Aqua = 3,
-        LightBlue = 4,
-        Orange = 5,
-        Lime = 6  ,
-        Red = 7
+        blue = 1,
+        yellow = 2,
+        green = 2,
+        aqua = 3,
+        lightBlue = 4,
+        orange = 5,
+        lime = 6  ,
+        red = 7
     }
 }

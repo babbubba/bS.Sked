@@ -1,5 +1,6 @@
 ﻿using bS.Sked.Data;
 using bS.Sked.Data.Interfaces;
+using bS.Sked.Services.WMC;
 using System.Web.Mvc;
 
 namespace bS.Sked.WMC.CompositionRoot
@@ -37,6 +38,9 @@ namespace bS.Sked.WMC.CompositionRoot
 
             //Repositories
             Sked.CompositionRoot.CompositionRoot.Instance().RegisterGeneric (typeof(RepositoryBase<>), typeof(IRepository<>));
+
+            //Services
+            Sked. CompositionRoot.CompositionRoot.Instance().Register<LeftSidebarService>();
 
             //Build the CompositionRoot IOC Container
             Sked.CompositionRoot.CompositionRoot.Instance().BuildContainer();

@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Newtonsoft.Json;
+using bS.Sked.Model.WMC;
 
 namespace bS.Sked.WMC.Hubs
 {
@@ -17,7 +18,7 @@ namespace bS.Sked.WMC.Hubs
             Clients.All.addNewMessageToPage(name, message);
         }
 
-        public void BroadcastMessage(Model.WMC.MessageModel messageModel)
+        public void BroadcastMessage(MessageModel messageModel)
         {
             Clients.All.broadcastMessage(messageModel);
         }

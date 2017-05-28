@@ -10,5 +10,7 @@ namespace bS.Sked.WMC.Model.Interfaces
     {
         string Text { get; set; }
         Colours TextColour { get; set; }
+        string TextColourString { get; }
+        string ElementType { get; }
     }
 }

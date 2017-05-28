@@ -1,18 +1,15 @@
-﻿using System;
+﻿using bS.Sked.WMC.Model.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace bS.Sked.WMC.Model.Interfaces
 {
-    public interface ISidebarItemModel   : ISidebarItemBase
+    public interface ISidebarItemTreeViewModel   : ISidebarItemBase
     {
+        IList<ISidebarItemBase> Children { get; set; }
         SidebarItemIcon Icon { get; set; }
         Colours IconColour { get; set; }
-        ISidebarItemLabelModel[] Labels { get; set; }
-        string Link { get; set; }
         bool IsActive { get; set; }
         bool IsDisabled { get; set; }
+        ISidebarItemLabelModel[] Labels { get; set; }
     }
 }

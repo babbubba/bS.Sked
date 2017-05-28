@@ -21,15 +21,6 @@ namespace bS.Sked.Services.WMC
         {
             this.repository = repository;
         }
-        public ISidebarItemBase[] Items()
-        {
-            var aResult = new List<ISidebarItemBase>();
-
-            createNavigationSection(aResult);
-            createJobsSection(aResult);
-
-            return aResult.ToArray();
-        }
 
         private void createJobsSection(List<ISidebarItemBase> aResult)
         {
@@ -40,7 +31,7 @@ namespace bS.Sked.Services.WMC
                 Text = "Data"
             });
 
-            var jobsMenu = new SidebarItemModel
+            var jobsMenu = new SidebarItemTreeViewModel
             {
                 Text = "Jobs"
             };
@@ -48,7 +39,7 @@ namespace bS.Sked.Services.WMC
 
             foreach (var j in query)
             {
-                aResult.Add(new SidebarItemModel
+                jobsMenu.Children.Add(new SidebarItemModel
                 {
                     Text = j.Name,
                     Icon = SidebarItemIcon.Job,
@@ -58,10 +49,9 @@ namespace bS.Sked.Services.WMC
                         new SidebarItemLabelModel
                         {
                             Text = $"{j.Tasks.Count.ToString()} tasks",
-                            TextColour = Colours.Blue
+                            TextColour = Colours.blue
                         }
                     },
-                    ParentItem = jobsMenu,
                     Link = $"/Job/{j.Id}"
                 });
             }
@@ -71,7 +61,8 @@ namespace bS.Sked.Services.WMC
         {
             aResult.Add(new SidebarItemHeaderModel
             {
-                Text = "Navigation"
+                Text = "Navigation",
+                TextColour = Colours.blue
             });
 
             aResult.Add(new SidebarItemModel
@@ -87,6 +78,29 @@ namespace bS.Sked.Services.WMC
                 Link = "/Settings",
                 Icon = SidebarItemIcon.Settings
             });
+        }
+
+
+
+        public ISidebarItemBase[] Items()
+        {
+            var aResult = new List<ISidebarItemBase>();
+
+            createNavigationSection(aResult);
+            createJobsSection(aResult);
+
+            return aResult.ToArray();
+        }
+
+
+        public SidebarItemModel GetItem(ISidebarItemBase model)
+        {
+            return (SidebarItemModel)model;
+        }
+
+        public SidebarItemTreeViewModel GetTreeViewItem(ISidebarItemBase model)
+        {
+            return (SidebarItemTreeViewModel)model;
         }
     }
 
