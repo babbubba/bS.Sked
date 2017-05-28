@@ -146,6 +146,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="CompositionRoot\CompositionRootInit.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SidebarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1135,6 +1136,8 @@
     <Content Include="Theme\AdminLTE\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Theme\AdminLTE\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Sidebar\_LeftSidebar.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Settings\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1172,6 +1175,14 @@
     <ProjectReference Include="..\bS.Sked.Services\bS.Sked.Services.csproj">
       <Project>{26a7c7d8-4927-4015-9ea0-39b4d0cd39f5}</Project>
       <Name>bS.Sked.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
+      <Project>{3e98c6b3-23c6-4c38-b7b3-d18049ad97e5}</Project>
+      <Name>bS.Sked.ViewModel.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel\bS.Sked.ViewModel.csproj">
+      <Project>{04c55660-b999-4e33-aec8-b0c95cdfbce4}</Project>
+      <Name>bS.Sked.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.WMC.Model.Interfaces\bS.Sked.WMC.Model.Interfaces.csproj">
       <Project>{00699600-a7bd-449b-a4aa-d17c841027e8}</Project>

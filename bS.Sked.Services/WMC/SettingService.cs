@@ -1,9 +1,12 @@
 ﻿using bs.Sked.Mapping;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Models.Elements;
 using bS.Sked.Models.Interfaces.Elements;
 using bS.Sked.Services.Base;
+using bS.Sked.ViewModel.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace bS.Sked.Services.WMC
@@ -18,12 +21,18 @@ namespace bS.Sked.Services.WMC
         }
 
 
-        public ISmtpSettingViewModel[] SmtpSettingsAll => Mapping.Map<ISmtpSettingViewModel[]>(repository.GetQuery<ISmtpSettingModel>().ToArray());
+        public IEnumerable<SmtpSettingViewModel> SmtpSettingsAll
+        {
+            get
+            {
+                return (Mapping.Map<IEnumerable<SmtpSettingViewModel>>(repository.GetQuery<ISmtpSettingModel>().ToArray())) ?? new List<SmtpSettingViewModel>();
+            }
+        }
 
         public void SmtpSettingsAdd(ISmtpSettingViewModel vM)
         {
             var t = repository.BeginTransaction();
-            repository.Add(Mapping.Map<ISmtpSettingModel>(vM));
+            repository.Add(Mapping.Map<SmtpSettingModel>(vM));
             t.Commit();
         }
 

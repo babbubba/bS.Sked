@@ -11,6 +11,7 @@ namespace bS.Sked.ViewModel.Elements
 {
     public class SmtpSettingViewModel : PersisterToggledDescribedEnityBaseVieModel,  ISmtpSettingViewModel
     {
+
         public virtual bool IsAuthRequired { get; set; }
         public virtual bool IsDefault { get; set; }
         public virtual bool IsSslEnabled { get; set; }
@@ -42,6 +43,10 @@ namespace bS.Sked.ViewModel.Elements.Base
 
     public abstract class PersisterToggledDescribedEnityBaseVieModel : IPersisterEntityViewModel, IToggledEntityViewModel, IDescribedEntityViewModel
     {
+        protected PersisterToggledDescribedEnityBaseVieModel()
+        {
+            Id = Guid.Empty.ToString();
+        }
         public virtual string Id { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual string Description { get; set; }

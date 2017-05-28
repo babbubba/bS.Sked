@@ -1,0 +1,87 @@
+﻿@model IEnumerable<bS.Sked.ViewModel.Elements.SmtpSettingViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAuthRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDefault)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSslEnabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmtpAccountPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmtpAccountUsername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmtpServerAddressOrIp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmtpServerPort)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAuthRequired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDefault)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSslEnabled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmtpAccountPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmtpAccountUsername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmtpServerAddressOrIp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmtpServerPort)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

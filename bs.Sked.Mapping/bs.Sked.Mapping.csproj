@@ -51,9 +51,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
+      <Project>{2A078B06-6432-481C-949D-7F9F1F1018BD}</Project>
+      <Name>bS.Sked.Model.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{D28D9ADA-EFFD-4AB6-AC8A-28DFB261E3CC}</Project>
       <Name>bS.Sked.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
+      <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
+      <Name>bS.Sked.ViewModel.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.ViewModel\bS.Sked.ViewModel.csproj">
       <Project>{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}</Project>

@@ -97,6 +97,10 @@
       <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
       <Name>bS.Sked.ViewModel.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel\bS.Sked.ViewModel.csproj">
+      <Project>{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}</Project>
+      <Name>bS.Sked.ViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.WMC.Model.Interfaces\bS.Sked.WMC.Model.Interfaces.csproj">
       <Project>{00699600-A7BD-449B-A4AA-D17C841027E8}</Project>
       <Name>bS.Sked.WMC.Model.Interfaces</Name>

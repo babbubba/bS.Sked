@@ -1,4 +1,5 @@
 ﻿using bS.Sked.Models.Elements;
+using bS.Sked.Models.Interfaces.Elements;
 using bS.Sked.ViewModel.Elements;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,10 @@ namespace bs.Sked.Mapping
         {
             AutoMapper.Mapper.Initialize(config =>
             {
-                config.CreateMap<SmtpSettingModel, SmtpSettingViewModel>();
+                config.ShouldMapField = fi => false;
+
+            config.CreateMap<SmtpSettingViewModel, ISmtpSettingModel>().ReverseMap();
+
             });
         }
 
