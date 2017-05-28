@@ -1,11 +1,5 @@
-﻿using bS.Sked.CompositionRoot;
-using bS.Sked.Data;
+﻿using bS.Sked.Data;
 using bS.Sked.Data.Interfaces;
-using bS.Sked.Model.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace bS.Sked.WMC.CompositionRoot
@@ -37,7 +31,7 @@ namespace bS.Sked.WMC.CompositionRoot
             #endregion
 
             // Context and Unit Of Work
-            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new ApplicationContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = @"C:\eOrk3\PLUGINS\" });
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = @"C:\eOrk3\PLUGINS\" });
             Sked.CompositionRoot.CompositionRoot.Instance().Register<ObjectContextImpl, IObjectContext>();
             Sked.CompositionRoot.CompositionRoot.Instance().Register<UnitOfWork, IUnitOfWork>();
 

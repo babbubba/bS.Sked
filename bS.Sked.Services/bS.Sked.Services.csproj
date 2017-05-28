@@ -92,6 +92,10 @@
       <Project>{00699600-A7BD-449B-A4AA-D17C841027E8}</Project>
       <Name>bS.Sked.WMC.Model.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.WMC.Model\bS.Sked.WMC.Model.csproj">
+      <Project>{8006693B-FC24-4C25-850F-C715D39BDF5D}</Project>
+      <Name>bS.Sked.WMC.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Wrapper.SignalRClient.Interfaces\bS.Wrapper.SignalRClient.Interfaces.csproj">
       <Project>{9BD78715-DDE9-4CCD-A292-5D56A25730D1}</Project>
       <Name>bS.Wrapper.SignalRClient.Interfaces</Name>

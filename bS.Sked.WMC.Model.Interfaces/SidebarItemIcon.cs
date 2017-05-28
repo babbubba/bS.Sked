@@ -14,6 +14,7 @@ namespace bS.Sked.WMC.Model.Interfaces
         Job = 3,
         Task = 4,
         MainObject = 5,
-        Element = 6
+        Element = 6 ,
+        Settings = 7
     }
 }
