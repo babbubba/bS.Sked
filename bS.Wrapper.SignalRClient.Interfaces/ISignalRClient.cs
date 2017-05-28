@@ -10,5 +10,6 @@ namespace bS.Wrapper.SignalRClient.Interfaces
     public interface ISignalRClient
     {
         Task SendMessageAsync(ISignalRClientCommand command);
+        void SendMessage(ISignalRClientCommand command);
     }
 }

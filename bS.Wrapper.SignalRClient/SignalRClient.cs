@@ -20,14 +20,13 @@ namespace bS.Wrapper.SignalRClient
 
         public async Task SendMessageAsync(ISignalRClientCommand command)
         {
+
             try
             {
                 using (var hubConnection = new HubConnection($"{context.SignalServerUrl}", useDefaultUrl: false))
                 {
                     var proxy = hubConnection.CreateHubProxy(command.SignalServerHub);
-
                     await hubConnection.Start();
-
                     await proxy.Invoke(command.SignalServerHubMethodToCall, command.SignalServerHubMethodParameters);
                 }
             }
@@ -35,8 +34,14 @@ namespace bS.Wrapper.SignalRClient
             {
                 var errorMessage = $"Error sending message to SignlR Server (Url: {context.SignalServerUrl})";
                 log.Error(errorMessage, ex);
-                throw new ApplicationException(errorMessage); //Do not throw the stack exception
+                throw new ApplicationException(errorMessage, ex);
             }
+        }
+
+        public void SendMessage(ISignalRClientCommand command)
+        {
+            var t = SendMessageAsync(command).GetAwaiter();
+            while (!t.IsCompleted) { }
         }
     }
 }
