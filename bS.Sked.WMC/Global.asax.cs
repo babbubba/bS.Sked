@@ -1,4 +1,5 @@
-﻿using bS.Sked.WMC.CompositionRoot;
+﻿using bs.Sked.Mapping;
+using bS.Sked.WMC.CompositionRoot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace bS.Sked.WMC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            CompositionRootInit.Main();
+            CompositionRootInit.RegisterComponents();
+            Mapping.RegisterMappings();
         }
     }
 }

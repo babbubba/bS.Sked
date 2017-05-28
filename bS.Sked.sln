@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.WMC.Model.Interface
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.ServicesTests", "bS.Sked.ServicesTests\bS.Sked.ServicesTests.csproj", "{95B98241-21D3-4FC4-B7A8-DFEDD7B2F2E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bs.Sked.Mapping", "bs.Sked.Mapping\bs.Sked.Mapping.csproj", "{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,14 @@ Global
 		{95B98241-21D3-4FC4-B7A8-DFEDD7B2F2E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95B98241-21D3-4FC4-B7A8-DFEDD7B2F2E9}.Release|x64.ActiveCfg = Release|Any CPU
 		{95B98241-21D3-4FC4-B7A8-DFEDD7B2F2E9}.Release|x64.Build.0 = Release|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,5 +258,6 @@ Global
 		{8006693B-FC24-4C25-850F-C715D39BDF5D} = {F31286C3-8D5E-438C-BD5E-5B3C505161A2}
 		{00699600-A7BD-449B-A4AA-D17C841027E8} = {F31286C3-8D5E-438C-BD5E-5B3C505161A2}
 		{95B98241-21D3-4FC4-B7A8-DFEDD7B2F2E9} = {CDC42B36-AB3F-4C28-93E5-F11014B4981C}
+		{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F} = {4ABD77D9-8D25-4590-A794-C8658B600F65}
 	EndGlobalSection
 EndGlobal

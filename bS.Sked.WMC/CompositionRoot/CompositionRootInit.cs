@@ -11,7 +11,7 @@ namespace bS.Sked.WMC.CompositionRoot
         /// Init Composition Root and register Controllers, ModelBinders, Web abstractions, enable injection in views
         /// and set MVC 'DependencyResolver' to use CompositionRoot Container.
         /// </summary>
-        public static void Main()
+        public static void RegisterComponents()
         {
             #region MVC
             // Register your MVC controllers. 

@@ -81,6 +81,10 @@
       <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
       <Name>bS.Sked.Data.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bs.Sked.Mapping\bs.Sked.Mapping.csproj">
+      <Project>{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}</Project>
+      <Name>bs.Sked.Mapping</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
       <Project>{2A078B06-6432-481C-949D-7F9F1F1018BD}</Project>
       <Name>bS.Sked.Model.Interfaces</Name>
@@ -88,6 +92,10 @@
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{D28D9ADA-EFFD-4AB6-AC8A-28DFB261E3CC}</Project>
       <Name>bS.Sked.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
+      <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
+      <Name>bS.Sked.ViewModel.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.WMC.Model.Interfaces\bS.Sked.WMC.Model.Interfaces.csproj">
       <Project>{00699600-A7BD-449B-A4AA-D17C841027E8}</Project>
