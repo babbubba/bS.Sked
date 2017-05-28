@@ -40,6 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\ISmtpSettingViewModel.cs" />
+    <Compile Include="Entities\Base\IDescribedEntityViewModel.cs" />
+    <Compile Include="Entities\Base\IExecutableEntityViewModel.cs" />
+    <Compile Include="Entities\Base\IExecutableInstanceViewModel.cs" />
+    <Compile Include="Entities\Base\IHistoricalEntityViewModel.cs" />
+    <Compile Include="Entities\Base\IParentsAlertEntityViewModel.cs" />
+    <Compile Include="Entities\Base\IPersisterEntityViewModel.cs" />
+    <Compile Include="Entities\Base\IPositionalEntityViewModel.cs" />
+    <Compile Include="Entities\Base\IToggledEntityViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
