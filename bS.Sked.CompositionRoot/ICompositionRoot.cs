@@ -19,7 +19,6 @@ namespace bS.Sked.CompositionRoot
         void RegisterIocModule<T>(T iocModule) where T : IIocModule;
         void RegisterModelBinderProvider();
         void RegisterModelBinders(Assembly mvcAssembly);
-        void RegisterModule<TModule>() where TModule : IModule, new();
         void RegisterView();
         void RegisterWebAbstractionModule();
         T Resolve<T>();

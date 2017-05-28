@@ -49,9 +49,9 @@ namespace bS.Sked.CompositionRoot
         }
 
         /// <summary>
-        /// 
+        /// Returns a 'System.Web.Mvc.IDependencyResolver' object for MVC injection.
         /// </summary>
-        /// <returns>An instance of type 'System.Web.Mvc.IDependencyResolver'. You have to cast this value to register in MVC.</returns>
+        /// <returns>An instance of type 'System.Web.Mvc.IDependencyResolver'.</returns>
         public IDependencyResolver GetMvcDependencyResolver()
         {
             if (iocContainer == null) throw new ApplicationException("Container has not been initialized.");
@@ -106,7 +106,8 @@ namespace bS.Sked.CompositionRoot
         public void RegisterIocModule<T>(T iocModule) where T : IIocModule
         {
             if (iocContainer != null) throw new ApplicationException("Container has been initialized yet.");
-            var module = (Autofac.Core.IModule)iocModule;
+            var module = iocModule as Autofac.Core.IModule;
+            if(module==null) throw new ApplicationException("Error executing cast of the module.");
             builder.RegisterModule(module);
         }
 
@@ -137,13 +138,6 @@ namespace bS.Sked.CompositionRoot
         {
             if (iocContainer != null) throw new ApplicationException("Container has been still initialized.");
             builder.RegisterModelBinderProvider();
-        }
-
-        //TODO: This method has to ber abstracted with ICompositionRootModule interface to avoid Autofac dependences in target project
-        public void RegisterModule<TModule>() where TModule : Autofac.Core.IModule, new()
-        {
-            if (iocContainer != null) throw new ApplicationException("Container has been still initialized.");
-            builder.RegisterModule<TModule>();
         }
 
         /// <summary>
