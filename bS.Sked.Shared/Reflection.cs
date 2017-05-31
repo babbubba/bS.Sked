@@ -12,7 +12,7 @@ namespace bS.Sked.Shared
 {
    public static class Reflection
     {
-        private static readonly string[] fileNameScannerPattern = { "bS.Sked..Model.*.dll", "bS.Sked.ElementExtensions.*.Model.dll" };
+        private static readonly string[] fileNameScannerPattern = { "bS.Sked.Model.*", "bS.Sked.ElementExtensions.*" };
         private static ILog log = LogManager.GetLogger("bS.Sked.Shared.Reflection");
 
         public static List<Assembly> GetORMMappingAssemblies(string[] foldersWhereLookingForDll, bool useCurrentdirectoryToo)

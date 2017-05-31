@@ -32,7 +32,8 @@ namespace bS.Sked.Services.WMC
         public void SmtpSettingsAdd(ISmtpSettingViewModel vM)
         {
             var t = repository.BeginTransaction();
-            repository.Add(Mapping.Map<SmtpSettingModel>(vM));
+            var model = Mapping.Map<SmtpSettingModel>(vM);
+            repository.Add(model);
             t.Commit();
         }
 

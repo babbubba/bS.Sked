@@ -1,4 +1,5 @@
-﻿using bS.Sked.Models.Elements;
+﻿using AutoMapper;
+using bS.Sked.Models.Elements;
 using bS.Sked.Models.Interfaces.Elements;
 using bS.Sked.ViewModel.Elements;
 using System;
@@ -15,11 +16,12 @@ namespace bs.Sked.Mapping
 
         public static void RegisterMappings()
         {
-            AutoMapper.Mapper.Initialize(config =>
+            Mapper.Initialize(config =>
             {
-                config.ShouldMapField = fi => false;
+                //  config.ShouldMapField = fi => false;
 
-            config.CreateMap<SmtpSettingViewModel, ISmtpSettingModel>().ReverseMap();
+                config.CreateMap<SmtpSettingViewModel, SmtpSettingModel>();
+                config.CreateMap<SmtpSettingViewModel, ISmtpSettingModel>().ReverseMap();
 
             });
         }
@@ -27,5 +29,16 @@ namespace bs.Sked.Mapping
         public static TDestination Map<TDestination>(object source) => AutoMapper.Mapper.Map<TDestination>(source);
 
         public static object Map(object source, Type sourceType, Type destinationType) => AutoMapper.Mapper.Map(source, sourceType, destinationType);
+
+
+    }
+
+    public class GuidTypeConverter : ITypeConverter<string, Guid>
+    {
+        public Guid Convert(string source, Guid destination, ResolutionContext context)
+        {
+            if (string.IsNullOrEmpty(source)) return Guid.NewGuid();
+            return Guid.Parse(source);
+        }
     }
 }
