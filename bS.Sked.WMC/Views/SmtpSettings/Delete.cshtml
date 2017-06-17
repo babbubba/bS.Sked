@@ -1,0 +1,104 @@
+﻿@model bS.Sked.ViewModel.Elements.SmtpSettingViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SmtpSettingViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAuthRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAuthRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDefault)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDefault)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSslEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSslEnabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SmtpAccountPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SmtpAccountPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SmtpAccountUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SmtpAccountUsername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SmtpServerAddressOrIp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SmtpServerAddressOrIp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SmtpServerPort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SmtpServerPort)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

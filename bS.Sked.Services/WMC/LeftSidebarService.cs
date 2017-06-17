@@ -72,15 +72,20 @@ namespace bS.Sked.Services.WMC
                 Icon = SidebarItemIcon.Dashboard
             });
 
-            aResult.Add(new SidebarItemModel
+            var settingsMenu = new SidebarItemTreeViewModel
             {
-                Text = "Settings",
-                Link = "/Settings",
+                Text = "Settings"
+            };
+            aResult.Add(settingsMenu);
+
+            settingsMenu.Children.Add(new SidebarItemModel
+            {
+                Text = "SMTP Settings",
+                Link = "/SmtpSettings",
                 Icon = SidebarItemIcon.Settings
             });
+
         }
-
-
 
         public ISidebarItemBase[] Items()
         {
@@ -91,7 +96,6 @@ namespace bS.Sked.Services.WMC
 
             return aResult.ToArray();
         }
-
 
         public SidebarItemModel GetItem(ISidebarItemBase model)
         {

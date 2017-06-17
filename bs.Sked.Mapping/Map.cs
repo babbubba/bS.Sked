@@ -28,6 +28,10 @@ namespace bs.Sked.Mapping
 
         public static TDestination Map<TDestination>(object source) => AutoMapper.Mapper.Map<TDestination>(source);
 
+        public static TDestination Map<TDestination>(object source, TDestination target)
+        {
+            return AutoMapper.Mapper.Map(source, target);
+        }
         public static object Map(object source, Type sourceType, Type destinationType) => AutoMapper.Mapper.Map(source, sourceType, destinationType);
 
 
