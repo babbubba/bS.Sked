@@ -9,10 +9,10 @@ using System.Web.Mvc;
 
 namespace bS.Sked.WMC.Controllers
 {
-    public class SettingsController : Controller
+    public class SmtpSettingsController : Controller
     {
         SettingService service;
-        public SettingsController(SettingService service)
+        public SmtpSettingsController(SettingService service)
         {
             this.service = service;
         }
@@ -22,10 +22,15 @@ namespace bS.Sked.WMC.Controllers
             return View(service.SmtpSettingsAll);
         }
 
+        public ActionResult Details(string id)
+        {
+            return View(service.SmtpSettingsGet(id));
+        }
+
+
         public ActionResult Create()
         {
-            //return View(new SmtpSettingViewModel());
-            return View();
+            return View(service.SmtpSettingsNew);
         }
 
         [HttpPost]
@@ -44,5 +49,27 @@ namespace bS.Sked.WMC.Controllers
             return View("Details", vM);         
         }
 
+
+        public ActionResult Edit(string id)
+        {
+            return View(service.SmtpSettingsGet(id));
+            //return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SmtpSettingViewModel vM)
+        {
+            try
+            {
+                service.SmtpSettingsUpdate(vM);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(vM);
+            }
+            return View("Details", vM);
+        }
     }
 }
