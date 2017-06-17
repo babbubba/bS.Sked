@@ -69,12 +69,13 @@ namespace bS.Sked.Services.WMC
             {
                 Text = "Dashboard",
                 Link = "/Dashboard",
-                Icon = SidebarItemIcon.Dashboard
+                Icon = SidebarItemIcon.tachometer
             });
 
             var settingsMenu = new SidebarItemTreeViewModel
             {
-                Text = "Settings"
+                Text = "Settings",
+                Icon = SidebarItemIcon.cog
             };
             aResult.Add(settingsMenu);
 
@@ -82,7 +83,7 @@ namespace bS.Sked.Services.WMC
             {
                 Text = "SMTP Settings",
                 Link = "/SmtpSettings",
-                Icon = SidebarItemIcon.Settings
+                Icon= SidebarItemIcon.envelope
             });
 
         }

@@ -42,7 +42,7 @@
              var eItem = service.GetItem(item);
             <li>
                 <a href="@eItem.Link">
-                    <i class="fa fa-th"></i> <span>@eItem.Text</span>
+                    <i class="fa fa-@eItem.Icon"></i> <span>@eItem.Text</span>
                     <span class="pull-right-container">
                         @foreach (var label in eItem.Labels)
                         {
@@ -57,7 +57,7 @@
              var eItem = service.GetTreeViewItem(item);
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-files-o"></i>
+                    <i class="fa fa-@eItem.Icon"></i>
                     <span>@eItem.Text</span>
                     <span class="pull-right-container">
                         @foreach (var label in @eItem.Labels)
