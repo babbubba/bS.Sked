@@ -24,7 +24,15 @@ namespace bS.Sked.WMC.Controllers
 
         public ActionResult Details(string id)
         {
-            return View(service.SmtpSettingsGet(id));
+            try
+            {
+                return View(service.SmtpSettingsGet(id));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
         }
 
 
@@ -37,16 +45,19 @@ namespace bS.Sked.WMC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SmtpSettingViewModel vM)
         {
-            try
+            if (ModelState.IsValid)
             {
-                service.SmtpSettingsAdd(vM);
+                try
+                {
+                    service.SmtpSettingsAdd(vM);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(vM);
+                }
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(vM);
-            }
-            return View("Details", vM);         
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -60,15 +71,19 @@ namespace bS.Sked.WMC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SmtpSettingViewModel vM)
         {
-            try
+            if (ModelState.IsValid)
             {
-                service.SmtpSettingsUpdate(vM);
+                try
+                {
+                    service.SmtpSettingsUpdate(vM);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(vM);
+                }
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(vM);
-            }
+            
             return View(nameof(Details), vM);
         }
 
@@ -81,14 +96,18 @@ namespace bS.Sked.WMC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(SmtpSettingViewModel vM)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                service.SmtpSettingsDelete(vM.Id);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View();
+                try
+                {
+                    service.SmtpSettingsDelete(vM.Id);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View();
+                }
             }
             return RedirectToAction(nameof(Index));
         }
