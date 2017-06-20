@@ -4,95 +4,103 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">Smtp Setting</h3>
+        <a href="@Url.Action("Edit", new {id = Model.Id  })"><i class="fa fa-edit button-a pull-right"></i></a>
+    </div>
+    <div class="box-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </dt>
 
-<div>
-    <h4>SmtpSettingViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsActive)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsAuthRequired)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAuthRequired)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsAuthRequired)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAuthRequired)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsDefault)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDefault)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsDefault)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsDefault)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsSslEnabled)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSslEnabled)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsSslEnabled)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsSslEnabled)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SmtpAccountPassword)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SmtpAccountPassword)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SmtpAccountPassword)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SmtpAccountPassword)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SmtpAccountUsername)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SmtpAccountUsername)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SmtpAccountUsername)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SmtpAccountUsername)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SmtpServerAddressOrIp)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SmtpServerAddressOrIp)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SmtpServerAddressOrIp)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SmtpServerAddressOrIp)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SmtpServerPort)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SmtpServerPort)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SmtpServerPort)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SmtpServerPort)
-        </dd>
+            </dl>
 
-    </dl>
+
+        <div class="box-footer">
+            <a href="@Url.Action("Index")"><i class="fa fa-backward button-a"></i> Back to List</a>
+        </div>
+        <p>
+          
+        </p>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

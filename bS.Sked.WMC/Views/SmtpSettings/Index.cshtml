@@ -14,7 +14,7 @@
 
     <div class="box-body">
 
-        <table class="table table-bordered">
+        <table class="table table-bordered table-condensed table-responsive">
             <tbody>
                 <tr>
                     <th>
@@ -23,22 +23,22 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
-                    <th>
+                    <th class="hidden-xs">
                         @Html.DisplayNameFor(model => model.IsAuthRequired)
                     </th>
-                    <th>
+                    <th >
                         @Html.DisplayNameFor(model => model.IsDefault)
                     </th>
-                    <th>
+                    <th class="hidden-xs">
                         @Html.DisplayNameFor(model => model.IsSslEnabled)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.SmtpServerAddressOrIp)
                     </th>
-                    <th>
+                    <th class="hidden-xs">
                         @Html.DisplayNameFor(model => model.SmtpServerPort)
                     </th>
-                    <th></th>
+                    <th style="width:68px;"></th>
                 </tr>
 
                 @foreach (var item in Model)
@@ -50,19 +50,19 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>
+                        <td class="hidden-xs">
                             @Html.DisplayFor(modelItem => item.IsAuthRequired)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.IsDefault)
                         </td>
-                        <td>
+                        <td class="hidden-xs">
                             @Html.DisplayFor(modelItem => item.IsSslEnabled)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SmtpServerAddressOrIp)
                         </td>
-                        <td>
+                        <td class="hidden-xs">
                             @Html.DisplayFor(modelItem => item.SmtpServerPort)
                         </td>
                         <td>
