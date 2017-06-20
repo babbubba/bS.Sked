@@ -8,7 +8,7 @@
 <div class="box box-default">
     <div class="box-header with-border">
         <h3 class="box-title">Smtp Setting</h3>
-        <a href="@Url.Action("Edit", new {id = Model.Id  })"><i class="fa fa-edit button-a pull-right"></i></a>
+        @Html.EditLink(model => model.Id, htmlAttributes: new  { @class = "pull-right"  })
     </div>
     <div class="box-body">
             <dl class="dl-horizontal">

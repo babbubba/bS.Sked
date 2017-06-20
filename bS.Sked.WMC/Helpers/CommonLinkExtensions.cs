@@ -95,5 +95,25 @@ namespace bS.Sked.WMC.Helpers
             return MvcHtmlString.Create(aLink.ToString(TagRenderMode.Normal));
         }
 
+        public static MvcHtmlString EditLink<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, object htmlAttributes = null)
+        {
+            var metadata = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
+            var urlHelper = new UrlHelper(html.ViewContext.RequestContext);
+            var url = urlHelper.Action("Edit", new { id = metadata.Model });
+            var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            var aLink = new TagBuilder("a");
+            aLink.Attributes.Add("href", url);
+            var i = new TagBuilder("i");
+            if (attributes.ContainsKey("class"))
+                attributes["class"] = "fa fa-edit button-a " + attributes["class"];
+            else
+                attributes.Add("class", "myClass");
+
+           if(attributes != null)  i.MergeAttributes(attributes);
+            aLink.InnerHtml += i.ToString(TagRenderMode.Normal);
+            return MvcHtmlString.Create(aLink.ToString(TagRenderMode.Normal));
+
+        }
+
     }
 }
