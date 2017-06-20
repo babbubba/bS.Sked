@@ -1,4 +1,5 @@
-﻿@model bS.Sked.ViewModel.Elements.SmtpSettingViewModel
+﻿@using bS.Sked.WMC.Helpers
+@model bS.Sked.ViewModel.Elements.SmtpSettingViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -95,7 +96,7 @@
 
 
         <div class="box-footer">
-            <a href="@Url.Action("Index")"><i class="fa fa-backward button-a"></i> Back to List</a>
+            @Html.BackToIndexLink()
         </div>
         <p>
           
