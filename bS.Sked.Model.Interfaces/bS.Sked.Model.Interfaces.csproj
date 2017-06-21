@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\ICommonModel.cs" />
+    <Compile Include="Core\IRoleModel.cs" />
+    <Compile Include="Core\IUserModel.cs" />
     <Compile Include="Elements\IElementInstanceModel.cs" />
     <Compile Include="Elements\IElementTypeModel.cs" />
     <Compile Include="Elements\IEmailComponentModel.cs" />
