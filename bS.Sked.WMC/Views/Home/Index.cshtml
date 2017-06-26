@@ -5,17 +5,20 @@
     ViewBag.Version = "0.1 Alpha";
     ViewBag.User = "Ano Nym";
 }
-
-<div class="box box-success">
-    <div class="box-header with-border">
-        <h3 class="box-title">Welcome in bS SKED</h3>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box box-success">
+            <div class="box-header with-border">
+            </div>
+            <div class="box-body">
+                <p>Welcome to <span>bS SKED</span> open source project.</p>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="center-block" style="width:200px;">
+                    <a href="@Url.Action("Dashboard", "Home")" class="btn btn-success ">Go to <b>Dashboard</b></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="box-body">
-       <p>Welcome to <span>bS SKED</span> open source project.</p>
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-    </div>
-    <!-- /.box-footer-->
 </div>
-<!-- /.box -->

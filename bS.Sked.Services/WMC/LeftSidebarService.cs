@@ -68,7 +68,7 @@ namespace bS.Sked.Services.WMC
             aResult.Add(new SidebarItemModel
             {
                 Text = "Dashboard",
-                Link = "/Dashboard",
+                Link = "/Home/Dashboard",
                 Icon = SidebarItemIcon.tachometer
             });
 
