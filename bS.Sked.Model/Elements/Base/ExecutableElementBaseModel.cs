@@ -58,7 +58,7 @@ namespace bS.Sked.Models.Elements.Base
             Map(x => x.StopParentIfErrorOccurs);
             Map(x => x.StopParentIfWarningOccurs);
             Map(x => x.UpdateDate);
-            DiscriminateSubClassesOnColumn("ElementType");
+            DiscriminateSubClassesOnColumn("ElementTypePID");
         }
     }
 }

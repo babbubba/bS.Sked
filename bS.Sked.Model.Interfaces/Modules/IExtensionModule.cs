@@ -9,7 +9,7 @@ namespace bS.Sked.Model.Interfaces.Modules
 {
     public interface IExtensionModule
     {
-        bool CanExecute();
+        bool CanExecute(IExecutableElementModel executableElement);
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
     }
 }
