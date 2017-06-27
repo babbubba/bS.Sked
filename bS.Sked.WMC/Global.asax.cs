@@ -18,7 +18,7 @@ namespace bS.Sked.WMC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            CompositionRootInit.RegisterComponents();
+            CompositionRootConfig.RegisterComponents();
             Mapping.RegisterMappings();
         }
     }

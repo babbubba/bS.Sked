@@ -3,9 +3,9 @@ using bS.Sked.Data.Interfaces;
 using bS.Sked.Services.WMC;
 using System.Web.Mvc;
 
-namespace bS.Sked.WMC.CompositionRoot
+namespace bS.Sked.WMC
 {
-    public class CompositionRootInit
+    public class CompositionRootConfig
     {
         /// <summary>
         /// Init Composition Root and register Controllers, ModelBinders, Web abstractions, enable injection in views

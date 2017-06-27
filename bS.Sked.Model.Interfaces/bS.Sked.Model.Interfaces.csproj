@@ -60,6 +60,9 @@
     <Compile Include="Entities\Base\IPersisterEntity.cs" />
     <Compile Include="Entities\Base\IPositionalEntity.cs" />
     <Compile Include="Entities\Base\IToggledEntity.cs" />
+    <Compile Include="Modules\IExtensionContext.cs" />
+    <Compile Include="Modules\IExtensionExecuteResult.cs" />
+    <Compile Include="Modules\IExtensionModule.cs" />
     <Compile Include="Jobs\IJobInstanceModel.cs" />
     <Compile Include="Jobs\IJobModel.cs" />
     <Compile Include="MainObjects\IMainObjectModel.cs" />
