@@ -11,6 +11,7 @@ namespace bS.Sked.CompositionRoot
         IDependencyResolver GetMvcDependencyResolver();
         void Register<Component>();
         void Register<Component, Service>();
+        void RegisterExtensionsAssemblyTypes(Assembly assembly);
         void RegisterControllers(Assembly mvcAssembly);
         void RegisterFilterProvider();
         void RegisterGeneric(Type component, Type service);

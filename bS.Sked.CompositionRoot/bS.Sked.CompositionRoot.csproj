@@ -91,6 +91,10 @@
     <Compile Include="WindowsServiceModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
+      <Project>{2A078B06-6432-481C-949D-7F9F1F1018BD}</Project>
+      <Name>bS.Sked.Model.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model\bS.Sked.Model.csproj">
       <Project>{d28d9ada-effd-4ab6-ac8a-28dfb261e3cc}</Project>
       <Name>bS.Sked.Model</Name>

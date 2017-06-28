@@ -1,6 +1,12 @@
 ﻿using bS.Sked.Data;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Services.WMC;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace bS.Sked.WMC
@@ -31,8 +37,29 @@ namespace bS.Sked.WMC
             Sked.CompositionRoot.CompositionRoot.Instance().RegisterFilterProvider();
             #endregion
 
+            #region Dynamically registers Extensions Modules and Intializer (as Self)
+
+            string[] assemblyScanerPattern = new[] { @"bS.Sked.Extensions.*.dll" };
+
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
+            // Scan for assemblies containing extrensions
+            List<Assembly> assemblies = new List<Assembly>();
+            assemblies.AddRange(
+                Directory.EnumerateFiles(Directory.GetCurrentDirectory(), "*.dll", SearchOption.AllDirectories)
+                         .Where(filename => assemblyScanerPattern.Any(pattern => Regex.IsMatch(filename, pattern)))
+                         .Select(Assembly.LoadFrom)
+                );
+
+            foreach (var assembly in assemblies)
+            {
+                Sked.CompositionRoot.CompositionRoot.Instance().RegisterExtensionsAssemblyTypes(assembly);
+
+            } 
+            #endregion
+            
             // Context and Unit Of Work
-            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = @"C:\eOrk3\PLUGINS\" });
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = null });
             Sked.CompositionRoot.CompositionRoot.Instance().Register<ObjectContextImpl, IObjectContext>();
             Sked.CompositionRoot.CompositionRoot.Instance().Register<UnitOfWork, IUnitOfWork>();
 
@@ -42,11 +69,12 @@ namespace bS.Sked.WMC
             //Services
             Sked. CompositionRoot.CompositionRoot.Instance().Register<LeftSidebarService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<SettingService>();
+            Sked. CompositionRoot.CompositionRoot.Instance().Register<DatabaseManagerService>();
 
             //Build the CompositionRoot IOC Container
             Sked.CompositionRoot.CompositionRoot.Instance().BuildContainer();
 
-            // Set the dependency resolver to the Composition Root Container.
+            // Set the dependency resolver of MVC to the Composition Root Container.
             DependencyResolver.SetResolver(Sked.CompositionRoot.CompositionRoot.Instance().GetMvcDependencyResolver());
         }
 

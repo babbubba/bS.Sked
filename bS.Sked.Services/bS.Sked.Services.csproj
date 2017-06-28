@@ -69,6 +69,7 @@
     <Compile Include="Base\ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsServiceService.cs" />
+    <Compile Include="WMC\DatabaseManagerService.cs" />
     <Compile Include="WMC\LeftSidebarService.cs" />
     <Compile Include="WMC\SettingService.cs" />
   </ItemGroup>

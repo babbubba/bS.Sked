@@ -15,6 +15,8 @@ namespace bS.Sked.WMC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             CompositionRootConfig.RegisterComponents();
             Mapping.RegisterMappings();
+            CompositionRoot.CompositionRoot.Instance().Resolve<Services.WMC.DatabaseManagerService>().InitOrUpdateDatabase();
+
         }
     }
 }

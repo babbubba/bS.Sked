@@ -65,7 +65,7 @@ namespace bS.Sked.Model.Modules
             {
                 PersistingId = elementTypePID,
                 IsActive = true,
-                Position = query.Max(x => x.Position),
+                Position = (query.Any()) ? query.Max(x=> x.Position) + 1 : 0,
                 Name = elementTypePID
             };
             _repository.Add(newElementType);

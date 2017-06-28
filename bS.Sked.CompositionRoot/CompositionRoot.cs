@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using bS.Sked.Model.Interfaces.Modules;
 using Common.Logging;
 using System;
 using System.Reflection;
@@ -89,6 +90,23 @@ namespace bS.Sked.CompositionRoot
         {
             if (iocContainer != null) throw new ApplicationException("Container has been still initialized.");
             builder.RegisterInstance(componentInstance).As<Service>();
+        }
+
+
+        public void RegisterExtensionsAssemblyTypes(Assembly assembly)
+        {
+            if (iocContainer != null) throw new ApplicationException("Container has been still initialized.");
+
+            builder.RegisterAssemblyTypes(assembly)
+                    .Where(t => t.Name.EndsWith("Initializer"))
+                    .AsImplementedInterfaces();
+                   // .Keyed<IExtensionModuleInitializer>(assembly.GetName().Name);
+
+            builder.RegisterAssemblyTypes(assembly)
+                .Where(t => t.Name.EndsWith("Module"))
+            //    .Keyed<IExtensionModule>(assembly.GetName().Name);
+                    .AsImplementedInterfaces();
+
         }
 
         /// <summary>

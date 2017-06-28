@@ -10,10 +10,10 @@ namespace bS.Sked.Extensions.Common
 {
     public class FromFlatFlieToTableElementModel : ExecutableElementBaseModel
     {
-        public string SourceFile { get; set; }
-        public int SkipFirstRows { get; set; }
-        public string SeparatorValue { get; set; }
-        public int LimitToRows { get; set; }
+        public virtual string SourceFile { get; set; }
+        public virtual int SkipFirstRows { get; set; }
+        public virtual string SeparatorValue { get; set; }
+        public virtual int LimitToRows { get; set; }
     }
 
     class FromFlatFlieToTableElementModelMap : SubclassMap<FromFlatFlieToTableElementModel>
