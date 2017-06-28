@@ -8,6 +8,7 @@ using bS.Sked.Models.Elements;
 using bS.Sked.Extensions.Common;
 using bS.Sked.Models.Interfaces.MainObjects;
 using bS.Sked.Models.MainObjects;
+using System.Collections.Generic;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -51,6 +52,7 @@ namespace bS.Sked.Extensions.Common
                     };
 
                     var queryElementTypes = _repository.GetQuery<IElementTypeModel>();
+                    newCommonMainObjectType.SupportedElementTypes = new List<IElementTypeModel>();
 
                     foreach (var suppertedElement in SupportedElements)
                     {
