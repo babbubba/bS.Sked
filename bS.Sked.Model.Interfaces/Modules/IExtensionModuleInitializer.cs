@@ -1,8 +1,10 @@
-﻿namespace bS.Sked.Model.Interfaces.Modules
+﻿using System.Collections.Generic;
+
+namespace bS.Sked.Model.Interfaces.Modules
 {
     public interface IExtensionModuleInitializer
     {
-        string[] SupportedElements { get; set; }
+        Dictionary<string, string> SupportedElements { get; set; }
         bool InitElementTypes();
         bool InitContextTypes();
 

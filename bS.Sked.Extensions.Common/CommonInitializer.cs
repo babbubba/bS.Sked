@@ -14,19 +14,19 @@ namespace bS.Sked.Extensions.Common
 {
     public class CommonInitializer : ModuleInitializerBase
     {
-        public static string commonMainObject = "common";
-        public static string fromFlatFlieToTable = "from-flat-flie-to-table";
-        public static string fromDbQueryToTabke = "from-db-query-to-table";
-        public static string fromTableToFile = "from-table-to-flie";
+        public static string commonMainObject = "Common";
+        public static string fromFlatFlieToTable = "Common.FromFlatFileToTable";
+        public static string fromDbQueryToTabke = "Common.FromDbQueryToTable";
+        public static string fromTableToFile = "Common.FromTableToFile";
 
         public CommonInitializer(IRepository<IPersisterEntity> repository) : base(repository)
         {
-            _supportedElements = new string[]
-           {
-                fromFlatFlieToTable,
-                fromDbQueryToTabke,
-                fromTableToFile
-           };
+            _supportedElements = new Dictionary<string, string>
+            {
+                { fromFlatFlieToTable, "From flat file to table" },
+                { fromDbQueryToTabke, "From ODBC DB query to table" },
+                { fromTableToFile, "From table to file" }
+            };
         }
 
         public override bool InitContextModels()
@@ -56,7 +56,7 @@ namespace bS.Sked.Extensions.Common
 
                     foreach (var suppertedElement in SupportedElements)
                     {
-                        newCommonMainObjectType.SupportedElementTypes.Add(queryElementTypes.SingleOrDefault(x => x.PersistingId == suppertedElement));
+                        newCommonMainObjectType.SupportedElementTypes.Add(queryElementTypes.SingleOrDefault(x => x.PersistingId == suppertedElement.Key));
                     }
 
                     _repository.Add(newCommonMainObjectType);

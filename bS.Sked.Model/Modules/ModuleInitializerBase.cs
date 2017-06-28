@@ -14,14 +14,14 @@ namespace bS.Sked.Model.Modules
     public abstract class ModuleInitializerBase : IExtensionModuleInitializer
     {
         protected IRepository<IPersisterEntity> _repository;
-        protected string[] _supportedElements;
+        protected Dictionary<string,string> _supportedElements;
 
         public ModuleInitializerBase(IRepository<IPersisterEntity> repository)
         {
             _repository = repository;
         }
 
-        public string[] SupportedElements
+        public Dictionary<string, string> SupportedElements
         {
             get
             {
@@ -46,7 +46,7 @@ namespace bS.Sked.Model.Modules
                 var query = _repository.GetQuery<IElementTypeModel>();
                 foreach (var elementType in _supportedElements)
                 {
-                    if (!query.Any(x => x.PersistingId == elementType)) initElementType(elementType, query);
+                    if (!query.Any(x => x.PersistingId == elementType.Key)) initElementType(elementType, query);
                 }
 
                 transaction.Commit();
@@ -59,14 +59,14 @@ namespace bS.Sked.Model.Modules
             return true;
         }
 
-        protected virtual void initElementType(string elementTypePID, IQueryable<IElementTypeModel> query)
+        protected virtual void initElementType(KeyValuePair<string,string> elementType, IQueryable<IElementTypeModel> query)
         {
             var newElementType = new ElementTypeModel
             {
-                PersistingId = elementTypePID,
+                PersistingId = elementType.Key,
                 IsActive = true,
-                Position = (query.Any()) ? query.Max(x=> x.Position) + 1 : 0,
-                Name = elementTypePID
+                Position = (query.Any()) ? query.Max(x => x.Position) + 1 : 0,
+                Name = elementType.Value
             };
             _repository.Add(newElementType);
         }
