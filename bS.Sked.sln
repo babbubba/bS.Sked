@@ -63,7 +63,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bs.Sked.Mapping", "bs.Sked.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{1D3FBDE7-54F4-4F4E-99B7-731D8D40DAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Extensions.Common", "bs-Sked.Extensions.Common\bS.Sked.Extensions.Common.csproj", "{F0F8E91A-FD2C-464F-B24A-51216054460C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Extensions.Common", "bS.Sked.Extensions.Common\bS.Sked.Extensions.Common.csproj", "{F0F8E91A-FD2C-464F-B24A-51216054460C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
