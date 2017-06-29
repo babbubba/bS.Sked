@@ -4,16 +4,18 @@ using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Models.Interfaces.Elements;
 using System.Linq;
-using bS.Sked.Models.Elements;
-using bS.Sked.Extensions.Common;
 using bS.Sked.Models.Interfaces.MainObjects;
 using bS.Sked.Models.MainObjects;
 using System.Collections.Generic;
+using Common.Logging;
 
 namespace bS.Sked.Extensions.Common
 {
     public class CommonInitializer : ModuleInitializerBase
     {
+        private static ILog log = LogManager.GetLogger<CommonInitializer>();
+
+
         public static string commonMainObject = "Common";
         public static string fromFlatFlieToTable = "Common.FromFlatFileToTable";
         public static string fromDbQueryToTabke = "Common.FromDbQueryToTable";
@@ -67,6 +69,7 @@ namespace bS.Sked.Extensions.Common
             }
             catch (Exception ex)
             {
+                log.Error("Error initializing Common Extension Main Object.", ex);
                 return false;
             }
             return true;

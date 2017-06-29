@@ -3,6 +3,7 @@ using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Models.Elements;
 using bS.Sked.Models.Interfaces.Elements;
+using Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace bS.Sked.Model.Modules
 {
     public abstract class ModuleInitializerBase : IExtensionModuleInitializer
     {
+        private static ILog log = LogManager.GetLogger<ModuleInitializerBase>();
+
         protected IRepository<IPersisterEntity> _repository;
         protected Dictionary<string,string> _supportedElements;
 
@@ -46,7 +49,7 @@ namespace bS.Sked.Model.Modules
                 var query = _repository.GetQuery<IElementTypeModel>();
                 foreach (var elementType in _supportedElements)
                 {
-                    if (!query.Any(x => x.PersistingId == elementType.Key)) initElementType(elementType, query);
+                    if (!query.Any(x => x.PersistingId == elementType.Key)) InitElementType(elementType, query);
                 }
 
                 transaction.Commit();
@@ -54,12 +57,13 @@ namespace bS.Sked.Model.Modules
             }
             catch (Exception ex)
             {
+                log.Error("Error initializing element types.", ex);
                 return false;
             }
             return true;
         }
 
-        protected virtual void initElementType(KeyValuePair<string,string> elementType, IQueryable<IElementTypeModel> query)
+        protected virtual void InitElementType(KeyValuePair<string,string> elementType, IQueryable<IElementTypeModel> query)
         {
             var newElementType = new ElementTypeModel
             {

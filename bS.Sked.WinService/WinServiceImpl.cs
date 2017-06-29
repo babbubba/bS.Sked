@@ -7,7 +7,7 @@ namespace bS.Sked.WinService
     public partial class WinServiceImpl : ServiceBase
     {
         private readonly IWindowsServiceService service;
-        private string WMCBaseUrl = "http://localhost:55393";
+        //private string WMCBaseUrl = "http://localhost:55393";
 
         public WinServiceImpl()
         {
@@ -15,7 +15,7 @@ namespace bS.Sked.WinService
             this.service = CompositionRoot.CompositionRoot.Instance().Resolve<IWindowsServiceService>(); 
         }
 
-        protected override async void OnStart(string[] args)
+        protected override void OnStart(string[] args)
         {
             service.StartService();
         }
