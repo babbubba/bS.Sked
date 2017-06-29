@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Model", "bS.Sked.Model\bS.Sked.Model.csproj", "{D28D9ADA-EFFD-4AB6-AC8A-28DFB261E3CC}"
 EndProject
@@ -66,6 +66,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Extensions.Common", "bS.Sked.Extensions.Common\bS.Sked.Extensions.Common.csproj", "{F0F8E91A-FD2C-464F-B24A-51216054460C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Mapping.Interfaces", "bS.Sked.Mapping.Interfaces\bS.Sked.Mapping.Interfaces.csproj", "{3D2F8E21-F10C-4448-AB68-050381B485E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AB38D9C-DCC9-45FE-8E09-D1AA86422885}"
+	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
