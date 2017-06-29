@@ -45,12 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Map.cs" />
+    <Compile Include="MapProfileBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.Mapping.Interfaces\bS.Sked.Mapping.Interfaces.csproj">
+      <Project>{3D2F8E21-F10C-4448-AB68-050381B485E2}</Project>
+      <Name>bS.Sked.Mapping.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
       <Project>{2A078B06-6432-481C-949D-7F9F1F1018BD}</Project>
       <Name>bS.Sked.Model.Interfaces</Name>
