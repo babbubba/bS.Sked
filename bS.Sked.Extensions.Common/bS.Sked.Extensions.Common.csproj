@@ -62,7 +62,9 @@
     <Compile Include="CommonContext.cs" />
     <Compile Include="CommonInitializer.cs" />
     <Compile Include="CommonModule.cs" />
+    <Compile Include="FromDbQueryToTableElementModel.cs" />
     <Compile Include="FromFlatFlieToTableElementModel.cs" />
+    <Compile Include="FromTableToFileElementModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

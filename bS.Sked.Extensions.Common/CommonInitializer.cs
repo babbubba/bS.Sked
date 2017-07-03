@@ -19,7 +19,7 @@ namespace bS.Sked.Extensions.Common
 
         public const string commonMainObject = "Common";
         public const string fromFlatFlieToTable = "Common.FromFlatFileToTable";
-        public const string fromDbQueryToTabke = "Common.FromDbQueryToTable";
+        public const string fromDbQueryToTable = "Common.FromDbQueryToTable";
         public const string fromTableToFile = "Common.FromTableToFile";
 
         public CommonInitializer(IRepository<IPersisterEntity> repository) : base(repository)
@@ -27,7 +27,7 @@ namespace bS.Sked.Extensions.Common
             _supportedElements = new Dictionary<string, string>
             {
                 { fromFlatFlieToTable, "From flat file to table" },
-                { fromDbQueryToTabke, "From ODBC DB query to table" },
+                { fromDbQueryToTable, "From ODBC DB query to table" },
                 { fromTableToFile, "From table to file" }
             };
         }
@@ -87,7 +87,16 @@ namespace bS.Sked.Extensions.Common
                     newElementType.InputProperties = "IInputFileObject";
                     newElementType.OutputProperties = "IOutputTableObject";
                     break;
+                case fromDbQueryToTable:
+                    newElementType.InputProperties = "";
+                    newElementType.OutputProperties = "IOutputTableObject";
+                    break;
+                case fromTableToFile:
+                    newElementType.InputProperties = "IInputTableObject";
+                    newElementType.OutputProperties = "IOutputFileObject";
+                    break;
             }
+
 
             _repository.Add(newElementType);
 

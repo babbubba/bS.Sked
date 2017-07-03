@@ -12,8 +12,12 @@ namespace bS.Sked.Extensions.Common
         public virtual int SkipFirstRows { get; set; }
         public virtual string SeparatorValue { get; set; }
         public virtual int LimitToRows { get; set; }
+
+
+        #region Properties
         public virtual IFileObject InFileObject { get; set; }
-        public virtual ITableObject OutTableObject { get; set; }
+        public virtual ITableObject OutTableObject { get; set; } 
+        #endregion
     }
 
     class FromFlatFlieToTableElementModelMap : SubclassMap<FromFlatFlieToTableElementModel>
