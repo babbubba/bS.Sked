@@ -39,6 +39,8 @@ namespace bS.Sked.Models.Elements.Base
         /// Last time the persister record for this entity was updated.
         /// </summary>
         public virtual DateTime? UpdateDate { get; set; }
+
+    
     }
 
     class ExecutableElementBaseModelMap : ClassMap<ExecutableElementBaseModel>

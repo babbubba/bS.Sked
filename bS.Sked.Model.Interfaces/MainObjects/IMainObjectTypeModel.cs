@@ -11,8 +11,8 @@ namespace bS.Sked.Models.Interfaces.MainObjects
     public interface IMainObjectTypeModel : IPersisterEntity, IDescribedEntity, IToggledEntity
     {
        string PersistingId { get; set; }
-       string Properties { get; set; }
-       string ReturnedProperties { get; set; }
+       string InputProperties { get; set; }
+       string OutputProperties { get; set; }
        IList<IElementTypeModel> SupportedElementTypes { get; set; }
     }
 }

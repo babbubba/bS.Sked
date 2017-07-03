@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace bS.Sked.Models.Interfaces.Elements.Properties
 {
     /// <summary>
-    /// This rapresent the entity for a File that persist on the file system (actually)
+    /// This rapresent the entity for a File that persist on the file system (at the moment)
     /// </summary>
     public interface IFileObject : IInterchangeablyEntity
     {

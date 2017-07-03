@@ -14,8 +14,8 @@ namespace bS.Sked.Models.MainObjects
         public virtual bool IsActive { get; set; }
         public virtual string Name { get; set; }
         public virtual string PersistingId { get; set; }
-        public virtual string Properties { get; set; }
-        public virtual string ReturnedProperties { get; set; }
+        public virtual string InputProperties { get; set; }
+        public virtual string OutputProperties { get; set; }
         public virtual IList<IElementTypeModel> SupportedElementTypes { get; set; }
     }
     class MainObjectTypeModelMap : ClassMap<MainObjectTypeModel>
@@ -28,8 +28,8 @@ namespace bS.Sked.Models.MainObjects
             Map(x => x.IsActive);
             Map(x => x.Name);
             Map(x => x.PersistingId);
-            Map(x => x.Properties);
-            Map(x => x.ReturnedProperties);
+            Map(x => x.InputProperties);
+            Map(x => x.OutputProperties);
             HasMany<ElementTypeModel>(x => x.SupportedElementTypes);
 
         }

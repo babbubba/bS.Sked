@@ -21,6 +21,9 @@ namespace bS.Sked.Models.Elements
         public virtual string PersistingId { get; set; }
 
         public virtual int Position { get; set; }
+
+        public virtual string InputProperties { get; set; }
+        public virtual string OutputProperties { get; set; }
     }
 
     class ElementTypeModelMap : ClassMap<ElementTypeModel>
@@ -34,6 +37,9 @@ namespace bS.Sked.Models.Elements
             Map(x => x.Name).Not.Nullable();
             Map(x => x.PersistingId).Not.Nullable().Unique();
             Map(x => x.Position).Not.Nullable();
+            Map(x => x.InputProperties);
+            Map(x => x.OutputProperties);
+
         }
     }
 }
