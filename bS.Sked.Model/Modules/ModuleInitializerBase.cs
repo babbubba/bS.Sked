@@ -1,8 +1,8 @@
 ﻿using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Modules;
-using bS.Sked.Models.Elements;
-using bS.Sked.Models.Interfaces.Elements;
+using bS.Sked.Model.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 using Common.Logging;
 using System;
 using System.Collections.Generic;

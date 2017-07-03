@@ -1,4 +1,4 @@
-﻿using bS.Sked.Models.Interfaces.Triggers;
+﻿using bS.Sked.Model.Interfaces.Triggers;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Models.Triggers
+namespace bS.Sked.Model.Triggers
 {
    public  class TriggerTypeModel : ITriggerTypeModel
     {

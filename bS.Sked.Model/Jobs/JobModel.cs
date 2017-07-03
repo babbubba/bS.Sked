@@ -1,15 +1,15 @@
-﻿using bS.Sked.Models.Interfaces.Jobs;
+﻿using bS.Sked.Model.Interfaces.Jobs;
 using System;
 using System.Collections.Generic;
-using bS.Sked.Models.Interfaces.Elements;
-using bS.Sked.Models.Interfaces.Tasks;
-using bS.Sked.Models.Interfaces.Triggers;
+using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Tasks;
+using bS.Sked.Model.Interfaces.Triggers;
 using FluentNHibernate.Mapping;
-using bS.Sked.Models.Elements;
-using bS.Sked.Models.Tasks;
-using bS.Sked.Models.Triggers;
+using bS.Sked.Model.Elements;
+using bS.Sked.Model.Tasks;
+using bS.Sked.Model.Triggers;
 
-namespace bS.Sked.Models.Jobs
+namespace bS.Sked.Model.Jobs
 {
     public class JobModel : IJobModel
     {

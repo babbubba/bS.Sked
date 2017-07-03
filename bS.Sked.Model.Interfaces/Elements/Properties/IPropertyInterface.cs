@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace bS.Sked.Models.Interfaces.Elements
+﻿namespace bS.Sked.Model.Interfaces.Elements
 {
     /// <summary>
     /// The interfacers that will implement this interface will rapresenting Entities with a specific direction (Input or Output) and a single or collection resultant type.

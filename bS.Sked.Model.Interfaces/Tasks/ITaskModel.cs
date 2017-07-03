@@ -1,10 +1,10 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Interfaces.Elements;
-using bS.Sked.Models.Interfaces.Jobs;
-using bS.Sked.Models.Interfaces.MainObjects;
+using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Jobs;
+using bS.Sked.Model.Interfaces.MainObjects;
 using System.Collections.Generic;
 
-namespace bS.Sked.Models.Interfaces.Tasks
+namespace bS.Sked.Model.Interfaces.Tasks
 {
     public interface ITaskModel  : IPersisterEntity, IExecutableEntity, IHistoricalEntity, IToggledEntity, IDescribedEntity, IPositionalEntity, IParentsAlertEntity
     {

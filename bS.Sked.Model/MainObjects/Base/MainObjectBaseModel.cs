@@ -1,8 +1,8 @@
-﻿using bS.Sked.Models.Interfaces.MainObjects;
+﻿using bS.Sked.Model.Interfaces.MainObjects;
 using FluentNHibernate.Mapping;
 using System;
 
-namespace bS.Sked.Models.MainObjects.Base
+namespace bS.Sked.Model.MainObjects.Base
 {
     public class MainObjectBaseModel : IMainObjectModel
     {

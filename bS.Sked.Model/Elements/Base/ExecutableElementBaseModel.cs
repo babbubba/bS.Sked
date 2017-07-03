@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using bS.Sked.Models.Interfaces.Elements;
-using bS.Sked.Models.Interfaces.Tasks;
+using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Tasks;
 using FluentNHibernate.Mapping;
 
-namespace bS.Sked.Models.Elements.Base
+namespace bS.Sked.Model.Elements.Base
 {
     /// <summary>
     /// Base abstracted class for all the executing element of the Application

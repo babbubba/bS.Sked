@@ -1,8 +1,8 @@
-﻿using bS.Sked.Models.Elements.Base;
-using bS.Sked.Models.Interfaces.Tasks;
+﻿using bS.Sked.Model.Elements.Base;
+using bS.Sked.Model.Interfaces.Tasks;
 using FluentNHibernate.Mapping;
 
-namespace bS.Sked.Models.Tasks
+namespace bS.Sked.Model.Tasks
 {
     public class TaskInstanceModel : ExecutableInstanceModel, ITaskInstanceModel
     {

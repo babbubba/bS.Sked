@@ -2,7 +2,7 @@
 
 namespace bS.Sked.Model.Interfaces.Elements.Properties
 {
-    public interface IAttachableFileModel  : IFileObject, IPersisterEntity, IHistoricalEntity
+    public interface IFileSystemFileModel :  IFileObject, IPersisterEntity, IHistoricalEntity
     {
     }
 }

@@ -1,8 +1,8 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Interfaces.Tasks;
+using bS.Sked.Model.Interfaces.Tasks;
 using System.Collections.Generic;
 
-namespace bS.Sked.Models.Interfaces.Elements
+namespace bS.Sked.Model.Interfaces.Elements
 {
     public interface IExecutableElementModel : IPersisterEntity, IExecutableEntity, IHistoricalEntity, IToggledEntity, IDescribedEntity, IPositionalEntity, IParentsAlertEntity
     {

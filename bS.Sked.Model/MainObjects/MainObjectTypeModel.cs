@@ -1,11 +1,11 @@
-﻿using bS.Sked.Models.Interfaces.MainObjects;
+﻿using bS.Sked.Model.Interfaces.MainObjects;
 using System;
 using System.Collections.Generic;
-using bS.Sked.Models.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 using FluentNHibernate.Mapping;
-using bS.Sked.Models.Elements;
+using bS.Sked.Model.Elements;
 
-namespace bS.Sked.Models.MainObjects
+namespace bS.Sked.Model.MainObjects
 {
     public class MainObjectTypeModel : IMainObjectTypeModel
     {

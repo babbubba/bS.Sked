@@ -1,8 +1,8 @@
-﻿using bS.Sked.Models.Interfaces.Elements;
+﻿using bS.Sked.Model.Interfaces.Elements;
 using FluentNHibernate.Mapping;
 using System;
 
-namespace bS.Sked.Models.Elements
+namespace bS.Sked.Model.Elements
 {
     public class SmtpSettingModel :  ISmtpSettingModel
     {

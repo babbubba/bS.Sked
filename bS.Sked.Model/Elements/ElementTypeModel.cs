@@ -1,4 +1,4 @@
-﻿using bS.Sked.Models.Interfaces.Elements;
+﻿using bS.Sked.Model.Interfaces.Elements;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Models.Elements
+namespace bS.Sked.Model.Elements
 {
     public class ElementTypeModel : IElementTypeModel
     {

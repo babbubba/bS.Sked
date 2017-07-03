@@ -1,11 +1,11 @@
-﻿using bS.Sked.Models.Interfaces.Elements;
-using bS.Sked.Models.Interfaces.Elements.Properties;
+﻿using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Elements.Properties;
 using FluentNHibernate.Mapping;
 using System.Collections.Generic;
 using System;
-using bS.Sked.Models.Elements.Properties;
+using bS.Sked.Model.Elements.Properties;
 
-namespace bS.Sked.Models.Elements
+namespace bS.Sked.Model.Elements
 {
     public class EmailComponentModel : IEmailComponentModel
     {

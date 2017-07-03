@@ -25,8 +25,8 @@
 */
 
 using AutoMapper;
-using bS.Sked.Models.Elements;
-using bS.Sked.Models.Interfaces.Elements;
+using bS.Sked.Model.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.ViewModel.Elements;
 using System;
 using System.Linq;

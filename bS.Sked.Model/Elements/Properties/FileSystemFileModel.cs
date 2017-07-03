@@ -4,7 +4,7 @@ using System;
 
 namespace bS.Sked.Model.Elements.Properties
 {
-    public class AttachableFileModel : IAttachableFileModel
+    public class FileSystemFileModel : IFileSystemFileModel
     {
         public virtual DateTime CreationDate { get; set; }
         public virtual string FileFullPath { get; set; }
@@ -13,11 +13,11 @@ namespace bS.Sked.Model.Elements.Properties
         public virtual DateTime? UpdateDate { get; set; }
     }
 
-    class AttachableFileModelMap : ClassMap<AttachableFileModel>
+    class FileSystemFileModelMap : ClassMap<FileSystemFileModel>
     {
-        public AttachableFileModelMap()
+        public FileSystemFileModelMap()
         {
-            Table("AttachableFiles");
+            Table("FileSystemFiles");
             Id(x => x.Id).GeneratedBy.GuidComb().Column("Id");
             Map(x => x.CreationDate);
             Map(x => x.FileFullPath);

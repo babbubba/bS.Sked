@@ -1,11 +1,11 @@
-﻿using bS.Sked.Models.Interfaces.Triggers;
+﻿using bS.Sked.Model.Interfaces.Triggers;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
-using bS.Sked.Models.Interfaces.Jobs;
-using bS.Sked.Models.Jobs;
+using bS.Sked.Model.Interfaces.Jobs;
+using bS.Sked.Model.Jobs;
 
-namespace bS.Sked.Models.Triggers
+namespace bS.Sked.Model.Triggers
 {
     public abstract class TriggerModel : ITriggerModel
     {

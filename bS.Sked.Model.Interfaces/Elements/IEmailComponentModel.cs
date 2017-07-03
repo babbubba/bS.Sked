@@ -1,12 +1,8 @@
-﻿using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Interfaces.Elements.Properties;
-using System;
+﻿using bS.Sked.Model.Interfaces.Elements.Properties;
+using bS.Sked.Model.Interfaces.Entities.Base;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace bS.Sked.Models.Interfaces.Elements
+namespace bS.Sked.Model.Interfaces.Elements
 {
     public interface IEmailComponentModel : IPersisterEntity, IToggledEntity
     {

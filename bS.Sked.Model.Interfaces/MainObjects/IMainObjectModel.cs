@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Models.Interfaces.MainObjects
+namespace bS.Sked.Model.Interfaces.MainObjects
 {
     public interface IMainObjectModel : IPersisterEntity  , IToggledEntity, IDescribedEntity, IHistoricalEntity
     {

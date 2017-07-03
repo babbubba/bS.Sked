@@ -1,7 +1,7 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
 using System;
 
-namespace bS.Sked.Models.Interfaces.Elements
+namespace bS.Sked.Model.Interfaces.Elements
 {
     public interface ISmtpSettingModel : IPersisterEntity, IDescribedEntity, IToggledEntity
     {

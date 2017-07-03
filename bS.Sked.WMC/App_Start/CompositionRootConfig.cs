@@ -59,7 +59,7 @@ namespace bS.Sked.WMC
             #endregion
             
             // Context and Unit Of Work
-            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo { ConnectionString = @"Server = localhost; Database = eork3v2; User ID = root; Password = beibub1;", ExtraDllModelFolders = null });
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo { ConnectionString = @"Server = localhost; Database = sked; User ID = root; Password = beibub1;", ExtraDllModelFolders = null });
             Sked.CompositionRoot.CompositionRoot.Instance().Register<ObjectContextImpl, IObjectContext>();
             Sked.CompositionRoot.CompositionRoot.Instance().Register<UnitOfWork, IUnitOfWork>();
 

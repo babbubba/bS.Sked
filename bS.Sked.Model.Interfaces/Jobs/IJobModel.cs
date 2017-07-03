@@ -1,11 +1,11 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Interfaces.Elements;
-using bS.Sked.Models.Interfaces.Tasks;
-using bS.Sked.Models.Interfaces.Triggers;
+using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Tasks;
+using bS.Sked.Model.Interfaces.Triggers;
 using System;
 using System.Collections.Generic;
 
-namespace bS.Sked.Models.Interfaces.Jobs
+namespace bS.Sked.Model.Interfaces.Jobs
 {
     public interface IJobModel : IPersisterEntity, IExecutableEntity, IHistoricalEntity, IToggledEntity, IDescribedEntity, IPositionalEntity
     {

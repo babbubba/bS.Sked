@@ -1,18 +1,15 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
-using System;
 using System.Collections.Generic;
 
-namespace bS.Sked.Models.Interfaces.Elements.Properties
+namespace bS.Sked.Model.Interfaces.Elements.Properties
 {
     /// <summary>
     /// This rapresent the entity for a File that persist on the file system (at the moment)
     /// </summary>
     public interface IFileObject : IInterchangeablyEntity
     {
-        string FileId { get; set; }
+        string FilePersistingId { get; set; }
         string FileFullPath { get; set; }
-        string CachedFullFilePath { get; set; }
-        bool EnableCache { get; set; }
     }
 
     /// <summary>
@@ -20,9 +17,6 @@ namespace bS.Sked.Models.Interfaces.Elements.Properties
     /// </summary>
     public interface IInputFileObject : IPropertyInterface
     {
-        //IFileObject GetInputFileObject();
-        //void SetInputFileObject(string inputFile, bool useCache = false);
-        //void SetInputFileObject(IFileObject inputFile);
         IFileObject FileObject { get; set; }
     }
 
@@ -31,9 +25,6 @@ namespace bS.Sked.Models.Interfaces.Elements.Properties
     /// </summary>
     public interface IOutputFileObject : IPropertyInterface
     {
-        //IFileObject GetOutputFileObject();
-        //void SetOutputFileObject(string outputFile, bool useCache = false);
-        //void SetOutputFileObject(IFileObject outputFile);
         IFileObject FileObject { get; set; }
     }
 
@@ -42,11 +33,6 @@ namespace bS.Sked.Models.Interfaces.Elements.Properties
     /// </summary>
     public interface IInputFileObjectCollection : IPropertyInterface
     {
-        //IEnumerable<IFileObject> GetInputFileObjects();
-        //void SetInputFileObjects(IEnumerable<IFileObject> inputFiles);
-        //Guid AddInputFileObjects(string inputFile, bool useCache = false);
-        //void DeleteInputFileObjects(Guid inputfileId);
-        //void ClearInputFiles();
         Dictionary<string, IFileObject> FileObjects { get; set; }
     }
 
@@ -56,10 +42,6 @@ namespace bS.Sked.Models.Interfaces.Elements.Properties
     /// </summary>
     public interface IOutputFileObjectCollection : IPropertyInterface
     {
-        //IEnumerable<IFileObject> GetOutputFileObjects();
-        //Guid AddOutputFileObjects(string inputFile, bool useCache = false);
-        //void DeleteOutputFileObjects(Guid inputfileId);
-        //void ClearOutputFiles();
         Dictionary<string, IFileObject> FileObjects { get; set; }
     }
 }

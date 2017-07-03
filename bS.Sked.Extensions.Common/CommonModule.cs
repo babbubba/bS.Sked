@@ -1,10 +1,7 @@
 ﻿using bS.Sked.Model.Interfaces.Modules;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bS.Sked.Models.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 
 namespace bS.Sked.Extensions.Common
 {

@@ -1,15 +1,10 @@
 ﻿using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Interfaces.Jobs;
+using bS.Sked.Model.Interfaces.Jobs;
 using bS.Sked.Services.Base;
 using bS.Sked.WMC.Model;
 using bS.Sked.WMC.Model.Interfaces;
-using Common.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace bS.Sked.Services.WMC
 {

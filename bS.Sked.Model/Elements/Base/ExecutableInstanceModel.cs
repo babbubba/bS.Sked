@@ -2,7 +2,7 @@
 using FluentNHibernate.Mapping;
 using System;
 
-namespace bS.Sked.Models.Elements.Base
+namespace bS.Sked.Model.Elements.Base
 {
     public abstract class ExecutableInstanceModel : IExecutableInstanceModel
     {

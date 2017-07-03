@@ -1,4 +1,4 @@
-﻿using bS.Sked.Models.Interfaces.Elements;
+﻿using bS.Sked.Model.Interfaces.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

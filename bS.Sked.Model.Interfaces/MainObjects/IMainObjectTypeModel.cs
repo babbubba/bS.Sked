@@ -1,12 +1,12 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Models.Interfaces.MainObjects
+namespace bS.Sked.Model.Interfaces.MainObjects
 {
     public interface IMainObjectTypeModel : IPersisterEntity, IDescribedEntity, IToggledEntity
     {

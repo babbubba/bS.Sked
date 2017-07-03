@@ -1,8 +1,8 @@
 ﻿using bs.Sked.Mapping;
 using bS.Sked.Data.Interfaces;
+using bS.Sked.Model.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
-using bS.Sked.Models.Elements;
-using bS.Sked.Models.Interfaces.Elements;
 using bS.Sked.Services.Base;
 using bS.Sked.ViewModel.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements;

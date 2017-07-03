@@ -1,15 +1,15 @@
-﻿using bS.Sked.Models.Interfaces.Elements;
-using bS.Sked.Models.Interfaces.Tasks;
+﻿using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Tasks;
 using System;
 using System.Collections.Generic;
-using bS.Sked.Models.Interfaces.Jobs;
-using bS.Sked.Models.Interfaces.MainObjects;
+using bS.Sked.Model.Interfaces.Jobs;
+using bS.Sked.Model.Interfaces.MainObjects;
 using FluentNHibernate.Mapping;
-using bS.Sked.Models.Elements.Base;
-using bS.Sked.Models.MainObjects.Base;
-using bS.Sked.Models.Jobs;
+using bS.Sked.Model.Elements.Base;
+using bS.Sked.Model.MainObjects.Base;
+using bS.Sked.Model.Jobs;
 
-namespace bS.Sked.Models.Tasks
+namespace bS.Sked.Model.Tasks
 {
     public class TaskModel : ITaskModel
     {

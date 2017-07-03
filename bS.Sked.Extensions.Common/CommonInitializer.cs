@@ -2,10 +2,10 @@
 using System;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Data.Interfaces;
-using bS.Sked.Models.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Elements;
 using System.Linq;
-using bS.Sked.Models.Interfaces.MainObjects;
-using bS.Sked.Models.MainObjects;
+using bS.Sked.Model.Interfaces.MainObjects;
+using bS.Sked.Model.MainObjects;
 using System.Collections.Generic;
 using Common.Logging;
 
