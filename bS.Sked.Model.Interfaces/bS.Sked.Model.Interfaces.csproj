@@ -52,6 +52,7 @@
     <Compile Include="Elements\Properties\IFileObject.cs" />
     <Compile Include="Elements\Properties\IFileSystemFileModel.cs" />
     <Compile Include="Elements\Properties\IPropertyInterface.cs" />
+    <Compile Include="Elements\Properties\ITableObject.cs" />
     <Compile Include="Entities\Base\IDescribedEntity.cs" />
     <Compile Include="Entities\Base\IExecutableEntity.cs" />
     <Compile Include="Entities\Base\IExecutableInstanceModel.cs" />

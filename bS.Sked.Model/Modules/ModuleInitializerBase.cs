@@ -35,11 +35,10 @@ namespace bS.Sked.Model.Modules
                 _supportedElements = value;
             }
         }
-
-        public abstract bool InitContextModels();
+           
 
         public abstract bool InitContextTypes();
-              
+
         public virtual bool InitElementTypes()
         {
             try
@@ -49,7 +48,7 @@ namespace bS.Sked.Model.Modules
                 var query = _repository.GetQuery<IElementTypeModel>();
                 foreach (var elementType in _supportedElements)
                 {
-                    if (!query.Any(x => x.PersistingId == elementType.Key)) InitElementType(elementType, query);
+                    if (!query.Any(x => x.PersistingId == elementType.Key)) InitElementType(elementType.Key, elementType.Value, query);
                 }
 
                 transaction.Commit();
@@ -63,14 +62,14 @@ namespace bS.Sked.Model.Modules
             return true;
         }
 
-        protected virtual void InitElementType(KeyValuePair<string,string> elementType, IQueryable<IElementTypeModel> query)
+        protected virtual void InitElementType(string elementTypePID, string elementTypeName, IQueryable<IElementTypeModel> query)
         {
             var newElementType = new ElementTypeModel
             {
-                PersistingId = elementType.Key,
+                PersistingId = elementTypePID,
                 IsActive = true,
                 Position = (query.Any()) ? query.Max(x => x.Position) + 1 : 0,
-                Name = elementType.Value
+                Name = elementTypeName
             };
             _repository.Add(newElementType);
         }

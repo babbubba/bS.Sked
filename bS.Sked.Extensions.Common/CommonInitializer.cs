@@ -8,6 +8,7 @@ using bS.Sked.Model.Interfaces.MainObjects;
 using bS.Sked.Model.MainObjects;
 using System.Collections.Generic;
 using Common.Logging;
+using bS.Sked.Model.Elements;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -16,10 +17,10 @@ namespace bS.Sked.Extensions.Common
         private static ILog log = LogManager.GetLogger<CommonInitializer>();
 
 
-        public static string commonMainObject = "Common";
-        public static string fromFlatFlieToTable = "Common.FromFlatFileToTable";
-        public static string fromDbQueryToTabke = "Common.FromDbQueryToTable";
-        public static string fromTableToFile = "Common.FromTableToFile";
+        public const string commonMainObject = "Common";
+        public const string fromFlatFlieToTable = "Common.FromFlatFileToTable";
+        public const string fromDbQueryToTabke = "Common.FromDbQueryToTable";
+        public const string fromTableToFile = "Common.FromTableToFile";
 
         public CommonInitializer(IRepository<IPersisterEntity> repository) : base(repository)
         {
@@ -29,11 +30,6 @@ namespace bS.Sked.Extensions.Common
                 { fromDbQueryToTabke, "From ODBC DB query to table" },
                 { fromTableToFile, "From table to file" }
             };
-        }
-
-        public override bool InitContextModels()
-        {
-            throw new NotImplementedException();
         }
 
         public override bool InitContextTypes()
@@ -75,6 +71,28 @@ namespace bS.Sked.Extensions.Common
             return true;
         }
 
+        protected override void InitElementType(string elementTypePID, string elementTypeName, IQueryable<IElementTypeModel> query)
+        {
+            var newElementType = new ElementTypeModel
+            {
+                PersistingId = elementTypePID,
+                IsActive = true,
+                Position = (query.Any()) ? query.Max(x => x.Position) + 1 : 0,
+                Name = elementTypeName
+            };
 
-}
+            switch (elementTypePID)
+            {
+                case fromFlatFlieToTable:
+                    newElementType.InputProperties = "IInputFileObject";
+                    newElementType.OutputProperties = "IOutputTableObject";
+                    break;
+            }
+
+            _repository.Add(newElementType);
+
+        }
+
+
+    }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace bS.Sked.Model.Interfaces.Elements.Properties
 {
     /// <summary>
-    /// This rapresent the entity for a File that persist on the file system (at the moment)
+    /// This rapresent the entity for a File in the file system
     /// </summary>
     public interface IFileObject : IInterchangeablyEntity
     {
@@ -17,7 +17,7 @@ namespace bS.Sked.Model.Interfaces.Elements.Properties
     /// </summary>
     public interface IInputFileObject : IPropertyInterface
     {
-        IFileObject FileObject { get; set; }
+        IFileObject InFileObject { get; set; }
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ namespace bS.Sked.Model.Interfaces.Elements.Properties
     /// </summary>
     public interface IOutputFileObject : IPropertyInterface
     {
-        IFileObject FileObject { get; set; }
+        IFileObject OutFileObject { get; set; }
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace bS.Sked.Model.Interfaces.Elements.Properties
     /// </summary>
     public interface IInputFileObjectCollection : IPropertyInterface
     {
-        Dictionary<string, IFileObject> FileObjects { get; set; }
+        Dictionary<string, IFileObject> InFileObjects { get; set; }
     }
 
 
@@ -42,6 +42,6 @@ namespace bS.Sked.Model.Interfaces.Elements.Properties
     /// </summary>
     public interface IOutputFileObjectCollection : IPropertyInterface
     {
-        Dictionary<string, IFileObject> FileObjects { get; set; }
+        Dictionary<string, IFileObject> OutFileObjects { get; set; }
     }
 }
