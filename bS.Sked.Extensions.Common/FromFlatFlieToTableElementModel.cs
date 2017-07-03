@@ -8,9 +8,8 @@ namespace bS.Sked.Extensions.Common
 {
     public class FromFlatFlieToTableElementModel : ExecutableElementBaseModel, IInputFileObject, IOutputTableObject
     {
-        public virtual string SourceFile { get; set; }
-        public virtual int SkipFirstRows { get; set; }
-        public virtual string SeparatorValue { get; set; }
+        public virtual int SkipStartingRows { get; set; }
+        public virtual char? SeparatorValue { get; set; }
         public virtual int LimitToRows { get; set; }
 
 
@@ -24,9 +23,8 @@ namespace bS.Sked.Extensions.Common
     {
         public FromFlatFlieToTableElementModelMap()
         {
-            DiscriminatorValue(CommonInitializer.fromFlatFlieToTable);
-            Map(x => x.SourceFile);
-            Map(x => x.SkipFirstRows);
+            DiscriminatorValue(StaticContent.fromFlatFlieToTable);
+            Map(x => x.SkipStartingRows);
             Map(x => x.SeparatorValue);
             Map(x => x.LimitToRows);
         }

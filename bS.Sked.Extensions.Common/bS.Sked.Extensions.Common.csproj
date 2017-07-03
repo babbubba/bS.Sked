@@ -59,13 +59,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonContext.cs" />
+    <Compile Include="CommonMainObjectModel.cs" />
     <Compile Include="CommonInitializer.cs" />
     <Compile Include="CommonModule.cs" />
     <Compile Include="FromDbQueryToTableElementModel.cs" />
     <Compile Include="FromFlatFlieToTableElementModel.cs" />
     <Compile Include="FromTableToFileElementModel.cs" />
+    <Compile Include="Helpers\FlatFiles\FieldType.cs" />
+    <Compile Include="Helpers\FlatFiles\GenericParser.cs" />
+    <Compile Include="Helpers\FlatFiles\GenericParserAdapter.cs" />
+    <Compile Include="Helpers\FlatFiles\Legacy Support\StringArray.cs" />
+    <Compile Include="Helpers\FlatFiles\ParserState.cs" />
+    <Compile Include="Helpers\FlatFiles\ParsingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">

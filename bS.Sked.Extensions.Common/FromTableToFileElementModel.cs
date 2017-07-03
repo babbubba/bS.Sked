@@ -22,7 +22,7 @@ namespace bS.Sked.Extensions.Common
     {
         public FromTableToFileElementModelMap()
         {
-            DiscriminatorValue(CommonInitializer.fromTableToFile);
+            DiscriminatorValue(StaticContent.fromTableToFile);
             Map(x => x.SkipFirstRows);
             Map(x => x.LimitToRows);
         }

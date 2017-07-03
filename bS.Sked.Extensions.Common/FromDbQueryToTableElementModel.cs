@@ -26,7 +26,7 @@ namespace bS.Sked.Extensions.Common
     {
         public FromDbQueryToTableElementModelMap()
         {
-            DiscriminatorValue(CommonInitializer.fromDbQueryToTable);
+            DiscriminatorValue(StaticContent.fromDbQueryToTable);
             Map(x => x.Query);
             Map(x => x.ODBCConnectionString);
             Map(x => x.SkipFirstRows);

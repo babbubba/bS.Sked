@@ -17,18 +17,15 @@ namespace bS.Sked.Extensions.Common
         private static ILog log = LogManager.GetLogger<CommonInitializer>();
 
 
-        public const string commonMainObject = "Common";
-        public const string fromFlatFlieToTable = "Common.FromFlatFileToTable";
-        public const string fromDbQueryToTable = "Common.FromDbQueryToTable";
-        public const string fromTableToFile = "Common.FromTableToFile";
+      
 
         public CommonInitializer(IRepository<IPersisterEntity> repository) : base(repository)
         {
             _supportedElements = new Dictionary<string, string>
             {
-                { fromFlatFlieToTable, "From flat file to table" },
-                { fromDbQueryToTable, "From ODBC DB query to table" },
-                { fromTableToFile, "From table to file" }
+                { StaticContent.fromFlatFlieToTable, "From flat file to table" },
+                { StaticContent.fromDbQueryToTable, "From ODBC DB query to table" },
+                { StaticContent.fromTableToFile, "From table to file" }
             };
         }
 
@@ -39,14 +36,14 @@ namespace bS.Sked.Extensions.Common
                 var transaction = _repository.BeginTransaction();
 
                 var query = _repository.GetQuery<IMainObjectTypeModel>();
-                if (!query.Any(x => x.PersistingId == commonMainObject))
+                if (!query.Any(x => x.PersistingId == StaticContent.commonMainObject))
                 {
                     var newCommonMainObjectType = new MainObjectTypeModel
                     {
                         Description = "Common Element plugin.",
                         IsActive = true,
                         Name = "Common",
-                        PersistingId = commonMainObject
+                        PersistingId = StaticContent.commonMainObject
                     };
 
                     var queryElementTypes = _repository.GetQuery<IElementTypeModel>();
@@ -83,15 +80,15 @@ namespace bS.Sked.Extensions.Common
 
             switch (elementTypePID)
             {
-                case fromFlatFlieToTable:
+                case StaticContent.fromFlatFlieToTable:
                     newElementType.InputProperties = "IInputFileObject";
                     newElementType.OutputProperties = "IOutputTableObject";
                     break;
-                case fromDbQueryToTable:
+                case StaticContent.fromDbQueryToTable:
                     newElementType.InputProperties = "";
                     newElementType.OutputProperties = "IOutputTableObject";
                     break;
-                case fromTableToFile:
+                case StaticContent.fromTableToFile:
                     newElementType.InputProperties = "IInputTableObject";
                     newElementType.OutputProperties = "IOutputFileObject";
                     break;

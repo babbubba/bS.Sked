@@ -89,11 +89,14 @@
     <Compile Include="Elements\EmailComponentModel.cs" />
     <Compile Include="Elements\Properties\AttachableFileModel.cs" />
     <Compile Include="Elements\Properties\FileSystemFileModel.cs" />
+    <Compile Include="Elements\Properties\TableObjectModel.cs" />
     <Compile Include="Elements\SmtpSettingModel.cs" />
     <Compile Include="Jobs\JobInstanceModel.cs" />
     <Compile Include="Jobs\JobModel.cs" />
     <Compile Include="MainObjects\Base\MainObjectBaseModel.cs" />
     <Compile Include="MainObjects\MainObjectTypeModel.cs" />
+    <Compile Include="Modules\ExtensionExecuteResult.cs" />
+    <Compile Include="Modules\ModuleBase.cs" />
     <Compile Include="Modules\ModuleInitializerBase.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
