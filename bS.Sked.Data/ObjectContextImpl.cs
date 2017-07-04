@@ -25,7 +25,7 @@ namespace bS.Sked.Data
         {
             _sessionFactory =
                 SessionFactoryInitializer.GetFactory(
-                    configInfo.ConnectionString, configInfo.ExtraDllModelFolders?.Split('|'));
+                    configInfo.ConnectionString, configInfo.DbType,  configInfo.ExtraDllModelFolders?.Split('|'));
 
             _session = _sessionFactory.OpenSession();
             log.Trace($"Session '{_session.GetHashCode()}' has been created.");

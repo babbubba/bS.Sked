@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace bS.Sked.WMC
@@ -55,11 +56,18 @@ namespace bS.Sked.WMC
             {
                 Sked.CompositionRoot.CompositionRoot.Instance().RegisterExtensionsAssemblyTypes(assembly);
 
-            } 
+            }
             #endregion
-            
+
             // Context and Unit Of Work
-            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo { ConnectionString = @"Server = localhost; Database = sked; User ID = root; Password = beibub1;", ExtraDllModelFolders = null });
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo
+            {
+                ConnectionString = WebConfigurationManager.AppSettings["ConnectionString"],
+                ExtraDllModelFolders = null,
+                DbType = WebConfigurationManager.AppSettings["DbType"].ToLower()
+  
+            });
+
             Sked.CompositionRoot.CompositionRoot.Instance().Register<ObjectContextImpl, IObjectContext>();
             Sked.CompositionRoot.CompositionRoot.Instance().Register<UnitOfWork, IUnitOfWork>();
 

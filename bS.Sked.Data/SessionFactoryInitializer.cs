@@ -44,18 +44,45 @@ namespace bS.Sked.Data
             FactoryDictionary = new Dictionary<string, ISessionFactory>();
         }
 
-        private static ISessionFactory CreateNewFactory(string connectionString, string[] foldersWereLookingForDll)
+        private static ISessionFactory CreateNewFactory(string connectionString, string[] foldersWereLookingForDll, string dbType)
         {
             ISessionFactory lResult = null;
             try
             {
                 var MappingAssemblies = Shared.Reflection.GetORMMappingAssemblies(foldersWereLookingForDll, true);
 
-                lResult = Fluently.Configure()
-                 .Database(MySQLConfiguration.Standard.ConnectionString(connectionString))
-                 .Mappings(m => MappingAssemblies.ForEach(a => m.FluentMappings.AddFromAssembly(a)))
-                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
-                 .BuildSessionFactory();
+                switch (dbType.ToLower())
+                {
+                    case "mysql":
+                        lResult = Fluently.Configure()
+                            .Database(MySQLConfiguration.Standard.ConnectionString(connectionString))
+                            .Mappings(m => MappingAssemblies.ForEach(a => m.FluentMappings.AddFromAssembly(a)))
+                            .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+                            .BuildSessionFactory();
+                        break;
+                    case "sqlite":
+                        lResult = Fluently.Configure()
+                            .Database(SQLiteConfiguration.Standard.ConnectionString(connectionString))
+                            .Mappings(m => MappingAssemblies.ForEach(a => m.FluentMappings.AddFromAssembly(a)))
+                            .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+                            .BuildSessionFactory();
+                        break;
+                    case "sql2012":
+                        lResult = Fluently.Configure()
+                            .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString))
+                            .Mappings(m => MappingAssemblies.ForEach(a => m.FluentMappings.AddFromAssembly(a)))
+                            .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+                            .BuildSessionFactory();
+                        break;
+                    case "sql20008":
+                        lResult = Fluently.Configure()
+                            .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
+                            .Mappings(m => MappingAssemblies.ForEach(a => m.FluentMappings.AddFromAssembly(a)))
+                            .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+                            .BuildSessionFactory();
+                        break;
+                }
+               
             }
             catch (Exception ex)
             {
@@ -68,13 +95,13 @@ namespace bS.Sked.Data
             return lResult;
         }
 
-        public static ISessionFactory GetFactory(string connectionString, string[] foldersWereLookingForDll = null)
+        public static ISessionFactory GetFactory(string connectionString, string dbType, string[] foldersWereLookingForDll)
         {
             lock (typeof(SessionFactoryInitializer))
             {
                 if (!FactoryDictionary.ContainsKey(connectionString))
                 {
-                    FactoryDictionary.Add(connectionString, CreateNewFactory(connectionString, foldersWereLookingForDll));
+                    FactoryDictionary.Add(connectionString, CreateNewFactory(connectionString, foldersWereLookingForDll, dbType));
                     log.Trace($"New 'Factory Session Builder' has been created for the Connection String: {connectionString}");
                 }
                 else

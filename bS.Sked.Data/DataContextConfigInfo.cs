@@ -18,5 +18,6 @@ namespace bS.Sked.Data
         /// Eventually extra paths, pipe separated ('|'), where session factory has to look for dlls containing extra models. 
         /// </summary>
         public string ExtraDllModelFolders { get; set; }
+        public string DbType { get; set; }
     }
 }
