@@ -87,7 +87,7 @@ namespace bS.Sked.Data
             catch (Exception ex)
             {
                 {
-                    log.Fatal($"Eccezione creando il SessionFactory per Nhibernate: {ex.GetBaseException().Message}", ex);
+                    log.Fatal($"Exception creating ORM SessionFactory: {ex.GetBaseException().Message}", ex);
                     throw;
                 }
             }
