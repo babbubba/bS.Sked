@@ -28,6 +28,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Modules;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using Common.Logging;
 using System;
 using System.Linq;
@@ -128,26 +129,32 @@ namespace bS.Sked.CompositionRoot
         {
             if (iocContainer != null) throw new ApplicationException("Container has been still initialized.");
 
-            //Looking for initializer
+            //Initializers
             builder.RegisterAssemblyTypes(assembly)
-                    .Where(t => t.Name.EndsWith("Initializer"))
+                    //.Where(t => t.Name.EndsWith("Initializer"))
+                    .Where(t => t.GetInterfaces().Contains(typeof(IExtensionModuleInitializer)))
                     .AsImplementedInterfaces();
 
             //Modules
             builder.RegisterAssemblyTypes(assembly)
-                .Where(t => t.Name.EndsWith("Module"))
-                    .AsImplementedInterfaces();
+               // .Where(t => t.Name.EndsWith("Module"))
+                  .Where(t => t.GetInterfaces().Contains(typeof(IExtensionModule)))
+                  .AsImplementedInterfaces();
 
             //Main Objects
             builder.RegisterAssemblyTypes(assembly)
                   .Where(t => t.GetInterfaces().Contains(typeof(IExtensionContext)))
                   .AsImplementedInterfaces(); 
             
-            //Elements
+            //Element Models
             builder.RegisterAssemblyTypes(assembly)
                   .Where(t => t.GetInterfaces().Contains(typeof(IExecutableElementModel)))
                   .AsImplementedInterfaces();
 
+            //Element View Models
+            builder.RegisterAssemblyTypes(assembly)
+                  .Where(t => t.GetInterfaces().Contains(typeof(IExecutableElementBaseViewModel)))
+                  .AsImplementedInterfaces();
         }
 
         /// <summary>

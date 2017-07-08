@@ -4,6 +4,7 @@ using System.Linq;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Modules;
 using bS.Sked.Extensions.Common.Helpers.FlatFiles;
+using bS.Sked.Extensions.Common.Model;
 
 namespace bS.Sked.Extensions.Common
 {

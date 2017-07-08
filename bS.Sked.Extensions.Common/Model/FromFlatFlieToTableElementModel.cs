@@ -4,7 +4,7 @@ using bS.Sked.Model.Elements.Properties;
 using bS.Sked.Model.Interfaces.Elements.Properties;
 using FluentNHibernate.Mapping;
 
-namespace bS.Sked.Extensions.Common
+namespace bS.Sked.Extensions.Common.Model
 {
     public class FromFlatFlieToTableElementModel : ExecutableElementBaseModel, IInputFileObject, IOutputTableObject
     {

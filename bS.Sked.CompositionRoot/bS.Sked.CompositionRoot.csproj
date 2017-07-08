@@ -117,6 +117,10 @@
       <Project>{d28d9ada-effd-4ab6-ac8a-28dfb261e3cc}</Project>
       <Name>bS.Sked.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
+      <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
+      <Name>bS.Sked.ViewModel.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

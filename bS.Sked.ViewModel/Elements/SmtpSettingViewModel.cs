@@ -29,36 +29,3 @@ namespace bS.Sked.ViewModel.Elements
     }
 }
 
-
-namespace bS.Sked.ViewModel.Elements.Base
-{
-    public abstract class PersisterEntityBaseViewModel : IPersisterEntityViewModel
-    {
-        public virtual string Id { get; set; }
-    }
-
-    public abstract class ToggledEntityBaseViewModel : IToggledEntityViewModel
-    {
-        [DisplayName("Is active")]
-        public virtual bool IsActive { get; set; }
-    }
-
-    public abstract class DescribedEntityBaseViewModel : IDescribedEntityViewModel
-    {
-        public virtual string Description { get; set; }
-        public virtual string Name { get; set; }
-    }
-
-    public abstract class PersisterToggledDescribedEnityBaseVieModel : IPersisterEntityViewModel, IToggledEntityViewModel, IDescribedEntityViewModel
-    {
-        protected PersisterToggledDescribedEnityBaseVieModel()
-        {
-            Id = Guid.Empty.ToString();
-        }
-        public virtual string Id { get; set; }
-        [DisplayName("Is active")]
-        public virtual bool IsActive { get; set; }
-        public virtual string Description { get; set; }
-        public virtual string Name { get; set; }
-    }
-}

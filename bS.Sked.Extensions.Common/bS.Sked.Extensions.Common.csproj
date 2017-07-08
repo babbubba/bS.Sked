@@ -77,12 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonMainObjectModel.cs" />
+    <Compile Include="Model\CommonMainObjectModel.cs" />
     <Compile Include="CommonInitializer.cs" />
     <Compile Include="CommonModule.cs" />
-    <Compile Include="FromDbQueryToTableElementModel.cs" />
-    <Compile Include="FromFlatFlieToTableElementModel.cs" />
-    <Compile Include="FromTableToFileElementModel.cs" />
+    <Compile Include="Model\FromDbQueryToTableElementModel.cs" />
+    <Compile Include="Model\FromFlatFlieToTableElementModel.cs" />
+    <Compile Include="Model\FromTableToFileElementModel.cs" />
     <Compile Include="Helpers\FlatFiles\FieldType.cs" />
     <Compile Include="Helpers\FlatFiles\GenericParser.cs" />
     <Compile Include="Helpers\FlatFiles\GenericParserAdapter.cs" />
@@ -91,6 +91,7 @@
     <Compile Include="Helpers\FlatFiles\ParsingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticContent.cs" />
+    <Compile Include="ViewModel\FromFlatFlieToTableElementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">
@@ -108,10 +109,15 @@
       <Name>bS.Sked.Model</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel\bS.Sked.ViewModel.csproj">
+      <Project>{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}</Project>
+      <Name>bS.Sked.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y $(TargetPath) $(SolutionDir)\bS.Sked.WMC\bin\

@@ -11,6 +11,7 @@ using bS.Sked.WMC;
 using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Elements;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
 
 namespace bS.Sked.Engine.Tests
 {
@@ -32,16 +33,19 @@ namespace bS.Sked.Engine.Tests
         {
             var mainObjects = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
             var mainObjectToExecute = mainObjects.Single(x => x.GetType().Name.Contains("CommonMainObjectModel"));
+
             var initElements = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModuleInitializer>>();
             var elements = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExecutableElementModel>>();
-
             var elementToExecute = elements.Single(x=>x.GetType().Name.Contains("FromFlatFlieToTableElementModel"));
             elementToExecute.ElementType = new ElementTypeModel
             {
                 PersistingId = "Common.FromFlatFileToTable"
             };
            
-           engine.ExecuteElement(mainObjectToExecute, elementToExecute);
+            var elementViewModels = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExecutableElementBaseViewModel>>();
+            var elementViewModel = elementViewModels.Single(x => x.GetType().Name.Contains("FromFlatFlieToTableElementViewModel"));
+
+            engine.ExecuteElement(mainObjectToExecute, elementToExecute);
         }
     }
 }

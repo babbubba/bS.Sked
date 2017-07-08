@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Extensions.Common
+namespace bS.Sked.Extensions.Common.Model
 {
     public class CommonMainObjectModel : MainObjectBaseModel, IExtensionContext
     {
         public CommonMainObjectModel()
         {
+            //TODO: Questa non dovrebbe essere utilizzata! Piuttosto usa il MainObject type che dovrebbe esistere nel db!
             ExtensionContextTypePID = StaticContent.commonMainObject;
         }
 

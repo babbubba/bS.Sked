@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Extensions.Common
+namespace bS.Sked.Extensions.Common.Model
 {
     public class FromTableToFileElementModel : ExecutableElementBaseModel, IInputTableObject, IOutputFileObject
     {

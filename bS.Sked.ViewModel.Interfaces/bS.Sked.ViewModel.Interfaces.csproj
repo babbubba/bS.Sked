@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Elements\ISmtpSettingViewModel.cs" />
     <Compile Include="Entities\Base\IDescribedEntityViewModel.cs" />
+    <Compile Include="Elements\Base\IExecutableElementBaseViewModel.cs" />
     <Compile Include="Entities\Base\IExecutableEntityViewModel.cs" />
     <Compile Include="Entities\Base\IExecutableInstanceViewModel.cs" />
     <Compile Include="Entities\Base\IHistoricalEntityViewModel.cs" />

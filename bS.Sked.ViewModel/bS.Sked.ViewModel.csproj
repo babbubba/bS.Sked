@@ -58,6 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\Base\DescribedEntityBaseViewModel.cs" />
+    <Compile Include="Elements\Base\ExecutableElementBaseViewModel.cs" />
+    <Compile Include="Elements\Base\PersisterEntityBaseViewModel.cs" />
+    <Compile Include="Elements\Base\PersisterToggledDescribedEnityBaseVieModel.cs" />
+    <Compile Include="Elements\Base\ToggledEntityBaseViewModel.cs" />
     <Compile Include="Elements\SmtpSettingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
