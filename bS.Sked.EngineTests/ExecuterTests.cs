@@ -12,6 +12,7 @@ using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
+using bs.Sked.Mapping;
 
 namespace bS.Sked.Engine.Tests
 {
@@ -25,6 +26,7 @@ namespace bS.Sked.Engine.Tests
         {
             CompositionRootConfig.RegisterComponents();
             engine = CompositionRoot.CompositionRoot.Instance().Resolve<Executer>();
+            Mapping.RegisterMappings();
         }
 
         //Se gira questo vuol dire che funziona quasi tutto!

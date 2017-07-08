@@ -25,6 +25,7 @@
 */
 
 using AutoMapper;
+using bS.Sked.Mapping.Interfaces;
 using bS.Sked.Model.Elements;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.ViewModel.Elements;
@@ -37,13 +38,23 @@ namespace bs.Sked.Mapping
     {
         public static void RegisterMappings()
         {
-            var tc = AppDomain.CurrentDomain.GetAssemblies();
+            //var allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            //var types = from a in allAssemblies
+            //            from t in a.GetTypes()
+            //            select t;
+
+            //var profileTypes = from pt in types
+            //                   where pt.GetInterfaces().Contains(typeof(IMapProfile))
+            //                   select pt;
+
             var profileAssemblies = from p in AppDomain.CurrentDomain.GetAssemblies()
-                                    where p.FullName.Contains(".Services")
+                                    from t in p.GetTypes()
+                                    where t.GetInterfaces().Contains(typeof(IMapProfile))
                                     select p;
             Mapper.Initialize(config =>
             {
-                // Add all assemblies with profiles in the assemblies
+                // Add all assemblies with profiles in the assemblies (them contain some type that implments 'IMapProfile' inrterface)
                 config.AddProfiles(profileAssemblies.ToArray());
 
                 // Extra optional default mapping
@@ -56,11 +67,9 @@ namespace bs.Sked.Mapping
 
         public static TDestination Map<TDestination>(object source, TDestination target)
         {
-            return AutoMapper.Mapper.Map(source, target);
+            return Mapper.Map(source, target);
         }
         public static object Map(object source, Type sourceType, Type destinationType) => AutoMapper.Mapper.Map(source, sourceType, destinationType);
-
-
     }
 
     public class GuidTypeConverter : ITypeConverter<string, Guid>

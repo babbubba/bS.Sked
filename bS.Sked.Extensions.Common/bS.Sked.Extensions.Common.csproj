@@ -49,6 +49,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonMapping.cs" />
     <Compile Include="Model\CommonMainObjectModel.cs" />
     <Compile Include="CommonInitializer.cs" />
     <Compile Include="CommonModule.cs" />
@@ -98,6 +102,10 @@
       <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
       <Name>bS.Sked.Data.Interfaces</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\bs.Sked.Mapping\bs.Sked.Mapping.csproj">
+      <Project>{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}</Project>
+      <Name>bs.Sked.Mapping</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Model.Interfaces\bS.Sked.Model.Interfaces.csproj">
       <Project>{2a078b06-6432-481c-949d-7f9f1f1018bd}</Project>
