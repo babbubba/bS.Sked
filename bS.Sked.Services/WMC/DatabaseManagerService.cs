@@ -20,7 +20,7 @@ namespace bS.Sked.Services.WMC
         {
             foreach (var initializer in _initializers)
             {
-                var suppElements = initializer.SupportedElements;
+              //  var suppElements = initializer.SupportedElements;
                 initializer.InitElementTypes();
                 initializer.InitContextTypes();
             }

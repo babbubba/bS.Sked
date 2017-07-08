@@ -10,6 +10,12 @@ namespace bS.Sked.Extensions.Common
 {
     public class CommonMainObjectModel : MainObjectBaseModel, IExtensionContext
     {
+        public CommonMainObjectModel()
+        {
+            ExtensionContextTypePID = StaticContent.commonMainObject;
+        }
+
+        public string ExtensionContextTypePID { get; set; }
 
         public bool FinalizeContext()
         {

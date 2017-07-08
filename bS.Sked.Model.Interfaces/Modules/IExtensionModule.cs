@@ -10,6 +10,7 @@ namespace bS.Sked.Model.Interfaces.Modules
     public interface IExtensionModule
     {
         bool IsSupported(IExecutableElementModel executableElement);
+        bool IsImplemented(IExecutableElementModel executableElement);
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
     }
 }

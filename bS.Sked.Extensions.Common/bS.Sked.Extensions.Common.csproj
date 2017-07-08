@@ -114,6 +114,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y $(TargetPath) $(SolutionDir)\bS.Sked.WMC\bin\</PostBuildEvent>
+    <PostBuildEvent>xcopy /y $(TargetPath) $(SolutionDir)\bS.Sked.WMC\bin\
+
+xcopy /y $(TargetPath) $(SolutionDir)\bS.Sked.EngineTests\bin\Debug\
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

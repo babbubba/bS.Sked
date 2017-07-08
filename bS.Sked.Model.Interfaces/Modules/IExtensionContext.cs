@@ -14,5 +14,7 @@ namespace bS.Sked.Model.Interfaces.Modules
         /// <returns>it returns true if initialization succes or if it was already initialized otherwise it returns false.</returns>
         bool InitializeContext();
         bool FinalizeContext();
+
+        string ExtensionContextTypePID { get; set; }
     }
 }

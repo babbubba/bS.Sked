@@ -26,8 +26,11 @@
 
 using Autofac;
 using Autofac.Integration.Mvc;
+using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.Modules;
 using Common.Logging;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -117,20 +120,33 @@ namespace bS.Sked.CompositionRoot
             builder.RegisterInstance(componentInstance).As<Service>();
         }
 
-
+        /// <summary>
+        /// It registers in the composition Root the modules, the initializers, ecc... from the Extension assembly passed.  
+        /// </summary>
+        /// <param name="assembly">The assembly where looking for the extension types needed.</param>
         public void RegisterExtensionsAssemblyTypes(Assembly assembly)
         {
             if (iocContainer != null) throw new ApplicationException("Container has been still initialized.");
 
+            //Looking for initializer
             builder.RegisterAssemblyTypes(assembly)
                     .Where(t => t.Name.EndsWith("Initializer"))
                     .AsImplementedInterfaces();
-                   // .Keyed<IExtensionModuleInitializer>(assembly.GetName().Name);
 
+            //Modules
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => t.Name.EndsWith("Module"))
-            //    .Keyed<IExtensionModule>(assembly.GetName().Name);
                     .AsImplementedInterfaces();
+
+            //Main Objects
+            builder.RegisterAssemblyTypes(assembly)
+                  .Where(t => t.GetInterfaces().Contains(typeof(IExtensionContext)))
+                  .AsImplementedInterfaces(); 
+            
+            //Elements
+            builder.RegisterAssemblyTypes(assembly)
+                  .Where(t => t.GetInterfaces().Contains(typeof(IExecutableElementModel)))
+                  .AsImplementedInterfaces();
 
         }
 

@@ -11,6 +11,7 @@ namespace bS.Sked.Model.Modules
     public abstract class ModuleBase : IExtensionModule
     {
         protected string[] supportedElementTypes;
+        protected string[] implementedElementTypes;
 
         public ModuleBase()
         {
@@ -18,6 +19,16 @@ namespace bS.Sked.Model.Modules
         }
 
         public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
-        public abstract bool IsSupported(IExecutableElementModel executableElement);
+        //public abstract bool IsSupported(IExecutableElementModel executableElement);
+        //public abstract bool IsImplemented(IExecutableElementModel executableElement);
+
+        public virtual bool IsSupported(IExecutableElementModel executableElement)
+        {
+            return supportedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
+        }
+        public virtual bool IsImplemented(IExecutableElementModel executableElement)
+        {
+            return implementedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
+        }
     }
 }

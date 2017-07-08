@@ -1007,6 +1007,10 @@
       <Project>{D9DE2435-9A84-4A39-B953-CB8B1C5DC354}</Project>
       <Name>bS.Sked.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Engine\bS.Sked.Engine.csproj">
+      <Project>{2FFCED55-4721-4EA4-BD2F-6B627D413DBE}</Project>
+      <Name>bS.Sked.Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bs.Sked.Mapping\bs.Sked.Mapping.csproj">
       <Project>{c7bc29b6-327c-4fff-b0fb-bdd90c9f747f}</Project>
       <Name>bs.Sked.Mapping</Name>

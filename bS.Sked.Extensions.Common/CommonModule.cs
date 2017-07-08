@@ -11,12 +11,19 @@ namespace bS.Sked.Extensions.Common
     {
         public CommonModule()
         {
-            supportedElementTypes = new string[]
+            implementedElementTypes = new string[]
             {
                 StaticContent.fromFlatFlieToTable,
                 StaticContent.fromDbQueryToTable,
                 StaticContent.fromTableToFile
             };
+
+            supportedElementTypes = new string[]
+           {
+                StaticContent.fromFlatFlieToTable,
+                StaticContent.fromDbQueryToTable,
+                StaticContent.fromTableToFile
+           };
         }
 
 
@@ -73,11 +80,14 @@ namespace bS.Sked.Extensions.Common
             };
         }
 
-        public override bool IsSupported(IExecutableElementModel executableElement)
-        {
-            return supportedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
-        }
-
+        //public override bool IsSupported(IExecutableElementModel executableElement)
+        //{
+        //    return supportedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
+        //}
+        //public override bool IsImplemented(IExecutableElementModel executableElement)
+        //{
+        //    return implementedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
+        //}
 
     }
 }

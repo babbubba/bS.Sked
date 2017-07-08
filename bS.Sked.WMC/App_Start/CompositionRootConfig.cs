@@ -1,5 +1,6 @@
 ﻿using bS.Sked.Data;
 using bS.Sked.Data.Interfaces;
+using bS.Sked.Engine;
 using bS.Sked.Services.WMC;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace bS.Sked.WMC
 
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 
-            // Scan for assemblies containing extrensions
+            // Scan for assemblies containing extensions
             List<Assembly> assemblies = new List<Assembly>();
             assemblies.AddRange(
                 Directory.EnumerateFiles(Directory.GetCurrentDirectory(), "*.dll", SearchOption.AllDirectories)
@@ -78,6 +79,7 @@ namespace bS.Sked.WMC
             Sked. CompositionRoot.CompositionRoot.Instance().Register<LeftSidebarService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<SettingService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<DatabaseManagerService>();
+            Sked. CompositionRoot.CompositionRoot.Instance().Register<Executer>();
 
             //Build the CompositionRoot IOC Container
             Sked.CompositionRoot.CompositionRoot.Instance().BuildContainer();

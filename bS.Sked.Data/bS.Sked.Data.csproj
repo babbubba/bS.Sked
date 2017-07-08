@@ -144,8 +144,11 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy /y $(TargetDir)x86\* $(SolutionDir)bS.Sked.WMC\bin\x86\
 xcopy /y $(TargetDir)x64\* $(SolutionDir)bS.Sked.WMC\bin\x64\
-
 xcopy /y $(TargetDir)System.Data.SQLite.dll $(SolutionDir)bS.Sked.WMC\bin\
+
+xcopy /y $(TargetDir)x86\* $(SolutionDir)bS.Sked.EngineTests\bin\Debug\x86\
+xcopy /y $(TargetDir)x64\* $(SolutionDir)bS.Sked.EngineTests\bin\Debug\x64\
+xcopy /y $(TargetDir)System.Data.SQLite.dll $(SolutionDir)bS.Sked.EngineTests\bin\Debug\
 </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
