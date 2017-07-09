@@ -26,7 +26,7 @@ namespace bS.Sked.Engine
         {
             foreach (var module in _modules)
             {
-                if (module.IsImplemented(executableElement))
+                if (module.IsImplemented(executableElement.ElementType.PersistingId))
                 {
                     return module.Execute(context, executableElement);
                 }

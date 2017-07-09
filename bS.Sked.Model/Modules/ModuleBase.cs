@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
 
 namespace bS.Sked.Model.Modules
 {
@@ -26,9 +27,12 @@ namespace bS.Sked.Model.Modules
         {
             return supportedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
         }
-        public virtual bool IsImplemented(IExecutableElementModel executableElement)
+        public virtual bool IsImplemented(string executableElementPersistingId)
         {
-            return implementedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
+            return implementedElementTypes?.Contains(executableElementPersistingId) ?? false;
         }
+
+        public abstract IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
+      
     }
 }

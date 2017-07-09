@@ -5,13 +5,19 @@ using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Modules;
 using bS.Sked.Extensions.Common.Helpers.FlatFiles;
 using bS.Sked.Extensions.Common.Model;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
+using bS.Sked.Data.Interfaces;
+using bS.Sked.Model.Interfaces.Entities.Base;
 
 namespace bS.Sked.Extensions.Common
 {
     public class CommonModule : ModuleBase
     {
-        public CommonModule()
+        private IRepository<IPersisterEntity> _repository;
+
+        public CommonModule(IRepository<IPersisterEntity> repository)
         {
+            _repository = repository;
             implementedElementTypes = new string[]
             {
                 StaticContent.fromFlatFlieToTable,
@@ -27,6 +33,17 @@ namespace bS.Sked.Extensions.Common
            };
         }
 
+        public override IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element)
+        {
+            switch (element.ElementTypePersistingId)
+            {
+                case StaticContent.fromFlatFlieToTable:
+                    throw new NotImplementedException();
+                    break;
+                default:
+                    return null;
+            }
+        }
 
         public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement)
         {

@@ -1,5 +1,9 @@
-﻿using bS.Sked.Data.Interfaces;
+﻿using AutoMapper;
+using bS.Sked.CompositionRoot;
+using bS.Sked.Data.Interfaces;
+using bS.Sked.Model.Elements.Base;
 using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Services.Base;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
@@ -19,8 +23,11 @@ namespace bS.Sked.Services.WMC
             _repository = repository;
         }
 
-        public void AddNewElement(IExecutableElementBaseViewModel element)
+        public IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element)
         {
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(element.ElementTypePersistingId));
+            return module.AddNewElement(element);
+            //  Mapper.Map<ExecutableElementBaseModel>(element);
 
         }
     }

@@ -95,7 +95,12 @@
     <Compile Include="Triggers\ITriggerModel.cs" />
     <Compile Include="Triggers\ITriggerTypeModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
+      <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
+      <Name>bS.Sked.ViewModel.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

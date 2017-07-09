@@ -1,4 +1,5 @@
 ﻿using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,10 @@ namespace bS.Sked.Model.Interfaces.Modules
     public interface IExtensionModule
     {
         bool IsSupported(IExecutableElementModel executableElement);
-        bool IsImplemented(IExecutableElementModel executableElement);
+        bool IsImplemented(string executableElementPersistingId);
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
+
+        IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
+
     }
 }

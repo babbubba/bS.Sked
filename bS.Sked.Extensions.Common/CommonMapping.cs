@@ -1,6 +1,7 @@
 ﻿using bs.Sked.Mapping;
 using bS.Sked.Extensions.Common.Model;
 using bS.Sked.Extensions.Common.ViewModel;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace bS.Sked.Extensions.Common
     {
         public CommonMapping()
         {
-            CreateMap<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>().ReverseMap(); 
+            CreateMap<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>().ReverseMap();
+            CreateMap<IExecutableElementBaseViewModel, FromFlatFlieToTableElementModel>().ReverseMap();
+
         }
     }
 }
