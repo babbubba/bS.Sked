@@ -7,7 +7,6 @@ namespace bS.Sked.ViewModel.Elements.Base
         public string Description { get; set; }
         public string ElementTypeId { get; set; }
         public string ElementTypePersistingId { get; set; }
-        public string Id { get; set; }
         public virtual bool IsActive { get; set; }
         public string Name { get; set; }
         public string ParentId { get; set; }

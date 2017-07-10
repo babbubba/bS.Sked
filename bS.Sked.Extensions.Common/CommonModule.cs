@@ -8,6 +8,7 @@ using bS.Sked.Extensions.Common.Model;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Extensions.Common.ViewModel;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -38,11 +39,23 @@ namespace bS.Sked.Extensions.Common
             switch (element.ElementTypePersistingId)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    throw new NotImplementedException();
-                    break;
+                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(element); 
                 default:
                     return null;
             }
+        }
+
+        private IExecutableElementBaseViewModel addNewElementGeneric<ViewModel, Model> (IExecutableElementBaseViewModel element)
+            where Model : class, IPersisterEntity 
+            where ViewModel : IExecutableElementBaseViewModel
+        {
+            var model = AutoMapper.Mapper.Map<Model>(element);
+
+         //   var t = _repository.BeginTransaction();
+            _repository.Add(model);
+         //   t.Commit();
+            element = AutoMapper.Mapper.Map<ViewModel>(model);
+            return element;
         }
 
         public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement)

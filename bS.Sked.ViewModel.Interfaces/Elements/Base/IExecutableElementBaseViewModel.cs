@@ -5,7 +5,6 @@
         string Description { get; set; }
         string ElementTypeId { get; set; }
         string ElementTypePersistingId { get; set; }
-        string Id { get; set; }
         bool IsActive { get; set; }
         string Name { get; set; }
         string ParentId { get; set; }

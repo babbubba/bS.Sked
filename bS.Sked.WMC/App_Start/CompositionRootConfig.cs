@@ -79,6 +79,7 @@ namespace bS.Sked.WMC
             Sked. CompositionRoot.CompositionRoot.Instance().Register<LeftSidebarService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<SettingService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<DatabaseManagerService>();
+            Sked. CompositionRoot.CompositionRoot.Instance().Register<ElementService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<Executer>();
 
             //Build the CompositionRoot IOC Container

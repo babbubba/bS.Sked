@@ -84,6 +84,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ElementServiceTest.cs" />
     <Compile Include="ExecuterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +101,10 @@
       <Project>{2FFCED55-4721-4EA4-BD2F-6B627D413DBE}</Project>
       <Name>bS.Sked.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Extensions.Common\bS.Sked.Extensions.Common.csproj">
+      <Project>{F0F8E91A-FD2C-464F-B24A-51216054460C}</Project>
+      <Name>bS.Sked.Extensions.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bs.Sked.Mapping\bs.Sked.Mapping.csproj">
       <Project>{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}</Project>
       <Name>bs.Sked.Mapping</Name>
@@ -112,9 +117,17 @@
       <Project>{D28D9ADA-EFFD-4AB6-AC8A-28DFB261E3CC}</Project>
       <Name>bS.Sked.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Services\bS.Sked.Services.csproj">
+      <Project>{26A7C7D8-4927-4015-9EA0-39B4D0CD39F5}</Project>
+      <Name>bS.Sked.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
       <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
       <Name>bS.Sked.ViewModel.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.ViewModel\bS.Sked.ViewModel.csproj">
+      <Project>{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}</Project>
+      <Name>bS.Sked.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.WMC\bS.Sked.WMC.csproj">
       <Project>{11edc1d5-8d38-4512-bedd-f2bd87b1b954}</Project>
