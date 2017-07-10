@@ -25,7 +25,7 @@ namespace bS.Sked.Extensions.Common.Model
 
         public bool InitializeContext()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

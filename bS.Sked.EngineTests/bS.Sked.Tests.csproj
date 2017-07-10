@@ -97,6 +97,10 @@
       <Project>{EE23A5F8-93D9-47D7-A739-E41596CE9267}</Project>
       <Name>bS.Sked.CompositionRoot</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">
+      <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
+      <Name>bS.Sked.Data.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Engine\bS.Sked.Engine.csproj">
       <Project>{2FFCED55-4721-4EA4-BD2F-6B627D413DBE}</Project>
       <Name>bS.Sked.Engine</Name>

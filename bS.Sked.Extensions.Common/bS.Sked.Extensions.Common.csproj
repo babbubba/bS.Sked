@@ -98,6 +98,10 @@
     <Compile Include="ViewModel\FromFlatFlieToTableElementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bS.Sked.CompositionRoot\bS.Sked.CompositionRoot.csproj">
+      <Project>{EE23A5F8-93D9-47D7-A739-E41596CE9267}</Project>
+      <Name>bS.Sked.CompositionRoot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.Data.Interfaces\bS.Sked.Data.Interfaces.csproj">
       <Project>{11DE7D96-FDA8-4A87-82D3-29C11C07111A}</Project>
       <Name>bS.Sked.Data.Interfaces</Name>

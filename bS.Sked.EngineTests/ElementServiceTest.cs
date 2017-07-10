@@ -1,5 +1,8 @@
 ﻿using bs.Sked.Mapping;
+using bS.Sked.Data.Interfaces;
 using bS.Sked.Extensions.Common.ViewModel;
+using bS.Sked.Model.Elements;
+using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Services.WMC;
 using bS.Sked.WMC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -37,8 +40,9 @@ namespace bS.Sked.Service.Tests
                       
 
             };
-
-            elementService.AddNewElement(vM);
+            var repository = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>();
+                    var elments = repository.GetQuery<ElementTypeModel>();
+               var res =     elementService.AddNewElement(vM);
 
         }
 

@@ -9,6 +9,7 @@ using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Extensions.Common.ViewModel;
+using bS.Sked.Model.Elements.Properties;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -92,6 +93,7 @@ namespace bS.Sked.Extensions.Common
                 parser.SkipStartingDataRows = element.SkipStartingRows;
                 parser.ColumnDelimiter = element.SeparatorValue ?? ';';
                 parser.MaxRows = element.LimitToRows;
+                element.OutTableObject = new TableObjectModel();
                 element.OutTableObject.Table = parser.GetDataTable();
             }
             catch (Exception ex)

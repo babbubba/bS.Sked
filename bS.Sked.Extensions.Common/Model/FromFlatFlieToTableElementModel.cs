@@ -27,6 +27,7 @@ namespace bS.Sked.Extensions.Common.Model
             Map(x => x.SkipStartingRows);
             Map(x => x.SeparatorValue);
             Map(x => x.LimitToRows);
+            References<FileSystemFileModel>(x => x.InFileObject).Cascade.All();
         }
     }
 
