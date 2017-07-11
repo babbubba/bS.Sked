@@ -32,20 +32,14 @@ namespace bS.Sked.Service.Tests
         {
             var vM = new FromFlatFlieToTableElementViewModel
             {
-                 InFileObjectFileFullPath = @"c:\test\input.csv",
-                  SeparatorValue = ";",
-                   SkipStartingRows = 1,
-                    Name = "Importa da file csv di prova",
-                     ElementTypePersistingId = "Common.FromFlatFileToTable"
-                      
-
+                InFileObjectFileFullPath = @"c:\test\input.csv",
+                SeparatorValue = ";",
+                SkipStartingRows = 1,
+                Name = "Importa da file csv di prova",
+                ElementTypePersistingId = "Common.FromFlatFileToTable"
             };
-            var repository = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>();
-                    var elments = repository.GetQuery<ElementTypeModel>();
-               var res =     elementService.AddNewElement(vM);
 
+            var res = elementService.AddNewElement(vM);
         }
-
     }
-
 }
