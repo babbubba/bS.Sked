@@ -9,16 +9,20 @@ namespace bS.Sked.WMC.Controllers
 {
     public class HomeController : Controller
     {
+        private static ILog log = LogManager.GetLogger<HomeController>();
         public HomeController()
         {
         }
         public ActionResult Index()
         {
+            log.Debug("Entrato in Home");
             return View();
         }
 
         public ActionResult Dashboard()
         {
+            log.Debug("Entrato in Dashboard");
+
             return View();
         }
     }
