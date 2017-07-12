@@ -1,0 +1,1 @@
+﻿<error errorId="26d164bf-66ac-4733-ba78-07a072a2f59c" type="Trace" message="The following 2 assemblies will be loaded dinamically and mapped in ORM:&#xA;bS.Sked.Extensions.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&#xA;bS.Sked.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" time="2017-07-12T21:07:13.1620413Z" />
