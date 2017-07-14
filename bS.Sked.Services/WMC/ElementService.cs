@@ -27,10 +27,7 @@ namespace bS.Sked.Services.WMC
         public IExecutableElementBaseViewModel AddNewElement(string elementPID, IDictionary<string, IField> parameters)
         {
             var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(elementPID));
-            //return module.AddNewElement(element);
             return module.AddElement(elementPID, parameters);
-            //  Mapper.Map<ExecutableElementBaseModel>(element);
-
         }
     }
 }

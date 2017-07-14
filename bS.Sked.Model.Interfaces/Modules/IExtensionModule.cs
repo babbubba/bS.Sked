@@ -11,10 +11,10 @@ namespace bS.Sked.Model.Interfaces.Modules
 {
     public interface IExtensionModule
     {
-        bool IsSupported(IExecutableElementModel executableElement);
+        bool IsSupported(string executableElementPersistingId);
         bool IsImplemented(string executableElementPersistingId);
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
-        [Obsolete]
+        [Obsolete(message:"Use AddElement instead.")]
         IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
         IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
 

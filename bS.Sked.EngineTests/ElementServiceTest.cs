@@ -24,21 +24,36 @@ namespace bS.Sked.Service.Tests
         [TestMethod]
         public void AddNewFromFlatFileToTableElement()
         {
-            var parameters = new Dictionary<string, IField>();
-            parameters.Add("InFileObjectFileFullPath", new Field(@"c:\test\input.csv"));
-            parameters.Add("SeparatorValue", new Field(";"));
-            parameters.Add("SkipStartingRows", new Field(1));
-            parameters.Add("Name", new Field("Importa da file csv di prova"));
-            parameters.Add("ElementTypePersistingId", new Field("Common.FromFlatFileToTable"));
-            parameters.Add("Description", new Field(""));
-            parameters.Add("IsActive", new Field(true));
-            parameters.Add("LimitToRows", new Field(0));
-            parameters.Add("ParentId", new Field(""));
-            parameters.Add("Position", new Field(111));
-            parameters.Add("StopParentIfErrorOccurs", new Field(true));
-            parameters.Add("StopParentIfWarningOccurs", new Field(false));
+            //var parameters = new Dictionary<string, IField>
+            //{
+            //    { "InFileObjectFileFullPath", new Field(@"c:\test\input.csv") },
+            //    { "SeparatorValue", new Field(";") },
+            //    { "SkipStartingRows", new Field(1) },
+            //    { "Name", new Field("Importa da file csv di prova") },
+            //    { "ElementTypePersistingId", new Field("Common.FromFlatFileToTable") },
+            //    //parameters.Add("Description", new Field(""));
+            //    { "IsActive", new Field(true) },
+            //    //parameters.Add("LimitToRows", new Field(0));
+            //    //parameters.Add("ParentId", new Field(""));
+            //    { "Position", new Field(111) },
+            //    { "StopParentIfErrorOccurs", new Field(true) }
+            //    //parameters.Add("StopParentIfWarningOccurs", new Field(false));
+            //};
 
+            var parameters = new Dictionary<string, IField>
+            {
+                { "InFileObjectFileFullPath", @"c:\test\input.csv" },
+                { "SeparatorValue", ";" },
+                { "SkipStartingRows", 1 },
+                { "Name", "Importa da file csv di prova" },
+                { "ElementTypePersistingId", "Common.FromFlatFileToTable" },
+                { "IsActive", true },
+                { "Position", 111 },
+                { "StopParentIfErrorOccurs", true }
+            };
             var res = elementService.AddNewElement("Common.FromFlatFileToTable", parameters);
         }
     }
+
+
 }

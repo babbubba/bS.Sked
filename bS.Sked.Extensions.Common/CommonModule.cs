@@ -13,6 +13,7 @@ using bS.Sked.Model.Elements.Properties;
 using System.Collections;
 using bS.Sked.Model.Interfaces.DTO;
 using System.Collections.Generic;
+using bS.Sked.Model.DTO;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -56,20 +57,21 @@ namespace bS.Sked.Extensions.Common
             switch (elementPID)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    var vm = new FromFlatFlieToTableElementViewModel
+                    
+                   var  vm = new FromFlatFlieToTableElementViewModel
                     {
-                        Description = (string)properties["Description"].Value,
-                        ElementTypePersistingId = (string)properties["ElementTypePersistingId"].Value,
-                        InFileObjectFileFullPath = (string)properties["InFileObjectFileFullPath"].Value,
-                        IsActive = (bool)properties["IsActive"].Value,
-                        LimitToRows = (int)properties["LimitToRows"].Value,
-                        Name = (string)properties["Name"].Value,
-                        ParentId = (string)properties["ParentId"].Value,
-                        Position = (int)properties["Position"].Value,
-                        SeparatorValue = (string)properties["SeparatorValue"].Value,
-                        SkipStartingRows = (int)properties["SkipStartingRows"].Value,
-                        StopParentIfErrorOccurs = (bool)properties["StopParentIfErrorOccurs"].Value,
-                        StopParentIfWarningOccurs = (bool)properties["StopParentIfWarningOccurs"].Value,
+                        Description = properties.GetValue<string>("Description"),
+                        ElementTypePersistingId = properties.GetValue<string>("ElementTypePersistingId"),
+                        InFileObjectFileFullPath = properties.GetValue<string>("InFileObjectFileFullPath"),
+                        IsActive = properties.GetValue<bool>("IsActive"),
+                        LimitToRows = properties.GetValue<int>("LimitToRows"),
+                        Name = properties.GetValue<string>("Name"),
+                        ParentId = properties.GetValue<string>("ParentId"),
+                        Position = properties["Position"].GetValue<int>(),
+                        SeparatorValue = properties.GetValue<string>("SeparatorValue"),
+                        SkipStartingRows = properties.GetValue<int>("SkipStartingRows"),
+                        StopParentIfErrorOccurs = properties.GetValue<bool>("StopParentIfErrorOccurs"),
+                        StopParentIfWarningOccurs = properties.GetValue<bool>("StopParentIfWarningOccurs"),
                     };
                     return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
                 default:

@@ -17,25 +17,20 @@ namespace bS.Sked.Model.Modules
 
         public ModuleBase()
         {
-          //  throw new ApplicationException("Extension Module has to implements constructor and populate 'supportedElementTypes' field.");
         }
 
         public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
-
         public abstract IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
-        //public abstract bool IsSupported(IExecutableElementModel executableElement);
-        //public abstract bool IsImplemented(IExecutableElementModel executableElement);
+        [Obsolete]
+        public abstract IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
 
-        public virtual bool IsSupported(IExecutableElementModel executableElement)
+        public virtual bool IsSupported(string executableElementPersistingId)
         {
-            return supportedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
+            return supportedElementTypes?.Contains(executableElementPersistingId) ?? false;
         }
         public virtual bool IsImplemented(string executableElementPersistingId)
         {
             return implementedElementTypes?.Contains(executableElementPersistingId) ?? false;
         }
-
-        public abstract IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
-      
     }
 }
