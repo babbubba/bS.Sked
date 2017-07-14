@@ -1,4 +1,7 @@
-﻿namespace bS.Sked.ViewModel.Interfaces.Elements.Base
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace bS.Sked.ViewModel.Interfaces.Elements.Base
 {
     public interface IExecutableElementBaseViewModel
     {
@@ -12,4 +15,5 @@
         bool StopParentIfErrorOccurs { get; set; }
         bool StopParentIfWarningOccurs { get; set; }
     }
+    
 }
