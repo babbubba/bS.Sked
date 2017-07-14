@@ -35,7 +35,7 @@ namespace bS.Sked.Engine
             return new ExtensionExecuteResult
             {
                 IsSuccessfullyCompleted = false,
-                Message = $"No module thast implements this element found (element type: '{executableElement.ElementType.Name}').",
+                Message = $"No module implements this element (element type: '{executableElement.ElementType.Name}').",
                 Errors = new string[] { "Can not init Main Object" }
             };
         }

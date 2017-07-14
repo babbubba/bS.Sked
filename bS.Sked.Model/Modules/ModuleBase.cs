@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
+using bS.Sked.Model.Interfaces.DTO;
 
 namespace bS.Sked.Model.Modules
 {
@@ -20,6 +21,8 @@ namespace bS.Sked.Model.Modules
         }
 
         public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
+
+        public abstract IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
         //public abstract bool IsSupported(IExecutableElementModel executableElement);
         //public abstract bool IsImplemented(IExecutableElementModel executableElement);
 

@@ -2,6 +2,7 @@
 using bS.Sked.CompositionRoot;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Elements.Base;
+using bS.Sked.Model.Interfaces.DTO;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Services.Base;
@@ -23,10 +24,11 @@ namespace bS.Sked.Services.WMC
             _repository = repository;
         }
 
-        public IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element)
+        public IExecutableElementBaseViewModel AddNewElement(string elementPID, IDictionary<string, IField> parameters)
         {
-            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(element.ElementTypePersistingId));
-            return module.AddNewElement(element);
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(elementPID));
+            //return module.AddNewElement(element);
+            return module.AddElement(elementPID, parameters);
             //  Mapper.Map<ExecutableElementBaseModel>(element);
 
         }

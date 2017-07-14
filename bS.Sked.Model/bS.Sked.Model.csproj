@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Core\RoleModel.cs" />
     <Compile Include="Core\UserModel.cs" />
+    <Compile Include="DTO\Field.cs" />
     <Compile Include="Elements\Base\ExecutableElementBaseModel.cs" />
     <Compile Include="Elements\Base\ExecutableInstanceModel.cs" />
     <Compile Include="Elements\ElementInstanceModel.cs" />

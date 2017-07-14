@@ -1,4 +1,5 @@
-﻿using bS.Sked.Model.Interfaces.Elements;
+﻿using bS.Sked.Model.Interfaces.DTO;
+using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,9 @@ namespace bS.Sked.Model.Interfaces.Modules
         bool IsSupported(IExecutableElementModel executableElement);
         bool IsImplemented(string executableElementPersistingId);
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
-
+        [Obsolete]
         IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
+        IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
 
     }
 }

@@ -10,6 +10,9 @@ using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Extensions.Common.ViewModel;
 using bS.Sked.Model.Elements.Properties;
+using System.Collections;
+using bS.Sked.Model.Interfaces.DTO;
+using System.Collections.Generic;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -35,26 +38,54 @@ namespace bS.Sked.Extensions.Common
            };
         }
 
+        [Obsolete]
         public override IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element)
         {
             switch (element.ElementTypePersistingId)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(element); 
+                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(element);
                 default:
                     return null;
             }
         }
 
-        private IExecutableElementBaseViewModel addNewElementGeneric<ViewModel, Model> (IExecutableElementBaseViewModel element)
-            where Model : class, IPersisterEntity 
+
+        public override IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties)
+        {
+            switch (elementPID)
+            {
+                case StaticContent.fromFlatFlieToTable:
+                    var vm = new FromFlatFlieToTableElementViewModel
+                    {
+                        Description = (string)properties["Description"].Value,
+                        ElementTypePersistingId = (string)properties["ElementTypePersistingId"].Value,
+                        InFileObjectFileFullPath = (string)properties["InFileObjectFileFullPath"].Value,
+                        IsActive = (bool)properties["IsActive"].Value,
+                        LimitToRows = (int)properties["LimitToRows"].Value,
+                        Name = (string)properties["Name"].Value,
+                        ParentId = (string)properties["ParentId"].Value,
+                        Position = (int)properties["Position"].Value,
+                        SeparatorValue = (string)properties["SeparatorValue"].Value,
+                        SkipStartingRows = (int)properties["SkipStartingRows"].Value,
+                        StopParentIfErrorOccurs = (bool)properties["StopParentIfErrorOccurs"].Value,
+                        StopParentIfWarningOccurs = (bool)properties["StopParentIfWarningOccurs"].Value,
+                    };
+                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
+                default:
+                    return null;
+            }
+        }
+
+        private IExecutableElementBaseViewModel addNewElementGeneric<ViewModel, Model>(IExecutableElementBaseViewModel element)
+            where Model : class, IPersisterEntity
             where ViewModel : IExecutableElementBaseViewModel
         {
             var model = AutoMapper.Mapper.Map<Model>(element);
 
-         //   var t = _repository.BeginTransaction();
+            //   var t = _repository.BeginTransaction();
             _repository.Add(model);
-         //   t.Commit();
+            //   t.Commit();
             element = AutoMapper.Mapper.Map<ViewModel>(model);
             return element;
         }
@@ -84,7 +115,7 @@ namespace bS.Sked.Extensions.Common
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
-                Errors= new string[] {"Can not init Main Object"}
+                Errors = new string[] { "Can not init Main Object" }
             };
 
             try
