@@ -1,18 +1,10 @@
 ﻿using bs.Sked.Mapping;
-using bS.Sked.Data.Interfaces;
-using bS.Sked.Extensions.Common.ViewModel;
 using bS.Sked.Model.DTO;
-using bS.Sked.Model.Elements;
 using bS.Sked.Model.Interfaces.DTO;
-using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Services.WMC;
 using bS.Sked.WMC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace bS.Sked.Service.Tests
 {
@@ -30,17 +22,8 @@ namespace bS.Sked.Service.Tests
         }
 
         [TestMethod]
-        public void AddNewElement()
+        public void AddNewFromFlatFileToTableElement()
         {
-            //var vM = new FromFlatFlieToTableElementViewModel
-            //{
-            //    InFileObjectFileFullPath = @"c:\test\input.csv",
-            //    SeparatorValue = ";",
-            //    SkipStartingRows = 1,
-            //    Name = "Importa da file csv di prova",
-            //    ElementTypePersistingId = "Common.FromFlatFileToTable"
-            //};
-
             var parameters = new Dictionary<string, IField>();
             parameters.Add("InFileObjectFileFullPath", new Field(@"c:\test\input.csv"));
             parameters.Add("SeparatorValue", new Field(";"));
@@ -55,12 +38,6 @@ namespace bS.Sked.Service.Tests
             parameters.Add("StopParentIfErrorOccurs", new Field(true));
             parameters.Add("StopParentIfWarningOccurs", new Field(false));
 
-
-
-
-
-
-            //  var res = elementService.(vM);
             var res = elementService.AddNewElement("Common.FromFlatFileToTable", parameters);
         }
     }

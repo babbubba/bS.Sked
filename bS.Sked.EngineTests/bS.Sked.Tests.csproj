@@ -105,10 +105,6 @@
       <Project>{2FFCED55-4721-4EA4-BD2F-6B627D413DBE}</Project>
       <Name>bS.Sked.Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bS.Sked.Extensions.Common\bS.Sked.Extensions.Common.csproj">
-      <Project>{F0F8E91A-FD2C-464F-B24A-51216054460C}</Project>
-      <Name>bS.Sked.Extensions.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\bs.Sked.Mapping\bs.Sked.Mapping.csproj">
       <Project>{C7BC29B6-327C-4FFF-B0FB-BDD90C9F747F}</Project>
       <Name>bs.Sked.Mapping</Name>
