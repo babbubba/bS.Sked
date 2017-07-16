@@ -16,6 +16,7 @@ namespace bS.Sked.Model.Interfaces.Modules
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
     
         IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
+        IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> properties);
 
     }
 }

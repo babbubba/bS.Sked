@@ -26,9 +26,21 @@ namespace bS.Sked.Extensions.Common
 
             //ViewModel -> Model (and reverse)
             CreateMap<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>()
+                .BeforeMap((src, dest) =>
+                {
+                    if (src.InFileObjectId == null)
+                    {
+                        dest.InFileObject = new FileSystemFileModel { FileFullPath = src.InFileObjectFileFullPath };
+                    }
+                    else
+                    {
+                        var inputFileObj = repository.GetQuery<FileSystemFileModel>().SingleOrDefault(x => x.Id == Guid.Parse(src.InFileObjectId));
+                        inputFileObj.FileFullPath = src.InFileObjectFileFullPath;
+                        dest.InFileObject = inputFileObj;
+                    }
+                })
                 .AfterMap((src, dest) =>
                 {
-                    dest.InFileObject = new FileSystemFileModel { FileFullPath = src.InFileObjectFileFullPath };
                     dest.ElementType = repository.GetQuery<ElementTypeModel>().Single(x => x.PersistingId == src.ElementTypePersistingId);
                     dest.OutTableObject = new TableObjectModel();
                 })
@@ -41,6 +53,7 @@ namespace bS.Sked.Extensions.Common
                     dest.Description = src.GetValue<string>("Description");
                     dest.ElementTypePersistingId = src.GetValue<string>("ElementTypePersistingId");
                     dest.InFileObjectFileFullPath = src.GetValue<string>("InFileObjectFileFullPath");
+                    dest.InFileObjectId = src.GetValue<string>("InFileObjectId");
                     dest.IsActive = src.GetValue<bool>("IsActive");
                     dest.LimitToRows = src.GetValue<int>("LimitToRows");
                     dest.Name = src.GetValue<string>("Name");
@@ -53,13 +66,14 @@ namespace bS.Sked.Extensions.Common
                 });
 
             //  ViewModel -> Properties Dictionary 
-            CreateMap< FromFlatFlieToTableElementViewModel, Dictionary<string, IField>>()
+            CreateMap<FromFlatFlieToTableElementViewModel, Dictionary<string, IField>>()
                 .AfterMap((src, dest) =>
                 {
                     if (dest == null) dest = new Dictionary<string, IField>();
                     dest.Add("Description", src.Description);
                     dest.Add("ElementTypePersistingId", src.ElementTypePersistingId);
                     dest.Add("InFileObjectFileFullPath", src.InFileObjectFileFullPath);
+                    dest.Add("InFileObjectId", src.InFileObjectId);
                     dest.Add("IsActive", src.IsActive);
                     dest.Add("LimitToRows", src.LimitToRows);
                     dest.Add("Name", src.Name);

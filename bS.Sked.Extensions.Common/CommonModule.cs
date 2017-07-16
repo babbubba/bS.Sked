@@ -49,8 +49,17 @@ namespace bS.Sked.Extensions.Common
             element = AutoMapper.Mapper.Map<ViewModel>(model);
             return element;
         }
+        private IExecutableElementBaseViewModel editElementGeneric<ViewModel, Model>(ViewModel vm)
+               where Model : class, IPersisterEntity
+            where ViewModel : IExecutableElementBaseViewModel
+        {
+            var model = _repository.GetQuery<IExecutableElementModel>().Single(x=> x.Id == Guid.Parse( vm.Id));
+            AutoMapper.Mapper.Map(vm, model);
+            _repository.Update(model);
+            vm = AutoMapper.Mapper.Map<ViewModel>(model);
+            return vm;
+        }
 
-     
 
         private IExtensionExecuteResult executeFromFlatFlieToTable(IExtensionContext context, IExecutableElementModel executableElement)
         {
@@ -123,6 +132,22 @@ namespace bS.Sked.Extensions.Common
             }
         }
 
+        public override IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> properties)
+        {
+            switch (elementPID)
+            {
+                case StaticContent.fromFlatFlieToTable:
 
+                    var vm = AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(properties);
+                    vm.Id = elementId;
+                    vm.ElementTypePersistingId = elementPID;
+
+                    return editElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
+                default:
+                    return null;
+            }
+        }
+
+      
     }
 }

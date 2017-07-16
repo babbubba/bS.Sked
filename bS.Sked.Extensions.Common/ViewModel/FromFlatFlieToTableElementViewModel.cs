@@ -13,6 +13,7 @@ namespace bS.Sked.Extensions.Common.ViewModel
         public string SeparatorValue { get; set; }
         public int LimitToRows { get; set; }
         public string InFileObjectFileFullPath { get; set; }
+        public string InFileObjectId { get; set; }
 
     }
 }

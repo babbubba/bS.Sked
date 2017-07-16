@@ -30,6 +30,13 @@ namespace bS.Sked.Services.WMC
             return module.AddElement(elementPID, fields);
         }
 
+        public IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> fields)
+        {
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x => x.IsImplemented(elementPID));
+            return module.EditElement(elementId, elementPID, fields);
+        }
+
+
 
     }
 }

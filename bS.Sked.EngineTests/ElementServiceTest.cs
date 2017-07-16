@@ -24,22 +24,6 @@ namespace bS.Sked.Service.Tests
         [TestMethod]
         public void AddNewFromFlatFileToTableElement()
         {
-            //var parameters = new Dictionary<string, IField>
-            //{
-            //    { "InFileObjectFileFullPath", new Field(@"c:\test\input.csv") },
-            //    { "SeparatorValue", new Field(";") },
-            //    { "SkipStartingRows", new Field(1) },
-            //    { "Name", new Field("Importa da file csv di prova") },
-            //    { "ElementTypePersistingId", new Field("Common.FromFlatFileToTable") },
-            //    //parameters.Add("Description", new Field(""));
-            //    { "IsActive", new Field(true) },
-            //    //parameters.Add("LimitToRows", new Field(0));
-            //    //parameters.Add("ParentId", new Field(""));
-            //    { "Position", new Field(111) },
-            //    { "StopParentIfErrorOccurs", new Field(true) }
-            //    //parameters.Add("StopParentIfWarningOccurs", new Field(false));
-            //};
-
             var parameters = new Dictionary<string, IField>
             {
                 { "InFileObjectFileFullPath", @"c:\test\input.csv" },
@@ -53,6 +37,25 @@ namespace bS.Sked.Service.Tests
             };
             
             var res = elementService.AddNewElement("Common.FromFlatFileToTable", parameters);
+        }
+
+        [TestMethod]
+        public void EditFromFlatFileToTableElement()
+        {
+            var parameters = new Dictionary<string, IField>
+            {
+                { "InFileObjectFileFullPath", @"c:\test\input2.csv" },
+                { "InFileObjectId", "2fbf4b27-d4d5-424d-9328-a7b20110a8f2"},
+                { "SeparatorValue", ";" },
+                { "SkipStartingRows", 1 },
+                { "Name", "Importa da file csv di prova editato" },
+                { "ElementTypePersistingId", "Common.FromFlatFileToTable" },
+                { "IsActive", true },
+                { "Position", 2 },
+                { "StopParentIfErrorOccurs", false }
+            };
+
+            var res = elementService.EditElement("3494c596-1412-4f53-8531-a7b2010aa7d2", "Common.FromFlatFileToTable", parameters);
         }
     }
 

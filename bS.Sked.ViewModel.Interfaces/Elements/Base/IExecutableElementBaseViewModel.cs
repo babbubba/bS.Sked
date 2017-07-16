@@ -14,6 +14,7 @@ namespace bS.Sked.ViewModel.Interfaces.Elements.Base
         int Position { get; set; }
         bool StopParentIfErrorOccurs { get; set; }
         bool StopParentIfWarningOccurs { get; set; }
+        string Id { get; set; }
     }
     
 }

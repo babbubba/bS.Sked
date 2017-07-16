@@ -30,5 +30,7 @@ namespace bS.Sked.Model.Modules
         {
             return implementedElementTypes?.Contains(executableElementPersistingId) ?? false;
         }
+
+        public abstract IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> properties);
     }
 }
