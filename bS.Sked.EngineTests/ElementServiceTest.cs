@@ -51,6 +51,7 @@ namespace bS.Sked.Service.Tests
                 { "Position", 111 },
                 { "StopParentIfErrorOccurs", true }
             };
+            
             var res = elementService.AddNewElement("Common.FromFlatFileToTable", parameters);
         }
     }

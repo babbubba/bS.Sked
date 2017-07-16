@@ -3,8 +3,10 @@ using bS.Sked.CompositionRoot;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Extensions.Common.Model;
 using bS.Sked.Extensions.Common.ViewModel;
+using bS.Sked.Model.DTO;
 using bS.Sked.Model.Elements;
 using bS.Sked.Model.Elements.Properties;
+using bS.Sked.Model.Interfaces.DTO;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
@@ -20,24 +22,57 @@ namespace bS.Sked.Extensions.Common
         public CommonMapping()
         {
             var repository = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>();
+            #region FromFlatFlieToTable Element
 
-            //CreateMap<IExecutableElementBaseViewModel, FromFlatFlieToTableElementModel>()
-            //     .AfterMap((src, dest) =>
-            //     {
-            //         dest.ElementType = repository.GetQuery<ElementTypeModel>().Single(x => x.PersistingId == src.ElementTypePersistingId);
-            //     });
-
+            //ViewModel -> Model
             CreateMap<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>()
                 .AfterMap((src, dest) =>
                 {
-                    dest.InFileObject = new FileSystemFileModel {  FileFullPath = src.InFileObjectFileFullPath };
+                    dest.InFileObject = new FileSystemFileModel { FileFullPath = src.InFileObjectFileFullPath };
                     dest.ElementType = repository.GetQuery<ElementTypeModel>().Single(x => x.PersistingId == src.ElementTypePersistingId);
                     dest.OutTableObject = new TableObjectModel();
                 })
                 .ReverseMap();
 
-            //CreateMap<IExecutableElementBaseViewModel, FromFlatFlieToTableElementModel>().ReverseMap();
+            // Properties Dictionary -> ViewModel
+            CreateMap<Dictionary<string, IField>, FromFlatFlieToTableElementViewModel>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Description = src.GetValue<string>("Description");
+                    dest.ElementTypePersistingId = src.GetValue<string>("ElementTypePersistingId");
+                    dest.InFileObjectFileFullPath = src.GetValue<string>("InFileObjectFileFullPath");
+                    dest.IsActive = src.GetValue<bool>("IsActive");
+                    dest.LimitToRows = src.GetValue<int>("LimitToRows");
+                    dest.Name = src.GetValue<string>("Name");
+                    dest.ParentId = src.GetValue<string>("ParentId");
+                    dest.Position = src["Position"].GetValue<int>();
+                    dest.SeparatorValue = src.GetValue<string>("SeparatorValue");
+                    dest.SkipStartingRows = src.GetValue<int>("SkipStartingRows");
+                    dest.StopParentIfErrorOccurs = src.GetValue<bool>("StopParentIfErrorOccurs");
+                    dest.StopParentIfWarningOccurs = src.GetValue<bool>("StopParentIfWarningOccurs");
+                });
 
+            //  ViewModel -> Properties Dictionary 
+            CreateMap< FromFlatFlieToTableElementViewModel, Dictionary<string, IField>>()
+                .AfterMap((src, dest) =>
+                {
+                    if (dest == null) dest = new Dictionary<string, IField>();
+                    dest.Add("Description", src.Description);
+                    dest.Add("ElementTypePersistingId", src.ElementTypePersistingId);
+                    dest.Add("InFileObjectFileFullPath", src.InFileObjectFileFullPath);
+                    dest.Add("IsActive", src.IsActive);
+                    dest.Add("LimitToRows", src.LimitToRows);
+                    dest.Add("Name", src.Name);
+                    dest.Add("ParentId", src.ParentId);
+                    dest.Add("Position", src.Position);
+                    dest.Add("SeparatorValue", src.SeparatorValue);
+                    dest.Add("SkipStartingRows", src.SkipStartingRows);
+                    dest.Add("StopParentIfErrorOccurs", src.StopParentIfErrorOccurs);
+                    dest.Add("StopParentIfWarningOccurs", src.StopParentIfWarningOccurs);
+                });
+
+
+            #endregion
         }
     }
 }

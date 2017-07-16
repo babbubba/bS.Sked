@@ -57,22 +57,9 @@ namespace bS.Sked.Extensions.Common
             switch (elementPID)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    
-                   var  vm = new FromFlatFlieToTableElementViewModel
-                    {
-                        Description = properties.GetValue<string>("Description"),
-                        ElementTypePersistingId = properties.GetValue<string>("ElementTypePersistingId"),
-                        InFileObjectFileFullPath = properties.GetValue<string>("InFileObjectFileFullPath"),
-                        IsActive = properties.GetValue<bool>("IsActive"),
-                        LimitToRows = properties.GetValue<int>("LimitToRows"),
-                        Name = properties.GetValue<string>("Name"),
-                        ParentId = properties.GetValue<string>("ParentId"),
-                        Position = properties["Position"].GetValue<int>(),
-                        SeparatorValue = properties.GetValue<string>("SeparatorValue"),
-                        SkipStartingRows = properties.GetValue<int>("SkipStartingRows"),
-                        StopParentIfErrorOccurs = properties.GetValue<bool>("StopParentIfErrorOccurs"),
-                        StopParentIfWarningOccurs = properties.GetValue<bool>("StopParentIfWarningOccurs"),
-                    };
+             
+                    var vm = AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(properties);
+
                     return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
                 default:
                     return null;
