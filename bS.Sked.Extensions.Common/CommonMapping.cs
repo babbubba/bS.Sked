@@ -24,7 +24,7 @@ namespace bS.Sked.Extensions.Common
             var repository = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>();
             #region FromFlatFlieToTable Element
 
-            //ViewModel -> Model
+            //ViewModel -> Model (and reverse)
             CreateMap<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>()
                 .AfterMap((src, dest) =>
                 {

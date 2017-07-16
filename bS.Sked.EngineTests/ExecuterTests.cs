@@ -40,7 +40,7 @@ namespace bS.Sked.Engine.Tests
             var mainObjectToExecute = mainObjects.Single(x => x.GetType().Name.Contains("CommonMainObjectModel"));
               
             var elementToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<IExecutableElementModel>().FirstOrDefault();//.Single(x => x.Id == Guid.Parse("0e743f20-a89b-436a-8c5d-a7ad000a78ee"));
-            engine.ExecuteElement(mainObjectToExecute, elementToExecute);
+           var result = engine.ExecuteElement(mainObjectToExecute, elementToExecute);
         }
     }
 }

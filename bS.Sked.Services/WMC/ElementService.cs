@@ -24,10 +24,12 @@ namespace bS.Sked.Services.WMC
             _repository = repository;
         }
 
-        public IExecutableElementBaseViewModel AddNewElement(string elementPID, IDictionary<string, IField> parameters)
+        public IExecutableElementBaseViewModel AddNewElement(string elementPID, IDictionary<string, IField> fields)
         {
             var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(elementPID));
-            return module.AddElement(elementPID, parameters);
+            return module.AddElement(elementPID, fields);
         }
+
+
     }
 }
