@@ -39,61 +39,18 @@ namespace bS.Sked.Extensions.Common
            };
         }
 
-        [Obsolete]
-        public override IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element)
-        {
-            switch (element.ElementTypePersistingId)
-            {
-                case StaticContent.fromFlatFlieToTable:
-                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(element);
-                default:
-                    return null;
-            }
-        }
-
-
-        public override IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties)
-        {
-            switch (elementPID)
-            {
-                case StaticContent.fromFlatFlieToTable:
-             
-                    var vm = AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(properties);
-
-                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
-                default:
-                    return null;
-            }
-        }
 
         private IExecutableElementBaseViewModel addNewElementGeneric<ViewModel, Model>(IExecutableElementBaseViewModel element)
             where Model : class, IPersisterEntity
             where ViewModel : IExecutableElementBaseViewModel
         {
             var model = AutoMapper.Mapper.Map<Model>(element);
-
-            //   var t = _repository.BeginTransaction();
             _repository.Add(model);
-            //   t.Commit();
             element = AutoMapper.Mapper.Map<ViewModel>(model);
             return element;
         }
 
-        public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement)
-        {
-            switch (executableElement.ElementType.PersistingId)
-            {
-                case StaticContent.fromFlatFlieToTable:
-                    return executeFromFlatFlieToTable(context, executableElement);
-                default:
-                    return new ExtensionExecuteResult
-                    {
-                        IsSuccessfullyCompleted = false,
-                        Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet.",
-                        Errors = new string[] { "Can not init Main Object" }
-                    };
-            }
-        }
+     
 
         private IExtensionExecuteResult executeFromFlatFlieToTable(IExtensionContext context, IExecutableElementModel executableElement)
         {
@@ -133,14 +90,39 @@ namespace bS.Sked.Extensions.Common
             };
         }
 
-        //public override bool IsSupported(IExecutableElementModel executableElement)
-        //{
-        //    return supportedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
-        //}
-        //public override bool IsImplemented(IExecutableElementModel executableElement)
-        //{
-        //    return implementedElementTypes?.Contains(executableElement.ElementType.PersistingId) ?? false;
-        //}
+
+
+        public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement)
+        {
+            switch (executableElement.ElementType.PersistingId)
+            {
+                case StaticContent.fromFlatFlieToTable:
+                    return executeFromFlatFlieToTable(context, executableElement);
+                default:
+                    return new ExtensionExecuteResult
+                    {
+                        IsSuccessfullyCompleted = false,
+                        Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet.",
+                        Errors = new string[] { "Can not init Main Object" }
+                    };
+            }
+        }
+
+
+        public override IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties)
+        {
+            switch (elementPID)
+            {
+                case StaticContent.fromFlatFlieToTable:
+
+                    var vm = AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(properties);
+
+                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
+                default:
+                    return null;
+            }
+        }
+
 
     }
 }

@@ -14,8 +14,7 @@ namespace bS.Sked.Model.Interfaces.Modules
         bool IsSupported(string executableElementPersistingId);
         bool IsImplemented(string executableElementPersistingId);
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
-        [Obsolete(message:"Use AddElement instead.")]
-        IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
+    
         IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
 
     }

@@ -62,7 +62,14 @@ namespace bS.Sked.Model.DTO
 
         public static void Add(this IDictionary<string, IField> val, string fieldName, object value)
         {
-            val.Add(fieldName, new Field(value));
+            if (val.ContainsKey(fieldName))
+            {
+                val[fieldName].Value = value;
+            }
+            else
+            {
+                val.Add(fieldName, new Field(value));
+            }
         }
     }
 }

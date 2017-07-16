@@ -21,9 +21,7 @@ namespace bS.Sked.Model.Modules
 
         public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
         public abstract IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
-        [Obsolete]
-        public abstract IExecutableElementBaseViewModel AddNewElement(IExecutableElementBaseViewModel element);
-
+     
         public virtual bool IsSupported(string executableElementPersistingId)
         {
             return supportedElementTypes?.Contains(executableElementPersistingId) ?? false;
