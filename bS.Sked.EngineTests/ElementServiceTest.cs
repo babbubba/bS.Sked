@@ -45,7 +45,7 @@ namespace bS.Sked.Service.Tests
             var parameters = new Dictionary<string, IField>
             {
                 { "InFileObjectFileFullPath", @"c:\test\input2.csv" },
-                { "InFileObjectId", "2fbf4b27-d4d5-424d-9328-a7b20110a8f2"},
+                { "InFileObjectId", "2bcd3479-e8a4-4088-a98a-a7b00116963b"},
                 { "SeparatorValue", ";" },
                 { "SkipStartingRows", 1 },
                 { "Name", "Importa da file csv di prova editato" },
@@ -55,7 +55,7 @@ namespace bS.Sked.Service.Tests
                 { "StopParentIfErrorOccurs", false }
             };
 
-            var res = elementService.EditElement("3494c596-1412-4f53-8531-a7b2010aa7d2", "Common.FromFlatFileToTable", parameters);
+            var res = elementService.EditElement("95d354a5-0887-416a-8205-a7b001169638", "Common.FromFlatFileToTable", parameters);
         }
     }
 

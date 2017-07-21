@@ -58,7 +58,7 @@ namespace bS.Sked.Extensions.Common
                     dest.LimitToRows = src.GetValue<int>("LimitToRows");
                     dest.Name = src.GetValue<string>("Name");
                     dest.ParentId = src.GetValue<string>("ParentId");
-                    dest.Position = src["Position"].GetValue<int>();
+                    dest.Position = src.GetValue<int>("Position");
                     dest.SeparatorValue = src.GetValue<string>("SeparatorValue");
                     dest.SkipStartingRows = src.GetValue<int>("SkipStartingRows");
                     dest.StopParentIfErrorOccurs = src.GetValue<bool>("StopParentIfErrorOccurs");
