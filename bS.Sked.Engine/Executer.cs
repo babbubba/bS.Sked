@@ -22,7 +22,45 @@ namespace bS.Sked.Engine
             _modules = modules;
         }
 
+        /// <summary>
+        /// Executes the element.
+        /// </summary>
+        /// <param name="context">The context (from the Main Object).</param>
+        /// <param name="executableElement">The executable element.</param>
+        /// <returns></returns>
         public IExtensionExecuteResult ExecuteElement(IExtensionContext context, IExecutableElementModel executableElement)
+        {
+            if (context == null) return new ExtensionExecuteResult
+            {
+                IsSuccessfullyCompleted = false,
+                Message = $"Main Object context cannot be null.",
+                Errors = new string[] { "Can not execute the Element." }
+            };
+
+            if (executableElement == null) return new ExtensionExecuteResult
+            {
+                IsSuccessfullyCompleted = false,
+                Message = $"Element cannot be null.",
+                Errors = new string[] { "Can not execute the Element." }
+            };
+
+            try
+            {
+                return executeElemnt(context, executableElement);
+            }
+            catch (Exception ex)
+            {
+
+                return new ExtensionExecuteResult
+                {
+                    IsSuccessfullyCompleted = false,
+                    Message = $"Error executing the Element.",
+                    Errors = new string[] { $"{ex.Message}" }
+                };
+            }
+        }
+
+        private IExtensionExecuteResult executeElemnt(IExtensionContext context, IExecutableElementModel executableElement)
         {
             foreach (var module in _modules)
             {
@@ -40,6 +78,5 @@ namespace bS.Sked.Engine
             };
         }
 
-        
     }
 }
