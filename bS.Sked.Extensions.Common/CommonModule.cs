@@ -66,7 +66,7 @@ namespace bS.Sked.Extensions.Common
             var element = executableElement as FromFlatFlieToTableElementModel;
             var mainObject = context as CommonMainObjectModel;
 
-            if (!mainObject.InitializeContext()) return new ExtensionExecuteResult
+            if (!mainObject.InitializeContext()) return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
@@ -84,7 +84,7 @@ namespace bS.Sked.Extensions.Common
             }
             catch (Exception ex)
             {
-                return new ExtensionExecuteResult
+                return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
@@ -92,7 +92,7 @@ namespace bS.Sked.Extensions.Common
                 };
             }
 
-            return new ExtensionExecuteResult
+            return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = true,
                 Message = $"Flat File '{element.InFileObject.FileFullPath}' has imported {element.OutTableObject.Table?.Rows.Count ?? 0} rows successfully."
@@ -108,7 +108,7 @@ namespace bS.Sked.Extensions.Common
                 case StaticContent.fromFlatFlieToTable:
                     return executeFromFlatFlieToTable(context, executableElement);
                 default:
-                    return new ExtensionExecuteResult
+                    return new ExtensionExecuteResultModel
                     {
                         IsSuccessfullyCompleted = false,
                         Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet.",

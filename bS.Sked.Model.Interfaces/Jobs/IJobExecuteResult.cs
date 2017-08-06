@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bS.Sked.Model.Interfaces.Modules
+namespace bS.Sked.Model.Interfaces.Jobs
 {
-    public interface IExtensionExecuteResult : IExecuteResult
+   public  interface IJobExecuteResult: IExecuteResult
     {
-
     }
 }

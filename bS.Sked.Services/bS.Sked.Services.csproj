@@ -73,6 +73,7 @@
     <Compile Include="WMC\ElementService.cs" />
     <Compile Include="WMC\LeftSidebarService.cs" />
     <Compile Include="WMC\SettingService.cs" />
+    <Compile Include="WMC\TaskService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

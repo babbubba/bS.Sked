@@ -2,7 +2,9 @@
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Modules;
+using bS.Sked.Model.Interfaces.Tasks;
 using bS.Sked.Model.Modules;
+using bS.Sked.Model.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +18,37 @@ namespace bS.Sked.Engine
         private IRepository<IPersisterEntity> _repository;
         private IEnumerable<IExtensionModule> _modules;
 
+        #region C.tor
+
         public Executer(IRepository<IPersisterEntity> repository, IEnumerable<IExtensionModule> modules)
         {
             _repository = repository;
             _modules = modules;
         }
+
+        #endregion
+
+        #region Private
+
+        private IExtensionExecuteResult executeElemnt(IExtensionContext context, IExecutableElementModel executableElement)
+        {
+            foreach (var module in _modules)
+            {
+                if (module.IsImplemented(executableElement.ElementType.PersistingId))
+                {
+                    return module.Execute(context, executableElement);
+                }
+            }
+
+            return new ExtensionExecuteResultModel
+            {
+                IsSuccessfullyCompleted = false,
+                Message = $"No module implements this element (element type: '{executableElement.ElementType.Name}').",
+                Errors = new string[] { "Can not init Main Object" }
+            };
+        }
+
+        #endregion
 
         /// <summary>
         /// Executes the element.
@@ -30,14 +58,14 @@ namespace bS.Sked.Engine
         /// <returns></returns>
         public IExtensionExecuteResult ExecuteElement(IExtensionContext context, IExecutableElementModel executableElement)
         {
-            if (context == null) return new ExtensionExecuteResult
+            if (context == null) return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"Main Object context cannot be null.",
                 Errors = new string[] { "Can not execute the Element." }
             };
 
-            if (executableElement == null) return new ExtensionExecuteResult
+            if (executableElement == null) return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"Element cannot be null.",
@@ -51,7 +79,7 @@ namespace bS.Sked.Engine
             catch (Exception ex)
             {
 
-                return new ExtensionExecuteResult
+                return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Error executing the Element.",
@@ -60,23 +88,42 @@ namespace bS.Sked.Engine
             }
         }
 
-        private IExtensionExecuteResult executeElemnt(IExtensionContext context, IExecutableElementModel executableElement)
+        public ITaskExecuteResult ExecuteTask(ITaskModel taskToExecute)
         {
-            foreach (var module in _modules)
+            var elementsResult = new List<IExtensionExecuteResult>();
+            foreach (var element in taskToExecute.Elements.Where(x => x.IsActive))
             {
-                if (module.IsImplemented(executableElement.ElementType.PersistingId))
-                {
-                    return module.Execute(context, executableElement);
-                }
+                elementsResult.Add(ExecuteElement(null, element));
             }
 
-            return new ExtensionExecuteResult
+            if (elementsResult.Any(x => !x.IsSuccessfullyCompleted))
             {
-                IsSuccessfullyCompleted = false,
-                Message = $"No module implements this element (element type: '{executableElement.ElementType.Name}').",
-                Errors = new string[] { "Can not init Main Object" }
-            };
-        }
+                //some element failed to execute
+                return new TaskExecuteResultModel
+                {
+                    Message = "Task Failed.",
+                    IsSuccessfullyCompleted = false,
+                    Errors = elementsResult.SelectMany(x=>x.Errors).ToArray()
+                };
+            }
 
+            if (elementsResult.Any(x => x.Errors.Count() > 0))
+            {
+                // All elements was executed but errors occurred
+                return new TaskExecuteResultModel
+                {
+                    Message = "Task executed with errors.",
+                    IsSuccessfullyCompleted = true,
+                    Errors = elementsResult.SelectMany(x => x.Errors).ToArray()
+                };
+            }
+
+            return new TaskExecuteResultModel
+            {
+                Message = "Task Completed.",
+                IsSuccessfullyCompleted = true
+            };
+
+        }
     }
 }

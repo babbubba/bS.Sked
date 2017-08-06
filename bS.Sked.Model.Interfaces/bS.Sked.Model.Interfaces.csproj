@@ -76,12 +76,14 @@
     <Compile Include="Entities\Base\IDescribedEntity.cs" />
     <Compile Include="Entities\Base\IExecutableEntity.cs" />
     <Compile Include="Entities\Base\IExecutableInstanceModel.cs" />
+    <Compile Include="Entities\Base\IExecuteResult.cs" />
     <Compile Include="Entities\Base\IHistoricalEntity.cs" />
     <Compile Include="Entities\Base\IInterchangeablyEntity.cs" />
     <Compile Include="Entities\Base\IParentsAlertEntity.cs" />
     <Compile Include="Entities\Base\IPersisterEntity.cs" />
     <Compile Include="Entities\Base\IPositionalEntity.cs" />
     <Compile Include="Entities\Base\IToggledEntity.cs" />
+    <Compile Include="Jobs\IJobExecuteResult.cs" />
     <Compile Include="Modules\IExtensionContext.cs" />
     <Compile Include="Modules\IExtensionExecuteResult.cs" />
     <Compile Include="Modules\IExtensionModule.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="MainObjects\IMainObjectTypeModel.cs" />
     <Compile Include="Modules\IExtensionModuleInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\ITaskExecuteResult.cs" />
     <Compile Include="Tasks\ITaskInstanceModel.cs" />
     <Compile Include="Tasks\ITaskModel.cs" />
     <Compile Include="Triggers\ITriggerModel.cs" />

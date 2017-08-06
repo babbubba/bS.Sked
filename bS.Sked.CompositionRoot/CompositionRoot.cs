@@ -247,6 +247,12 @@ namespace bS.Sked.CompositionRoot
 
 
 
+        /// <summary>
+        /// Resolves this instance.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ApplicationException">Container has not been initialized yet.</exception>
         public T Resolve<T>()
         {
             if (iocContainer == null) throw new ApplicationException("Container has not been initialized yet.");

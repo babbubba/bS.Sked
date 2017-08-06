@@ -12,12 +12,14 @@ namespace bS.Sked.Service.Tests
     public class ElementServiceTest
     {
         private ElementService elementService;
+        private TaskService taskService;
 
         [TestInitialize]
         public void Init()
         {
             CompositionRootConfig.RegisterComponents();
             elementService = CompositionRoot.CompositionRoot.Instance().Resolve<ElementService>();
+            taskService = CompositionRoot.CompositionRoot.Instance().Resolve<TaskService>();
             Mapping.RegisterMappings();
         }
 
@@ -57,6 +59,18 @@ namespace bS.Sked.Service.Tests
 
             var res = elementService.EditElement("95d354a5-0887-416a-8205-a7b001169638", "Common.FromFlatFileToTable", parameters);
         }
+
+
+
+        [TestMethod]
+        public void AddNewTask()
+        {
+            var res = taskService.AddNewTask("Test Task");
+        }
+
+
+
+
     }
 
 
