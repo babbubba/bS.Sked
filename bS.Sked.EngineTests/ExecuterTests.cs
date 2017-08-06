@@ -39,18 +39,16 @@ namespace bS.Sked.Engine.Tests
         {
             var mainObjects = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
             var mainObjectToExecute = mainObjects.Single(x => x.GetType().Name.Contains("CommonMainObjectModel"));
-              
+
             //var elementToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<IExecutableElementModel>().FirstOrDefault();
             var elementToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse("3494c596-1412-4f53-8531-a7b2010aa7d2"));
             var result = engine.ExecuteElement(mainObjectToExecute, elementToExecute);
         }
 
+        [TestMethod()]
         public void ExecuteTaskTest()
         {
-            //var mainObjects = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
-            //var mainObjectToExecute = mainObjects.Single(x => x.GetType().Name.Contains("CommonMainObjectModel"));
-
-            var taskToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery < ITaskModel>().Single(x => x.Id == Guid.Parse("c08e93dd-ac82-4f13-8a62-a7c7011a05ac"));
+            var taskToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse("c08e93dd-ac82-4f13-8a62-a7c7011a05ac"));
             var result = engine.ExecuteTask(taskToExecute);
         }
     }
