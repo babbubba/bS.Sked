@@ -1,4 +1,5 @@
-﻿using bS.Sked.Data.Interfaces;
+﻿using bS.Sked.CompositionRoot;
+using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Modules;
@@ -61,15 +62,18 @@ namespace bS.Sked.Engine
             if (context == null) return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
-                Message = $"Main Object context cannot be null.",
-                Errors = new string[] { "Can not execute the Element." }
+                Message = $"Can not execute the Element.",
+                Errors = new string[] { "Main Object context cannot be null." },
+                SourceId = executableElement.Id.ToString()
             };
 
             if (executableElement == null) return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
-                Message = $"Element cannot be null.",
-                Errors = new string[] { "Can not execute the Element." }
+                Message = $"Can not execute the Element.",
+                Errors = new string[] { "Element can not be null." },
+                SourceId = executableElement.Id.ToString()
+
             };
 
             try
@@ -83,17 +87,53 @@ namespace bS.Sked.Engine
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Error executing the Element.",
-                    Errors = new string[] { $"{ex.Message}" }
+                    Errors = new string[] { $"{ex.Message}" },
+                    SourceId = executableElement.Id.ToString()
+
                 };
             }
         }
 
         public ITaskExecuteResult ExecuteTask(ITaskModel taskToExecute)
         {
-            var elementsResult = new List<IExtensionExecuteResult>();
-            foreach (var element in taskToExecute.Elements.Where(x => x.IsActive))
+            if (taskToExecute.MainObject == null)  return new TaskExecuteResultModel
+                {
+                    Message = "Cannot execute the Task.",
+                    IsSuccessfullyCompleted = false,
+                    Errors = new string[] { "Main Object can not be null." },
+                    SourceId = taskToExecute.Id.ToString()
+                };
+            
+
+            try
             {
-                elementsResult.Add(ExecuteElement(null, element));
+            return executeTask(taskToExecute);
+            }
+            catch (Exception ex)
+            {
+                return new TaskExecuteResultModel
+                {
+                    IsSuccessfullyCompleted = false,
+                    Message = $"Error executing the Task.",
+                    Errors = new string[] { $"{ex.Message}" },
+                    SourceId = taskToExecute.Id.ToString()
+
+                };
+            }
+        }
+
+        private ITaskExecuteResult executeTask(ITaskModel taskToExecute)
+        {
+            var elementsResult = new List<IExtensionExecuteResult>();
+            var elementsToExecute = taskToExecute.Elements.Where(x => x.IsActive).OrderBy(x => x.CreationDate).OrderBy(x => x.Position);
+
+            var extensionContexts = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
+            var extensionContext = extensionContexts.Single(x => x.GetType().Name.Contains(taskToExecute.MainObject.MainObjectType.PersistingId));
+            extensionContext.MainObject = taskToExecute.MainObject;
+
+            foreach (var element in elementsToExecute)
+            {
+                elementsResult.Add(ExecuteElement(extensionContext, element));
             }
 
             if (elementsResult.Any(x => !x.IsSuccessfullyCompleted))
@@ -103,7 +143,9 @@ namespace bS.Sked.Engine
                 {
                     Message = "Task Failed.",
                     IsSuccessfullyCompleted = false,
-                    Errors = elementsResult.SelectMany(x=>x.Errors).ToArray()
+                    Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                    SourceId = taskToExecute.Id.ToString()
+
                 };
             }
 
@@ -114,16 +156,19 @@ namespace bS.Sked.Engine
                 {
                     Message = "Task executed with errors.",
                     IsSuccessfullyCompleted = true,
-                    Errors = elementsResult.SelectMany(x => x.Errors).ToArray()
+                    Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                    SourceId = taskToExecute.Id.ToString()
+
                 };
             }
 
             return new TaskExecuteResultModel
             {
-                Message = "Task Completed.",
-                IsSuccessfullyCompleted = true
-            };
+                Message = $"Task Completed. {elementsToExecute.Count()} elements executed.",
+                IsSuccessfullyCompleted = true,
+                SourceId = taskToExecute.Id.ToString()
 
+            };
         }
     }
 }

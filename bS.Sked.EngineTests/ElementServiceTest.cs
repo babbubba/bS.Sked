@@ -69,8 +69,16 @@ namespace bS.Sked.Service.Tests
         }
 
 
+        [TestMethod]
+        public void AddElementsToTask()
+        {
+            var res = taskService.AddElementToTask("c08e93dd-ac82-4f13-8a62-a7c7011a05ac", "686d7aee-1ed9-47b1-aeb2-a7b200d5f71f");
+        }
 
-
+        [TestMethod]
+        public void AddNewMainObject()
+        {
+        }
     }
 
 

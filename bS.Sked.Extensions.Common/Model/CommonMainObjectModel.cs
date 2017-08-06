@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bS.Sked.Model.Interfaces.MainObjects;
 
 namespace bS.Sked.Extensions.Common.Model
 {
@@ -17,15 +18,18 @@ namespace bS.Sked.Extensions.Common.Model
         }
 
         public string ExtensionContextTypePID { get; set; }
+        public IMainObjectModel MainObject { get; set; }
 
         public bool FinalizeContext()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool InitializeContext()
         {
             return true;
         }
+
+
     }
 }

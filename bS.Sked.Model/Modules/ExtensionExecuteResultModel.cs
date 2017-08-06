@@ -12,5 +12,7 @@ namespace bS.Sked.Model.Modules
         public bool IsSuccessfullyCompleted { get; set; }
         public string Message { get; set; }
         public string[] Errors { get; set; }
+        public string SourceId { get; set; }
+
     }
 }

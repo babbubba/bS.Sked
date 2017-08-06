@@ -1,4 +1,5 @@
 ﻿using bS.Sked.Data.Interfaces;
+using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.MainObjects;
 using bS.Sked.Model.Interfaces.Tasks;
@@ -38,6 +39,16 @@ namespace bS.Sked.Services.WMC
             var t = _repository.BeginTransaction();
             var task = _repository.GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse(taskId));
             task.MainObject = mainObject;
+            t.Commit();
+            return task;
+        }
+
+        public ITaskModel AddElementToTask(string taskId, string elementId)
+        {
+            var t = _repository.BeginTransaction();
+            var task = _repository.GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse(taskId));
+            var element = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(elementId));
+            task.Elements.Add(element);
             t.Commit();
             return task;
         }

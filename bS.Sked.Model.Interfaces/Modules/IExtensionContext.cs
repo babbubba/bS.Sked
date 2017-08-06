@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bS.Sked.Model.Interfaces.MainObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,7 @@ namespace bS.Sked.Model.Interfaces.Modules
         bool FinalizeContext();
 
         string ExtensionContextTypePID { get; set; }
+
+        IMainObjectModel MainObject { get; set; }
     }
 }

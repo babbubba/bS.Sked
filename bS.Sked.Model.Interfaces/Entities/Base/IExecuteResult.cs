@@ -33,5 +33,9 @@ namespace bS.Sked.Model.Interfaces.Entities.Base
         /// The errors.
         /// </value>
         string[] Errors { get; set; }
+
+        string SourceId { get; set; }
+
+
     }
 }
