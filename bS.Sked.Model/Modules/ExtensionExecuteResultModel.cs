@@ -1,4 +1,5 @@
-﻿using bS.Sked.Model.Interfaces.Modules;
+﻿using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Model.Interfaces.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace bS.Sked.Model.Modules
         public string Message { get; set; }
         public string[] Errors { get; set; }
         public string SourceId { get; set; }
+        public MessageTypeEnum MessageType { get; set; }
 
     }
 }

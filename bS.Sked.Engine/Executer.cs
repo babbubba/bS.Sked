@@ -68,7 +68,8 @@ namespace bS.Sked.Engine
                 IsSuccessfullyCompleted = false,
                 Message = $"Can not execute the Element.",
                 Errors = new string[] { "Main Object context cannot be null." },
-                SourceId = executableElement.Id.ToString()
+                SourceId = executableElement.Id.ToString(),
+                MessageType = MessageTypeEnum.Error
             };
 
             if (executableElement == null) return new ExtensionExecuteResultModel
@@ -76,8 +77,8 @@ namespace bS.Sked.Engine
                 IsSuccessfullyCompleted = false,
                 Message = $"Can not execute the Element.",
                 Errors = new string[] { "Element can not be null." },
-                SourceId = executableElement.Id.ToString()
-
+                SourceId = executableElement.Id.ToString(),
+                MessageType = MessageTypeEnum.Error
             };
 
             try
@@ -93,7 +94,6 @@ namespace bS.Sked.Engine
                     Message = $"Error executing the Element.",
                     Errors = new string[] { $"{ex.Message}" },
                     SourceId = executableElement.Id.ToString()
-
                 };
             }
         }
@@ -105,7 +105,8 @@ namespace bS.Sked.Engine
                 Message = "Cannot execute the Task.",
                 IsSuccessfullyCompleted = false,
                 Errors = new string[] { "Main Object can not be null." },
-                SourceId = taskToExecute.Id.ToString()
+                SourceId = taskToExecute.Id.ToString(),
+                MessageType = MessageTypeEnum.Error                
             };
 
             try
@@ -119,8 +120,8 @@ namespace bS.Sked.Engine
                     IsSuccessfullyCompleted = false,
                     Message = $"Error executing the Task.",
                     Errors = new string[] { $"{ex.Message}" },
-                    SourceId = taskToExecute.Id.ToString()
-
+                    SourceId = taskToExecute.Id.ToString(),
+                    MessageType = MessageTypeEnum.Fatal
                 };
             }
         }
@@ -136,7 +137,9 @@ namespace bS.Sked.Engine
 
             foreach (var element in elementsToExecute)
             {
-                elementsResult.Add(ExecuteElement(extensionContext, element));
+                var currenElementResult = ExecuteElement(extensionContext, element);
+                //TODO: tracci i messaggi di ritorno e ferma se è un warning o un error ed è il caso di fermare...
+                elementsResult.Add(currenElementResult);
             }
 
             if (elementsResult.Any(x => !x.IsSuccessfullyCompleted))
@@ -147,8 +150,8 @@ namespace bS.Sked.Engine
                     Message = "Task Failed.",
                     IsSuccessfullyCompleted = false,
                     Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
-                    SourceId = taskToExecute.Id.ToString()
-
+                    SourceId = taskToExecute.Id.ToString(),
+                    MessageType = MessageTypeEnum.Error
                 };
             }
 
@@ -160,8 +163,8 @@ namespace bS.Sked.Engine
                     Message = "Task executed with errors.",
                     IsSuccessfullyCompleted = true,
                     Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
-                    SourceId = taskToExecute.Id.ToString()
-
+                    SourceId = taskToExecute.Id.ToString(),
+                    MessageType = MessageTypeEnum.Warning
                 };
             }
 
@@ -169,8 +172,8 @@ namespace bS.Sked.Engine
             {
                 Message = $"Task Completed. {elementsToExecute.Count()} elements executed.",
                 IsSuccessfullyCompleted = true,
-                SourceId = taskToExecute.Id.ToString()
-
+                SourceId = taskToExecute.Id.ToString(),
+                MessageType = MessageTypeEnum.Info
             };
         }
     }

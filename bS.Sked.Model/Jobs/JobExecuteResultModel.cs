@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bS.Sked.Model.Interfaces.Entities.Base;
 
 namespace bS.Sked.Model.Jobs
 {
@@ -13,5 +14,6 @@ namespace bS.Sked.Model.Jobs
         public string Message { get; set; }
         public string[] Errors { get; set; }
         public string SourceId { get; set; }
+        public MessageTypeEnum MessageType { get; set; }
     }
 }

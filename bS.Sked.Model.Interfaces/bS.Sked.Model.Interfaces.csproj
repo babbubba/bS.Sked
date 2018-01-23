@@ -92,6 +92,7 @@
     <Compile Include="MainObjects\IMainObjectModel.cs" />
     <Compile Include="MainObjects\IMainObjectTypeModel.cs" />
     <Compile Include="Modules\IExtensionModuleInitializer.cs" />
+    <Compile Include="Entities\Base\MessageTypeEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\ITaskExecuteResult.cs" />
     <Compile Include="Tasks\ITaskInstanceModel.cs" />

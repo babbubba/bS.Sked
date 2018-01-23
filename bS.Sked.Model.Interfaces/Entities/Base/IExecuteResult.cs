@@ -41,6 +41,13 @@ namespace bS.Sked.Model.Interfaces.Entities.Base
         /// </value>
         string SourceId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type of the message.
+        /// </summary>
+        /// <value>
+        /// The type of the message.
+        /// </value>
+        MessageTypeEnum MessageType { get; set; }
 
     }
 }
