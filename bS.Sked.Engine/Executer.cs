@@ -33,8 +33,11 @@ namespace bS.Sked.Engine
 
         private IExtensionExecuteResult executeElement(IExtensionContext context, IExecutableElementModel executableElement)
         {
-            var mod = _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId));
-            if(mod!=null) return mod.Execute(context, executableElement);
+            _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId))?
+                .Execute(context, executableElement);
+
+            //var mod = _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId));
+            //if(mod!=null) return mod.Execute(context, executableElement);
 
             //foreach (var module in _modules)
             //{
@@ -48,7 +51,7 @@ namespace bS.Sked.Engine
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"No module implements this element (element type: '{executableElement.ElementType.Name}').",
-                Errors = new string[] { "Can not init Main Object" },
+                Errors = new string[] { "Can not init Element" },
                 SourceId = executableElement.Id.ToString()
             };
         }
