@@ -33,13 +33,16 @@ namespace bS.Sked.Engine
 
         private IExtensionExecuteResult executeElemnt(IExtensionContext context, IExecutableElementModel executableElement)
         {
-            foreach (var module in _modules)
-            {
-                if (module.IsImplemented(executableElement.ElementType.PersistingId))
-                {
-                    return module.Execute(context, executableElement);
-                }
-            }
+            var mod = _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId));
+            if(mod!=null) return mod.Execute(context, executableElement);
+
+            //foreach (var module in _modules)
+            //{
+            //    if (module.IsImplemented(executableElement.ElementType.PersistingId))
+            //    {
+            //        return module.Execute(context, executableElement);
+            //    }
+            //}
 
             return new ExtensionExecuteResultModel
             {
@@ -96,18 +99,17 @@ namespace bS.Sked.Engine
 
         public ITaskExecuteResult ExecuteTask(ITaskModel taskToExecute)
         {
-            if (taskToExecute.MainObject == null)  return new TaskExecuteResultModel
-                {
-                    Message = "Cannot execute the Task.",
-                    IsSuccessfullyCompleted = false,
-                    Errors = new string[] { "Main Object can not be null." },
-                    SourceId = taskToExecute.Id.ToString()
-                };
-            
+            if (taskToExecute.MainObject == null) return new TaskExecuteResultModel
+            {
+                Message = "Cannot execute the Task.",
+                IsSuccessfullyCompleted = false,
+                Errors = new string[] { "Main Object can not be null." },
+                SourceId = taskToExecute.Id.ToString()
+            };
 
             try
             {
-            return executeTask(taskToExecute);
+                return executeTask(taskToExecute);
             }
             catch (Exception ex)
             {

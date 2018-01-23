@@ -22,11 +22,12 @@ namespace bS.Sked.Services.WMC
             _repository = repository;
         }
 
-        public ITaskModel AddNewTask(string taskName)
+        public ITaskModel AddNewTask(string taskName, string description = null)
         {
             var newTask = new TaskModel
             {
-                Name = taskName
+                Name = taskName,
+                Description = description
             };
 
             _repository.Add(newTask);
@@ -34,10 +35,11 @@ namespace bS.Sked.Services.WMC
             return newTask;
         }
 
-        public ITaskModel SetMainObject(string taskId, IMainObjectModel mainObject)
+        public ITaskModel SetMainObject(string taskId, string mainObjectId)
         {
             var t = _repository.BeginTransaction();
             var task = _repository.GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse(taskId));
+            var mainObject = _repository.GetQuery<IMainObjectModel>().Single(x => x.Id == Guid.Parse(mainObjectId));
             task.MainObject = mainObject;
             t.Commit();
             return task;

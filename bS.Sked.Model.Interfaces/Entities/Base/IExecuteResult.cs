@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 namespace bS.Sked.Model.Interfaces.Entities.Base
 {
     /// <summary>
-    /// Message returned by Element, Task and Job after execution.
+    /// Base message returned by Extensions, Element, Task and Job after execution.
     /// </summary>
     public interface IExecuteResult
     {
-
         /// <summary>
         /// Gets or sets a value indicating whether this instance is successfully completed.
         /// </summary>
@@ -34,6 +33,12 @@ namespace bS.Sked.Model.Interfaces.Entities.Base
         /// </value>
         string[] Errors { get; set; }
 
+        /// <summary>
+        /// Gets or sets the source identifier for the specified object executed.
+        /// </summary>
+        /// <value>
+        /// The source identifier.
+        /// </value>
         string SourceId { get; set; }
 
 
