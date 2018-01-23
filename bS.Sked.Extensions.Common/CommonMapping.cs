@@ -60,7 +60,8 @@ namespace bS.Sked.Extensions.Common
                     dest.ParentId = src.GetValue<string>("ParentId");
                     dest.Position = src.GetValue<int>("Position");
                     dest.SeparatorValue = src.GetValue<string>("SeparatorValue");
-                    dest.SkipStartingRows = src.GetValue<int>("SkipStartingRows");
+                    dest.SkipStartingDataRows = src.GetValue<int>("SkipStartingDataRows");
+                    dest.FirstRowHasHeader= src.GetValue<bool>("FirstRowHasHeader");
                     dest.StopParentIfErrorOccurs = src.GetValue<bool>("StopParentIfErrorOccurs");
                     dest.StopParentIfWarningOccurs = src.GetValue<bool>("StopParentIfWarningOccurs");
                 });
@@ -80,7 +81,8 @@ namespace bS.Sked.Extensions.Common
                     dest.Add("ParentId", src.ParentId);
                     dest.Add("Position", src.Position);
                     dest.Add("SeparatorValue", src.SeparatorValue);
-                    dest.Add("SkipStartingRows", src.SkipStartingRows);
+                    dest.Add("SkipStartingDataRows", src.SkipStartingDataRows);
+                    dest.Add("FirstRowHasHeader", src.FirstRowHasHeader);
                     dest.Add("StopParentIfErrorOccurs", src.StopParentIfErrorOccurs);
                     dest.Add("StopParentIfWarningOccurs", src.StopParentIfWarningOccurs);
                 });

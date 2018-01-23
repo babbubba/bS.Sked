@@ -30,11 +30,12 @@ namespace bS.Sked.Service.Tests
             {
                 { "InFileObjectFileFullPath", @"c:\test\input.csv" },
                 { "SeparatorValue", ";" },
-                { "SkipStartingRows", 1 },
+         //       { "SkipStartingDataRows", 0 },
+                { "FirstRowHasHeader", true },
                 { "Name", "Importa da file csv di prova" },
                 { "ElementTypePersistingId", "Common.FromFlatFileToTable" },
                 { "IsActive", true },
-                { "Position", 111 },
+                { "Position", 112 },
                 { "StopParentIfErrorOccurs", true }
             };
             

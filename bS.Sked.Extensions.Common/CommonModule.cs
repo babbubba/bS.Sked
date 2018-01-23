@@ -137,7 +137,8 @@ namespace bS.Sked.Extensions.Common
                     {
                         IsSuccessfullyCompleted = false,
                         Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet in this module.",
-                        Errors = new string[] { "Can not init Main Object" }
+                        Errors = new string[] { "Can not init Main Object" },
+                        SourceId = executableElement.Id.ToString()
                     };
             }
         }

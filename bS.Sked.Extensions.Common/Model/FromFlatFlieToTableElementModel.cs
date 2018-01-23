@@ -41,7 +41,7 @@ namespace bS.Sked.Extensions.Common.Model
         /// <value>
         ///   <c>true</c> if [first row has header]; otherwise, <c>false</c>.
         /// </value>
-        public bool FirstRowHasHeader { get; internal set; }
+        public virtual bool FirstRowHasHeader { get; set; }
 
 
 

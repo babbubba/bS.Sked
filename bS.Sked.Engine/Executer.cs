@@ -31,7 +31,7 @@ namespace bS.Sked.Engine
 
         #region Private
 
-        private IExtensionExecuteResult executeElemnt(IExtensionContext context, IExecutableElementModel executableElement)
+        private IExtensionExecuteResult executeElement(IExtensionContext context, IExecutableElementModel executableElement)
         {
             var mod = _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId));
             if(mod!=null) return mod.Execute(context, executableElement);
@@ -48,7 +48,8 @@ namespace bS.Sked.Engine
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"No module implements this element (element type: '{executableElement.ElementType.Name}').",
-                Errors = new string[] { "Can not init Main Object" }
+                Errors = new string[] { "Can not init Main Object" },
+                SourceId = executableElement.Id.ToString()
             };
         }
 
@@ -81,7 +82,7 @@ namespace bS.Sked.Engine
 
             try
             {
-                return executeElemnt(context, executableElement);
+                return executeElement(context, executableElement);
             }
             catch (Exception ex)
             {

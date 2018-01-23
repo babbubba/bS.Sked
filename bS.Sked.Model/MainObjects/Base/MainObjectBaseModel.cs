@@ -4,6 +4,10 @@ using System;
 
 namespace bS.Sked.Model.MainObjects.Base
 {
+    /// <summary>
+    /// Base Entity for Main Object Models
+    /// </summary>
+    /// <seealso cref="bS.Sked.Model.Interfaces.MainObjects.IMainObjectModel" />
     public class MainObjectBaseModel : IMainObjectModel
     {
         public virtual DateTime CreationDate { get; set; }
