@@ -143,6 +143,17 @@ namespace bS.Sked.Extensions.Common
             }
         }
 
+        public override IExecutableElementBaseViewModel ElementGet(string elementId, string elementPID)
+        {
+            switch (elementPID)
+            {
+                case StaticContent.fromFlatFlieToTable:
+                    return AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(_repository.GetQuery<FromFlatFlieToTableElementModel>().Single(x=>x.Id == Guid.Parse(elementId)));
+                default:
+                    return null;
+            }
+        }
+
 
         /// <summary>
         /// Adds the specified executable element to the database.
@@ -150,7 +161,7 @@ namespace bS.Sked.Extensions.Common
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <param name="properties">The properties.</param>
         /// <returns></returns>
-        public override IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties)
+        public override IExecutableElementBaseViewModel ElementAdd(string elementPID, IDictionary<string, IField> properties)
         {
             switch (elementPID)
             {
@@ -170,7 +181,7 @@ namespace bS.Sked.Extensions.Common
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <param name="properties">The properties.</param>
         /// <returns></returns>
-        public override IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> properties)
+        public override IExecutableElementBaseViewModel ElementEdit(string elementId, string elementPID, IDictionary<string, IField> properties)
         {
             switch (elementPID)
             {
@@ -191,7 +202,7 @@ namespace bS.Sked.Extensions.Common
         /// <param name="elementId">The element identifier.</param>
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <exception cref="ApplicationException">This Element Persisting Id is not implemented by this module.</exception>
-        public override void DeleteElement(string elementId, string elementPID)
+        public override void ElementDelete(string elementId, string elementPID)
         {
             switch (elementPID)
             {
@@ -204,5 +215,6 @@ namespace bS.Sked.Extensions.Common
             }
         }
 
+       
     }
 }

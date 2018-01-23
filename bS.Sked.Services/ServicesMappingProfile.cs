@@ -12,6 +12,9 @@ namespace bS.Sked.Services
 
             CreateMap<SmtpSettingViewModel, SmtpSettingModel>();
             CreateMap<SmtpSettingViewModel, ISmtpSettingModel>().ReverseMap();
+
+            CreateMap<Model.Elements.Base.ExecutableElementBaseModel, ViewModel.Interfaces.Elements.Base.IExecutableElementBaseViewModel>();
+
         }
     }
 }

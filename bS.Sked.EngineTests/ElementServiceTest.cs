@@ -24,7 +24,7 @@ namespace bS.Sked.Service.Tests
         }
 
         [TestMethod]
-        public void AddNewFromFlatFileToTableElement()
+        public void FromFlatFileToTableElementAddTest()
         {
             var parameters = new Dictionary<string, IField>
             {
@@ -39,11 +39,11 @@ namespace bS.Sked.Service.Tests
                 { "StopParentIfErrorOccurs", true }
             };
             
-            var res = elementService.AddNewElement("Common.FromFlatFileToTable", parameters);
+            var res = elementService.ElementAdd("Common.FromFlatFileToTable", parameters);
         }
 
         [TestMethod]
-        public void EditFromFlatFileToTableElement()
+        public void FromFlatFileToTableElementEditTest()
         {
             var parameters = new Dictionary<string, IField>
             {
@@ -58,26 +58,38 @@ namespace bS.Sked.Service.Tests
                 { "StopParentIfErrorOccurs", false }
             };
 
-            var res = elementService.EditElement("95d354a5-0887-416a-8205-a7b001169638", "Common.FromFlatFileToTable", parameters);
+            var res = elementService.ElementEdit("95d354a5-0887-416a-8205-a7b001169638", "Common.FromFlatFileToTable", parameters);
+        }
+
+        [TestMethod]
+        public void ElementAllTest()
+        {
+            var res = elementService.ElementAll();
         }
 
 
+        [TestMethod]
+        public void ElementGetTest()
+        {
+            var res = elementService.ElementGet("30329823-bb10-4309-9190-a8710143fbdb", "Common.FromFlatFileToTable");
+        }
+
 
         [TestMethod]
-        public void AddNewTask()
+        public void TaskAddTest()
         {
             var res = taskService.AddNewTask("Test Task");
         }
 
 
         [TestMethod]
-        public void AddElementsToTask()
+        public void AddElementsToTaskTest()
         {
             var res = taskService.AddElementToTask("c08e93dd-ac82-4f13-8a62-a7c7011a05ac", "686d7aee-1ed9-47b1-aeb2-a7b200d5f71f");
         }
 
         [TestMethod]
-        public void AddNewMainObject()
+        public void MainObjectAddTest()
         {
         }
     }

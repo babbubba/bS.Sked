@@ -63,13 +63,23 @@ namespace bS.Sked.Model.Modules
         /// The result of the execution.
         /// </returns>
         public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
+
+
+        /// <summary>
+        /// Get the element with the id and the persistent id specified.
+        /// </summary>
+        /// <param name="elementId">The element identifier.</param>
+        /// <param name="elementPID">The element pid.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public abstract IExecutableElementBaseViewModel ElementGet(string elementId, string elementPID);
         /// <summary>
         /// Adds the specified executable element to the database.
         /// </summary>
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <param name="properties">The properties.</param>
         /// <returns></returns>
-        public abstract IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
+        public abstract IExecutableElementBaseViewModel ElementAdd(string elementPID, IDictionary<string, IField> properties);
         /// <summary>
         /// Edits the specified executable element in the database.
         /// </summary>
@@ -77,12 +87,14 @@ namespace bS.Sked.Model.Modules
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <param name="properties">The properties.</param>
         /// <returns></returns>
-        public abstract IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> properties);
+        public abstract IExecutableElementBaseViewModel ElementEdit(string elementId, string elementPID, IDictionary<string, IField> properties);
         /// <summary>
         /// Deletes the specified executable element from the database..
         /// </summary>
         /// <param name="elementId">The element identifier.</param>
         /// <param name="elementPID">The element persisting identifier.</param>
-        public abstract void DeleteElement(string elementId, string elementPID);
+        public abstract void ElementDelete(string elementId, string elementPID);
+
+     
     }
 }

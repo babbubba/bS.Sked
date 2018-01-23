@@ -22,6 +22,7 @@ namespace bS.Sked.Model.Interfaces.Modules
         ///   <c>true</c> if the specified executable element persisting identifier is supported by the module (final class) that implements this interface; otherwise, <c>false</c>.
         /// </returns>
         bool IsSupported(string executableElementPersistingId);
+
         /// <summary>
         /// Determines whether the specified executable element persisting identifier is implemented by the module (final class) that implements this interface.
         /// </summary>
@@ -39,12 +40,20 @@ namespace bS.Sked.Model.Interfaces.Modules
         IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
 
         /// <summary>
+        /// Get the element with the id and the persistent id specified.
+        /// </summary>
+        /// <param name="elementId">The element identifier.</param>
+        /// <param name="elementPID">The element pid.</param>
+        /// <returns></returns>
+        IExecutableElementBaseViewModel ElementGet(string elementId, string elementPID);
+
+        /// <summary>
         /// Adds the specified executable element to the database.
         /// </summary>
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <param name="properties">The properties.</param>
         /// <returns></returns>
-        IExecutableElementBaseViewModel AddElement(string elementPID, IDictionary<string, IField> properties);
+        IExecutableElementBaseViewModel ElementAdd(string elementPID, IDictionary<string, IField> properties);
         /// <summary>
         /// Edits the specified executable element in the database.
         /// </summary>
@@ -52,13 +61,13 @@ namespace bS.Sked.Model.Interfaces.Modules
         /// <param name="elementPID">The element persisting identifier.</param>
         /// <param name="properties">The properties.</param>
         /// <returns></returns>
-        IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> properties);
+        IExecutableElementBaseViewModel ElementEdit(string elementId, string elementPID, IDictionary<string, IField> properties);
         /// <summary>
         /// Deletes the specified executable element from the database..
         /// </summary>
         /// <param name="elementId">The element identifier.</param>
         /// <param name="elementPID">The element persisting identifier.</param>
-        void DeleteElement(string elementId, string elementPID);
+        void ElementDelete(string elementId, string elementPID);
 
     }
 }

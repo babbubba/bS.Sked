@@ -24,16 +24,37 @@ namespace bS.Sked.Services.WMC
             _repository = repository;
         }
 
-        public IExecutableElementBaseViewModel AddNewElement(string elementPID, IDictionary<string, IField> fields)
-        {
-            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(elementPID));
-            return module.AddElement(elementPID, fields);
-        }
 
-        public IExecutableElementBaseViewModel EditElement(string elementId, string elementPID, IDictionary<string, IField> fields)
+
+        //Element All, Get, Add, Update, Delete
+        public List<IExecutableElementBaseViewModel> ElementAll()
+        {
+            var elements = _repository.GetQuery<ExecutableElementBaseModel>();
+            var elementsVM = AutoMapper.Mapper.Map<List<IExecutableElementBaseViewModel>>(elements);
+            return elementsVM;
+        }
+        public IExecutableElementBaseViewModel ElementGet(string elementId, string elementPID)
         {
             var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x => x.IsImplemented(elementPID));
-            return module.EditElement(elementId, elementPID, fields);
+            return module.ElementGet(elementId, elementPID);
+        }
+
+        public IExecutableElementBaseViewModel ElementAdd(string elementPID, IDictionary<string, IField> fields)
+        {
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x=>x.IsImplemented(elementPID));
+            return module.ElementAdd(elementPID, fields);
+        }
+
+        public IExecutableElementBaseViewModel ElementEdit(string elementId, string elementPID, IDictionary<string, IField> fields)
+        {
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x => x.IsImplemented(elementPID));
+            return module.ElementEdit(elementId, elementPID, fields);
+        }
+
+        public void ElementDelete(string elementId, string elementPID)
+        {
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x => x.IsImplemented(elementPID));
+            module.ElementDelete(elementId, elementPID);
         }
 
 

@@ -21,6 +21,7 @@ namespace bS.Sked.Services.WMC
             this.repository = repository;
         }
 
+        #region SmtpSetting All,Get,Add,Update,Delete
 
         public IEnumerable<SmtpSettingViewModel> SmtpSettingsAll()
         {
@@ -41,7 +42,7 @@ namespace bS.Sked.Services.WMC
 
         public SmtpSettingViewModel SmtpSettingsGet(string id)
         {
-            return (Mapping.Map<SmtpSettingViewModel>(repository.GetQuery<ISmtpSettingModel>().SingleOrDefault(x => x.Id == Guid.Parse(id)))) ?? new SmtpSettingViewModel();
+            return (Mapping.Map<SmtpSettingViewModel>(repository.GetQuery<ISmtpSettingModel>().SingleOrDefault(x => x.Id == Guid.Parse(id)))) ?? SmtpSettingsEmpty;
         }
 
         public void SmtpSettingsAdd(ISmtpSettingViewModel vM)
@@ -49,7 +50,7 @@ namespace bS.Sked.Services.WMC
             var t = repository.BeginTransaction();
             var model = Mapping.Map<SmtpSettingModel>(vM);
 
-            // Set as default if this is the first one
+            // Set as default if this is the first one or no one is default yet
             if (!repository.GetQuery<ISmtpSettingModel>().Any()) model.IsDefault = true;
 
             repository.Add(model);
@@ -79,6 +80,7 @@ namespace bS.Sked.Services.WMC
 
         }
 
+        #endregion
 
 
 

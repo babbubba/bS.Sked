@@ -6,4 +6,6 @@ namespace bs.Sked.Mapping
     {
 
     }
+
+  
 }
