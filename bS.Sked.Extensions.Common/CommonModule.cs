@@ -108,7 +108,7 @@ namespace bS.Sked.Extensions.Common
             var elementInstance = new ElementInstanceModel();
             elementInstance.StartTime = DateTime.UtcNow;
             elementInstance.Progress = 1;
-            //TODO: Finisci di creare l'istanza dell'elelemnto poi mettila nel progetto CORE che devi creare per le funzioni base che ereditano tutti i moduli o extensions
+            //TODO: Finisci di creare l'istanza dell'elelemnto poi mettila nel progetto SHARED che devi sistemare per le funzioni base che ereditano tutti i moduli o extensions
             // Li dentro mettici anche le extensions ed i metodi statici comuni!!!
 
             // Check if input file exist
