@@ -38,5 +38,13 @@ namespace bS.Sked.Model.Interfaces.Modules
         /// The main object.
         /// </value>
         IMainObjectModel MainObject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the elements in this context.
+        /// </summary>
+        /// <value>
+        /// The elements.
+        /// </value>
+        IList<Elements.IExecutableElementModel> Elements { get; set; }
     }
 }

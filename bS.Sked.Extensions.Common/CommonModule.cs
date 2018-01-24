@@ -14,6 +14,8 @@ using System.Collections;
 using bS.Sked.Model.Interfaces.DTO;
 using System.Collections.Generic;
 using bS.Sked.Model.DTO;
+using System.IO;
+using bS.Sked.Model.Elements;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -77,8 +79,17 @@ namespace bS.Sked.Extensions.Common
         }
 
 
+        /// <summary>
+        /// Executes From Flat Flie to Table element.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="executableElement">The executable element.</param>
+        /// <returns></returns>
         private IExtensionExecuteResult executeFromFlatFlieToTable(IExtensionContext context, IExecutableElementModel executableElement)
         {
+
+            log.Info($"Start execution of {StaticContent.fromFlatFlieToTable} element with id: {executableElement.Id}");
+
             var element = executableElement as FromFlatFlieToTableElementModel;
             var mainObject = context as CommonMainObjectModel;
 
@@ -86,13 +97,38 @@ namespace bS.Sked.Extensions.Common
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
-                Errors = new string[] { "Can not init Main Object" }
+                Errors = new string[] { "Can not init Main Object" },
+                SourceId = executableElement.Id.ToString(),
+                MessageType = MessageTypeEnum.Error
             };
+
+            // Add this element to the context for future need.
+            context.Elements.Add(element);
+            if (element.Instances == null) element.Instances = new List<IElementInstanceModel>();
+            var elementInstance = new ElementInstanceModel();
+            elementInstance.StartTime = DateTime.UtcNow;
+            elementInstance.Progress = 1;
+            //TODO: Finisci di creare l'istanza dell'elelemnto poi mettila nel progetto CORE che devi creare per le funzioni base che ereditano tutti i moduli o extensions
+            // Li dentro mettici anche le extensions ed i metodi statici comuni!!!
+
+            // Check if input file exist
+            if (!File.Exists(element.InFileObject.FileFullPath))
+            {
+                return new ExtensionExecuteResultModel
+                {
+                    IsSuccessfullyCompleted = false,
+                    Message = $"Flat File '{element.InFileObject.FileFullPath}' not exists or access is denied.",
+                    SourceId = executableElement.Id.ToString(),
+                    MessageType = MessageTypeEnum.Error
+                };
+            }
 
             try
             {
+                log.Debug("Start parsing input flat file.");
                 //Start parsing file
                 var parser = new GenericParserAdapter(element.InFileObject.FileFullPath);
+
                 parser.SkipStartingDataRows = element.SkipStartingDataRows;
                 parser.FirstRowHasHeader = element.FirstRowHasHeader;
                 parser.ColumnDelimiter = element.SeparatorValue ?? ';';
@@ -102,18 +138,23 @@ namespace bS.Sked.Extensions.Common
             }
             catch (Exception ex)
             {
+                log.Error("Erorr parsing input flat file.", ex);
                 return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
-                    Errors = new string[] { $"Error reading Flat File. {ex.GetBaseException().Message}" }
+                    Errors = new string[] { $"Error reading Flat File. {ex.GetBaseException().Message}" },
+                    SourceId = executableElement.Id.ToString(),
+                    MessageType = MessageTypeEnum.Error
                 };
             }
 
             return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = true,
-                Message = $"Flat File '{element.InFileObject.FileFullPath}' has imported {element.OutTableObject.Table?.Rows.Count ?? 0} rows successfully."
+                Message = $"Flat File '{element.InFileObject.FileFullPath}' has imported {element.OutTableObject.Table?.Rows.Count ?? 0} rows successfully.",
+                SourceId = executableElement.Id.ToString(),
+                MessageType = MessageTypeEnum.Info
             };
         }
 

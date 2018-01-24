@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using bS.Sked.Model.Interfaces.MainObjects;
 using FluentNHibernate.Mapping;
-
+using bS.Sked.Model.Interfaces.Elements;
 
 namespace bS.Sked.Extensions.Common.Model
 {
@@ -22,10 +22,13 @@ namespace bS.Sked.Extensions.Common.Model
         {
             ExtensionContextTypePID = StaticContent.commonMainObject;
             //ExtensionContextTypePID = this.MainObjectType.PersistingId;
+            Elements = new List<IExecutableElementModel>();
         }
 
         public virtual string ExtensionContextTypePID { get; set; }
         public virtual IMainObjectModel MainObject { get; set; }
+        public virtual IList<IExecutableElementModel> Elements { get; set; }
+
 
         public virtual bool FinalizeContext()
         {

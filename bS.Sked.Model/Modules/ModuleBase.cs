@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using bS.Sked.Model.Interfaces.DTO;
+using Common.Logging;
 
 namespace bS.Sked.Model.Modules
 {
@@ -16,6 +17,8 @@ namespace bS.Sked.Model.Modules
     /// <seealso cref="bS.Sked.Model.Interfaces.Modules.IExtensionModule" />
     public abstract class ModuleBase : IExtensionModule
     {
+        protected static ILog log = LogManager.GetLogger<ModuleBase>();
+
         /// <summary>
         /// The supported element types strings array. You have to populate it in the constructor of the derived class.
         /// </summary>

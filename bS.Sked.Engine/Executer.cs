@@ -35,21 +35,14 @@ namespace bS.Sked.Engine
         {
             var mod = _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId));
             if (mod != null) return mod.Execute(context, executableElement);
-
-            //foreach (var module in _modules)
-            //{
-            //    if (module.IsImplemented(executableElement.ElementType.PersistingId))
-            //    {
-            //        return module.Execute(context, executableElement);
-            //    }
-            //}
-
+            
             return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"No module implements this element (element type: '{executableElement.ElementType.Name}').",
                 Errors = new string[] { "Can not init Element" },
-                SourceId = executableElement.Id.ToString()
+                SourceId = executableElement.Id.ToString(),
+                MessageType = MessageTypeEnum.Fatal
             };
         }
 
@@ -87,7 +80,7 @@ namespace bS.Sked.Engine
             }
             catch (Exception ex)
             {
-
+                
                 return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
@@ -138,8 +131,37 @@ namespace bS.Sked.Engine
             foreach (var element in elementsToExecute)
             {
                 var currenElementResult = ExecuteElement(extensionContext, element);
-                //TODO: tracci i messaggi di ritorno e ferma se è un warning o un error ed è il caso di fermare...
                 elementsResult.Add(currenElementResult);
+
+                if (currenElementResult.MessageType == MessageTypeEnum.Error && element.StopParentIfErrorOccurs)
+                {
+                    // we have to stop the task and send back an error result
+                    return new TaskExecuteResultModel
+                    {
+                        Message = $"Task Failed. The element '{element.Name}' ({element.Id}) failed to execute and aborts the parent task.",
+                        IsSuccessfullyCompleted = false,
+                        Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                        SourceId = taskToExecute.Id.ToString(),
+                        MessageType = MessageTypeEnum.Error
+                    };
+                }
+
+                if (currenElementResult.MessageType == MessageTypeEnum.Warning && element.StopParentIfWarningOccurs)
+                {
+                    // we have to stop the task and send back an error result
+                    return new TaskExecuteResultModel
+                    {
+                        Message = $"Task Failed. The element '{element.Name}' ({element.Id}) has at least a warn and aborts the parent task.",
+                        IsSuccessfullyCompleted = false,
+                        Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                        SourceId = taskToExecute.Id.ToString(),
+                        MessageType = MessageTypeEnum.Error
+                    };
+                }
+
+
+
+
             }
 
             if (elementsResult.Any(x => !x.IsSuccessfullyCompleted))
