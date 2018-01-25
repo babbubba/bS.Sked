@@ -104,13 +104,7 @@ namespace bS.Sked.Extensions.Common
 
             // Add this element to the context for future need.
             context.Elements.Add(element);
-            if (element.Instances == null) element.Instances = new List<IElementInstanceModel>();
-            var elementInstance = new ElementInstanceModel();
-            elementInstance.StartTime = DateTime.UtcNow;
-            elementInstance.Progress = 1;
-            //TODO: Finisci di creare l'istanza dell'elelemnto poi mettila nel progetto SHARED che devi sistemare per le funzioni base che ereditano tutti i moduli o extensions
-            // Li dentro mettici anche le extensions ed i metodi statici comuni!!!
-
+          
             // Check if input file exist
             if (!File.Exists(element.InFileObject.FileFullPath))
             {

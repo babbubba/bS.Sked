@@ -92,6 +92,7 @@
     <Compile Include="Elements\Properties\FileSystemFileModel.cs" />
     <Compile Include="Elements\Properties\TableObjectModel.cs" />
     <Compile Include="Elements\SmtpSettingModel.cs" />
+    <Compile Include="Engine\EngineConfig.cs" />
     <Compile Include="Jobs\JobExecuteResultModel.cs" />
     <Compile Include="Jobs\JobInstanceModel.cs" />
     <Compile Include="Jobs\JobModel.cs" />

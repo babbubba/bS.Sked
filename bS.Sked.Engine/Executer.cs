@@ -1,5 +1,6 @@
 ﻿using bS.Sked.CompositionRoot;
 using bS.Sked.Data.Interfaces;
+using bS.Sked.Model.Engine;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Modules;
@@ -8,6 +9,7 @@ using bS.Sked.Model.Modules;
 using bS.Sked.Model.Tasks;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,18 +20,30 @@ namespace bS.Sked.Engine
     {
         private IRepository<IPersisterEntity> _repository;
         private IEnumerable<IExtensionModule> _modules;
+        private readonly EngineConfig engineConfig;
 
         #region C.tor
 
-        public Executer(IRepository<IPersisterEntity> repository, IEnumerable<IExtensionModule> modules)
+        public Executer(IRepository<IPersisterEntity> repository, IEnumerable<IExtensionModule> modules, EngineConfig engineConfig)
         {
             _repository = repository;
             _modules = modules;
+            this.engineConfig = engineConfig;
         }
 
         #endregion
 
         #region Private
+
+        public void ElementInstanceStart(IExecutableElementModel element)
+        {
+            if (element.Instances == null) element.Instances = new List<IElementInstanceModel>();
+            var elementInstance = new Model.Elements.ElementInstanceModel();
+            elementInstance.StartTime = DateTime.UtcNow;
+            _repository.Add(elementInstance);
+            elementInstance.PersistingFullPath = Path.Combine(engineConfig.TempFolder, element.Parent.ParentJob.Id.ToString(), element.Parent.Id.ToString(), element.Id.ToString(), $"instance_{elementInstance.Id.ToString()}");
+            _repository.Update(elementInstance);
+        }
 
         private IExtensionExecuteResult executeElement(IExtensionContext context, IExecutableElementModel executableElement)
         {
