@@ -32,6 +32,7 @@ namespace bS.Sked.Model.Interfaces.Entities.Base
         /// The errors.
         /// </value>
         string[] Errors { get; set; }
+        string[] Warns { get; set; }
 
         /// <summary>
         /// Gets or sets the source identifier for the specified object executed.

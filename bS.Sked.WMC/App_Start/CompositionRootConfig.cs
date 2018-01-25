@@ -1,6 +1,7 @@
 ﻿using bS.Sked.Data;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Engine;
+using bS.Sked.Model.Engine;
 using bS.Sked.Services.WMC;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,14 @@ namespace bS.Sked.WMC
 
             }
             #endregion
+
+            // Config File 
+            // TODO: Crea meccanismo di serializzazione e deserializzazione del file di configurazione
+            Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new EngineConfig
+            {
+                 TempFolder = @"c:\temp"
+            });
+
 
             // Context and Unit Of Work
             Sked.CompositionRoot.CompositionRoot.Instance().RegisterInstance(new DataContextConfigInfo

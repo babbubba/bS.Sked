@@ -15,5 +15,6 @@ namespace bS.Sked.Model.Jobs
         public string[] Errors { get; set; }
         public string SourceId { get; set; }
         public MessageTypeEnum MessageType { get; set; }
+        public string[] Warns { get; set; }
     }
 }

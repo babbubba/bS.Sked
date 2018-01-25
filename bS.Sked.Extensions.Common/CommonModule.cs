@@ -85,7 +85,7 @@ namespace bS.Sked.Extensions.Common
         /// <param name="context">The context.</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns></returns>
-        private IExtensionExecuteResult executeFromFlatFlieToTable(IExtensionContext context, IExecutableElementModel executableElement)
+        private IExtensionExecuteResult executeFromFlatFlieToTable(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
 
             log.Info($"Start execution of {StaticContent.fromFlatFlieToTable} element with id: {executableElement.Id}");
@@ -93,14 +93,18 @@ namespace bS.Sked.Extensions.Common
             var element = executableElement as FromFlatFlieToTableElementModel;
             var mainObject = context as CommonMainObjectModel;
 
-            if (!mainObject.InitializeContext()) return new ExtensionExecuteResultModel
+            if (!mainObject.InitializeContext())
             {
-                IsSuccessfullyCompleted = false,
-                Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
-                Errors = new string[] { "Can not init Main Object" },
-                SourceId = executableElement.Id.ToString(),
-                MessageType = MessageTypeEnum.Error
-            };
+                elementInstance.HasErrors++;
+                return new ExtensionExecuteResultModel
+                {
+                    IsSuccessfullyCompleted = false,
+                    Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
+                    Errors = new string[] { "Can not init Main Object" },
+                    SourceId = executableElement.Id.ToString(),
+                    MessageType = MessageTypeEnum.Error
+                };
+            }
 
             // Add this element to the context for future need.
             context.Elements.Add(element);
@@ -108,6 +112,7 @@ namespace bS.Sked.Extensions.Common
             // Check if input file exist
             if (!File.Exists(element.InFileObject.FileFullPath))
             {
+                elementInstance.HasErrors++;
                 return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
@@ -133,6 +138,7 @@ namespace bS.Sked.Extensions.Common
             catch (Exception ex)
             {
                 log.Error("Erorr parsing input flat file.", ex);
+                elementInstance.HasErrors++;
                 return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
@@ -143,6 +149,7 @@ namespace bS.Sked.Extensions.Common
                 };
             }
 
+            elementInstance.IsSuccessfullyCompleted = true;
             return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = true,
@@ -161,12 +168,12 @@ namespace bS.Sked.Extensions.Common
         /// <returns>
         /// The result of the execution.
         /// </returns>
-        public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement)
+        public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
             switch (executableElement.ElementType.PersistingId)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    return executeFromFlatFlieToTable(context, executableElement);
+                    return executeFromFlatFlieToTable(context, executableElement, elementInstance);
                 default:
                     return new ExtensionExecuteResultModel
                     {

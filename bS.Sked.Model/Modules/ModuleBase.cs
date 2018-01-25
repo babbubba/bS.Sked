@@ -65,7 +65,7 @@ namespace bS.Sked.Model.Modules
         /// <returns>
         /// The result of the execution.
         /// </returns>
-        public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement);
+        public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
 
 
         /// <summary>

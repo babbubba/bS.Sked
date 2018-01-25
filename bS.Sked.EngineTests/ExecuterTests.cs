@@ -17,6 +17,8 @@ using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Data.Interfaces;
 using System;
 using bS.Sked.Model.Interfaces.Tasks;
+using bS.Sked.Model.Tasks;
+using bS.Sked.Model.Jobs;
 
 namespace bS.Sked.Engine.Tests
 {
@@ -41,7 +43,7 @@ namespace bS.Sked.Engine.Tests
             var mainObjectToExecute = mainObjects.Single(x => x.GetType().Name.Contains("CommonMainObjectModel"));
 
             var elementToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse("30329823-bb10-4309-9190-a8710143fbdb"));
-            var result = engine.ExecuteElement(mainObjectToExecute, elementToExecute);
+            var result = engine.ExecuteElement(mainObjectToExecute, elementToExecute, new TaskInstanceModel {  PersistingFullPath =@"C:\temp\taskdiprova" });
         }
 
         [TestMethod()]
@@ -49,7 +51,7 @@ namespace bS.Sked.Engine.Tests
         {
             var taskToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse("c08e93dd-ac82-4f13-8a62-a7c7011a05ac"));
            
-            var result = engine.ExecuteTask(taskToExecute);
+            var result = engine.ExecuteTask(taskToExecute, new JobInstanceModel { PersistingFullPath = @"C:\temp\jobdiprova" });
         }
     }
 }
