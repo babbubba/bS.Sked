@@ -1,5 +1,6 @@
 ﻿using bS.Sked.Model.Interfaces.DTO;
 using bS.Sked.Model.Interfaces.Elements;
+using bS.Sked.Model.Interfaces.MainObjects;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
 using System.Collections.Generic;
@@ -34,10 +35,10 @@ namespace bS.Sked.Model.Interfaces.Modules
         /// <summary>
         /// Executes the specified executable element in the specified extension's context.
         /// </summary>
-        /// <param name="context">The extension's context.</param>
+        /// <param name="mainObject">The extension's context.</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns>The result of the execution.</returns>
-        IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
+        IExtensionExecuteResult Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
 
         /// <summary>
         /// Get the element with the id and the persistent id specified.
@@ -68,6 +69,14 @@ namespace bS.Sked.Model.Interfaces.Modules
         /// <param name="elementId">The element identifier.</param>
         /// <param name="elementPID">The element persisting identifier.</param>
         void ElementDelete(string elementId, string elementPID);
+
+        /// <summary>
+        /// Add new main Object to database
+        /// </summary>
+        /// <param name="mainObjectPID">The main object pid.</param>
+        /// <param name="properties">The properties.</param>
+        /// <returns></returns>
+        IExecutableMainObjectBaseViewModel MainObjectAdd(string mainObjectPID, IDictionary<string, IField> properties);
 
     }
 }

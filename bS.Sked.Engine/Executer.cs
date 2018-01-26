@@ -4,6 +4,7 @@ using bS.Sked.Model.Engine;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.Jobs;
+using bS.Sked.Model.Interfaces.MainObjects;
 using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Model.Interfaces.Tasks;
 using bS.Sked.Model.Jobs;
@@ -91,7 +92,7 @@ namespace bS.Sked.Engine
             return jobInstance;
         }
 
-        private IExtensionExecuteResult executeElement(IExtensionContext context, IExecutableElementModel executableElement, ITaskInstanceModel taskInstance)
+        private IExtensionExecuteResult executeElement(IMainObjectModel mainObject, IExecutableElementModel executableElement, ITaskInstanceModel taskInstance)
         {
 
             var mod = _modules.SingleOrDefault(x => x.IsImplemented(executableElement.ElementType.PersistingId));
@@ -99,7 +100,7 @@ namespace bS.Sked.Engine
             {
                 var elementInstance = ElementInstanceStart(executableElement, taskInstance.PersistingFullPath);
 
-                var result = mod.Execute(context, executableElement, elementInstance);
+                var result = mod.Execute(mainObject, executableElement, elementInstance);
 
                 ElementInstanceStop(elementInstance);
 
@@ -123,16 +124,16 @@ namespace bS.Sked.Engine
         /// <summary>
         /// Executes the element.
         /// </summary>
-        /// <param name="context">The context (from the Main Object).</param>
+        /// <param name="mainObject">The context (from the Main Object).</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns></returns>
-        public IExtensionExecuteResult ExecuteElement(IExtensionContext context, IExecutableElementModel executableElement, ITaskInstanceModel taskInstance)
+        public IExtensionExecuteResult ExecuteElement(IMainObjectModel mainObject, IExecutableElementModel executableElement, ITaskInstanceModel taskInstance)
         {
-            if (context == null) return new ExtensionExecuteResultModel
+            if (mainObject == null) return new ExtensionExecuteResultModel
             {
                 IsSuccessfullyCompleted = false,
                 Message = $"Can not execute the Element.",
-                Errors = new string[] { "Main Object context cannot be null." },
+                Errors = new string[] { "Execution context cannot be null." },
                 SourceId = executableElement.Id.ToString(),
                 MessageType = MessageTypeEnum.Error
             };
@@ -148,11 +149,10 @@ namespace bS.Sked.Engine
 
             try
             {
-                return executeElement(context, executableElement, taskInstance);
+                return executeElement(mainObject, executableElement, taskInstance);
             }
             catch (Exception ex)
             {
-                
                 return new ExtensionExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
@@ -165,7 +165,6 @@ namespace bS.Sked.Engine
 
         public ITaskExecuteResult ExecuteTask(ITaskModel taskToExecute, IJobInstanceModel jobInstance)
         {
-
             if (taskToExecute.MainObject == null) return new TaskExecuteResultModel
             {
                 Message = $"Cannot execute the Task '{taskToExecute.Id}'.",
@@ -185,7 +184,7 @@ namespace bS.Sked.Engine
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Error executing the Task'{taskToExecute.Id}'.",
-                    Errors = new string[] { $"{ex.Message}" },
+                    Errors = new string[] { $"Error executing the Task. {ex.Message}" },
                     SourceId = taskToExecute.Id.ToString(),
                     MessageType = MessageTypeEnum.Fatal
                 };
@@ -199,23 +198,23 @@ namespace bS.Sked.Engine
             var elementsResult = new List<IExtensionExecuteResult>();
             var elementsToExecute = taskToExecute.Elements.Where(x => x.IsActive).OrderBy(x => x.CreationDate).OrderBy(x => x.Position);
 
-            var extensionContexts = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
-            var extensionContext = extensionContexts.Single(x => x.GetType().Name.Contains(taskToExecute.MainObject.MainObjectType.PersistingId));
-            extensionContext.MainObject = taskToExecute.MainObject;
+           // var extensionContexts = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
+           // var extensionContext = extensionContexts.Single(x => x.GetType().Name.Contains(taskToExecute.MainObject.ExtensionContextTypePID));
 
             foreach (var element in elementsToExecute)
             {
-                var currenElementResult = ExecuteElement(extensionContext, element, taskInstance);
+                var currenElementResult = ExecuteElement(taskToExecute.MainObject, element, taskInstance);
                 elementsResult.Add(currenElementResult);
 
                 if (currenElementResult.MessageType == MessageTypeEnum.Error && element.StopParentIfErrorOccurs)
                 {
                     // we have to stop the task and send back an error result
+                    taskInstance.HasErrors++;
                     return new TaskExecuteResultModel
                     {
                         Message = $"Task Failed. The element '{element.Name}' ({element.Id}) failed to execute and aborts the parent task.",
                         IsSuccessfullyCompleted = false,
-                        Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                        Errors = GetErrorsFromResults(elementsResult),
                         SourceId = taskToExecute.Id.ToString(),
                         MessageType = MessageTypeEnum.Error
                     };
@@ -224,25 +223,27 @@ namespace bS.Sked.Engine
                 if (currenElementResult.MessageType == MessageTypeEnum.Warning && element.StopParentIfWarningOccurs)
                 {
                     // we have to stop the task and send back an error result
+                    taskInstance.HasErrors++;
                     return new TaskExecuteResultModel
                     {
                         Message = $"Task Failed. The element '{element.Name}' ({element.Id}) has at least a warn and aborts the parent task.",
                         IsSuccessfullyCompleted = false,
-                        Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                        Errors = GetErrorsFromResults(elementsResult),
                         SourceId = taskToExecute.Id.ToString(),
                         MessageType = MessageTypeEnum.Error
                     };
                 }
             }
 
-            if (elementsResult.Any(x => x.Errors.Count() > 0))
+            if (elementsResult.Any(x =>x.Errors!=null && x.Errors.Count() > 0))
             {
+                taskInstance.HasWarnings++;
                 // All elements was executed but errors occurred
                 return new TaskExecuteResultModel
                 {
                     Message = "Task executed with errors.",
                     IsSuccessfullyCompleted = true,
-                    Errors = elementsResult.SelectMany(x => x.Errors).ToArray(),
+                    Errors = GetErrorsFromResults(elementsResult),
                     SourceId = taskToExecute.Id.ToString(),
                     MessageType = MessageTypeEnum.Warning
                 };
@@ -257,6 +258,11 @@ namespace bS.Sked.Engine
             };
         }
 
+        private static string[] GetErrorsFromResults(List<IExtensionExecuteResult> elementsResult)
+        {
+            return elementsResult.Where(x => x.Errors != null).SelectMany(x => x.Errors).ToArray();
+        }
+
         public IJobExecuteResult ExecuteJob(IJobModel jobToExecute)
         {
             var jobInstance = JobInstanceStart(jobToExecute);
@@ -269,6 +275,7 @@ namespace bS.Sked.Engine
 
                 if (currentTaskResult.MessageType == MessageTypeEnum.Error && task.StopParentIfErrorOccurs)
                 {
+                    jobInstance.HasErrors++;
                     // we have to stop the job and send back an error result
                     return new JobExecuteResultModel
                     {
@@ -283,6 +290,7 @@ namespace bS.Sked.Engine
                 if (currentTaskResult.MessageType == MessageTypeEnum.Warning && task.StopParentIfWarningOccurs)
                 {
                     // we have to stop the job and send back an error result
+                    jobInstance.HasErrors++;
                     return new JobExecuteResultModel
                     {
                         Message = $"Job Failed. The task '{task.Name}' ({task.Id}) has at least a warn and aborts the parent task.",
@@ -297,6 +305,8 @@ namespace bS.Sked.Engine
             if (taskResults.Any(x => x.Errors.Count() > 0))
             {
                 // All tasks was executed but errors occurred
+                jobInstance.HasWarnings++;
+
                 return new JobExecuteResultModel
                 {
                     Message = "Job executed with errors.",

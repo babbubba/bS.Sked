@@ -95,6 +95,7 @@
     <Compile Include="Helpers\FlatFiles\ParsingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticContent.cs" />
+    <Compile Include="ViewModel\CommonMainObjectViewModel.cs" />
     <Compile Include="ViewModel\FromFlatFlieToTableElementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

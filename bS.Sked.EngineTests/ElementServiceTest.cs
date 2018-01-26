@@ -38,7 +38,7 @@ namespace bS.Sked.Service.Tests
                 { "Position", 112 },
                 { "StopParentIfErrorOccurs", true }
             };
-            
+
             var res = elementService.ElementAdd("Common.FromFlatFileToTable", parameters);
         }
 
@@ -78,21 +78,35 @@ namespace bS.Sked.Service.Tests
         [TestMethod]
         public void TaskAddTest()
         {
-            var res = taskService.AddNewTask("Test Task");
+            var res = taskService.TaskAdd("Test Task");
         }
 
 
         [TestMethod]
         public void AddElementsToTaskTest()
         {
-            var res = taskService.AddElementToTask("c08e93dd-ac82-4f13-8a62-a7c7011a05ac", "686d7aee-1ed9-47b1-aeb2-a7b200d5f71f");
+            var res = taskService.ElementToTaskAdd("c08e93dd-ac82-4f13-8a62-a7c7011a05ac", "686d7aee-1ed9-47b1-aeb2-a7b200d5f71f");
         }
 
         [TestMethod]
         public void MainObjectAddTest()
         {
+            var parameters = new Dictionary<string, IField>
+            {
+                { "Description", "Main Object di prova" },
+                { "MainObjectTypePersistingId", "Common" },
+                { "IsActive", true },
+                { "Name", "Common Main Object example" }
+            };
+
+            var res = taskService.MainObjectCreate("Common", parameters);
+
+        }
+        [TestMethod]
+        public void MainObjectSetTest()
+        {
+            var res = taskService.MainObjectSet("c08e93dd-ac82-4f13-8a62-a7c7011a05ac", "17aca081-6f22-4197-a578-a8750002c449");
         }
     }
-
 
 }

@@ -35,22 +35,10 @@ namespace bS.Sked.Engine.Tests
             Mapping.RegisterMappings();
         }
 
-        //Se gira questo vuol dire che funziona quasi tutto!
-        [TestMethod()]
-        public void ElementExecuteTest()
-        {
-            var mainObjects = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
-            var mainObjectToExecute = mainObjects.Single(x => x.GetType().Name.Contains("CommonMainObjectModel"));
-
-            var elementToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse("30329823-bb10-4309-9190-a8710143fbdb"));
-            var result = engine.ExecuteElement(mainObjectToExecute, elementToExecute, new TaskInstanceModel {  PersistingFullPath =@"C:\temp\taskdiprova" });
-        }
-
         [TestMethod()]
         public void TaskExecuteTest()
         {
             var taskToExecute = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>().GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse("c08e93dd-ac82-4f13-8a62-a7c7011a05ac"));
-           
             var result = engine.ExecuteTask(taskToExecute, new JobInstanceModel { PersistingFullPath = @"C:\temp\jobdiprova" });
         }
     }

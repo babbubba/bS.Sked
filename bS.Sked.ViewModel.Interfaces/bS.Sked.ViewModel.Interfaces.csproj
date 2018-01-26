@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\Base\IExecutableMainObjectBaseViewModel.cs" />
     <Compile Include="Elements\ISmtpSettingViewModel.cs" />
     <Compile Include="Entities\Base\IDescribedEntityViewModel.cs" />
     <Compile Include="Elements\Base\IExecutableElementBaseViewModel.cs" />

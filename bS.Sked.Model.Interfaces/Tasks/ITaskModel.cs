@@ -3,6 +3,7 @@ using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Jobs;
 using bS.Sked.Model.Interfaces.MainObjects;
 using System.Collections.Generic;
+using bS.Sked.Model.Interfaces.Modules;
 
 namespace bS.Sked.Model.Interfaces.Tasks
 {

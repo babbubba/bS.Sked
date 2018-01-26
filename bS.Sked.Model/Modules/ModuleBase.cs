@@ -8,6 +8,7 @@ using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using bS.Sked.Model.Interfaces.DTO;
 using Common.Logging;
+using bS.Sked.Model.Interfaces.MainObjects;
 
 namespace bS.Sked.Model.Modules
 {
@@ -65,7 +66,7 @@ namespace bS.Sked.Model.Modules
         /// <returns>
         /// The result of the execution.
         /// </returns>
-        public abstract IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
+        public abstract IExtensionExecuteResult Execute(IMainObjectModel context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
 
 
         /// <summary>
@@ -98,6 +99,7 @@ namespace bS.Sked.Model.Modules
         /// <param name="elementPID">The element persisting identifier.</param>
         public abstract void ElementDelete(string elementId, string elementPID);
 
-     
+        public abstract IExecutableMainObjectBaseViewModel MainObjectAdd(string mainObjectPID, IDictionary<string, IField> properties);
+       
     }
 }

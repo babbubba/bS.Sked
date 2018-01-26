@@ -8,6 +8,8 @@ using bS.Sked.Model.Elements;
 using bS.Sked.Model.Elements.Properties;
 using bS.Sked.Model.Interfaces.DTO;
 using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Model.Interfaces.MainObjects;
+using bS.Sked.Model.MainObjects;
 using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,39 @@ namespace bS.Sked.Extensions.Common
         public CommonMapping()
         {
             var repository = CompositionRoot.CompositionRoot.Instance().Resolve<IRepository<IPersisterEntity>>();
+
+
+            #region Common MainObject
+            //ViewModel -> Model (and reverse)
+            CreateMap<CommonMainObjectViewModel, CommonMainObjectModel>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.MainObjectType = repository.GetQuery<IMainObjectTypeModel>().Single(x => x.PersistingId == src.MainObjectTypePersistingId);
+                })
+                .ReverseMap();
+
+            // Properties Dictionary -> ViewModel
+            CreateMap<Dictionary<string, IField>, CommonMainObjectViewModel>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Description = src.GetValue<string>("Description");
+                    dest.MainObjectTypePersistingId = src.GetValue<string>("MainObjectTypePersistingId");
+                    dest.IsActive = src.GetValue<bool>("IsActive");
+                    dest.Name = src.GetValue<string>("Name");
+                });
+
+            //  ViewModel -> Properties Dictionary 
+            CreateMap<CommonMainObjectViewModel, Dictionary<string, IField>>()
+                .AfterMap((src, dest) =>
+                {
+                    if (dest == null) dest = new Dictionary<string, IField>();
+                    dest.Add("Description", src.Description);
+                    dest.Add("MainObjectTypePersistingId", src.MainObjectTypePersistingId);
+                    dest.Add("IsActive", src.IsActive);
+                    dest.Add("Name", src.Name);
+                });
+            #endregion
+
             #region FromFlatFlieToTable Element
 
             //ViewModel -> Model (and reverse)

@@ -2,9 +2,12 @@
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Entities.Base;
 using bS.Sked.Model.Interfaces.MainObjects;
+using bS.Sked.Model.Interfaces.Modules;
 using bS.Sked.Model.Interfaces.Tasks;
+using bS.Sked.Model.MainObjects.Base;
 using bS.Sked.Model.Tasks;
 using bS.Sked.Services.Base;
+using bS.Sked.ViewModel.Interfaces.Elements.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +25,7 @@ namespace bS.Sked.Services.WMC
             _repository = repository;
         }
 
-        public ITaskModel AddNewTask(string taskName, string description = null)
+        public ITaskModel TaskAdd(string taskName, string description = null)
         {
             var newTask = new TaskModel
             {
@@ -35,7 +38,7 @@ namespace bS.Sked.Services.WMC
             return newTask;
         }
 
-        public ITaskModel SetMainObject(string taskId, string mainObjectId)
+        public ITaskModel MainObjectSet(string taskId, string mainObjectId)
         {
             var t = _repository.BeginTransaction();
             var task = _repository.GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse(taskId));
@@ -45,7 +48,7 @@ namespace bS.Sked.Services.WMC
             return task;
         }
 
-        public ITaskModel AddElementToTask(string taskId, string elementId)
+        public ITaskModel ElementToTaskAdd(string taskId, string elementId)
         {
             var t = _repository.BeginTransaction();
             var task = _repository.GetQuery<ITaskModel>().Single(x => x.Id == Guid.Parse(taskId));
@@ -53,6 +56,12 @@ namespace bS.Sked.Services.WMC
             task.Elements.Add(element);
             t.Commit();
             return task;
+        }
+
+        public IExecutableMainObjectBaseViewModel MainObjectCreate(string mainObjecPersistingId, IDictionary<string, Model.Interfaces.DTO.IField> properties)
+        {
+            var module = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionModule>>().SingleOrDefault(x => x.IsImplemented(mainObjecPersistingId));
+            return module.MainObjectAdd(mainObjecPersistingId, properties);
         }
     }
 }

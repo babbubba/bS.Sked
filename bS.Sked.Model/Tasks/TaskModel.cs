@@ -8,6 +8,7 @@ using FluentNHibernate.Mapping;
 using bS.Sked.Model.Elements.Base;
 using bS.Sked.Model.MainObjects.Base;
 using bS.Sked.Model.Jobs;
+using bS.Sked.Model.Interfaces.Modules;
 
 namespace bS.Sked.Model.Tasks
 {
@@ -41,7 +42,7 @@ namespace bS.Sked.Model.Tasks
             HasMany<TaskInstanceModel>(x => x.Instances);//.KeyColumn("fkTaskId");
             Map(x => x.IsActive);
             Map(x => x.LastExecution);
-            References<MainObjectBaseModel>(x => x.MainObject);
+            References<MainObjectBaseModel>(x => x.MainObject).Not.LazyLoad();
             Map(x => x.Name);
             References<JobModel>(x => x.ParentJob);
             Map(x => x.Position);

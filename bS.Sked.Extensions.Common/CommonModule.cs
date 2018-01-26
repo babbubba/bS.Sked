@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using bS.Sked.Model.DTO;
 using System.IO;
 using bS.Sked.Model.Elements;
+using bS.Sked.Model.Interfaces.MainObjects;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -39,14 +40,16 @@ namespace bS.Sked.Extensions.Common
             {
                 StaticContent.fromFlatFlieToTable,
                 StaticContent.fromDbQueryToTable,
-                StaticContent.fromTableToFile
+                StaticContent.fromTableToFile,
+                StaticContent.commonMainObject
             };
 
             supportedElementTypes = new string[]
            {
                 StaticContent.fromFlatFlieToTable,
                 StaticContent.fromDbQueryToTable,
-                StaticContent.fromTableToFile
+                StaticContent.fromTableToFile,
+                StaticContent.commonMainObject
            };
         }
 
@@ -64,7 +67,7 @@ namespace bS.Sked.Extensions.Common
                where Model : class, IPersisterEntity
             where ViewModel : IExecutableElementBaseViewModel
         {
-            var model = _repository.GetQuery<IExecutableElementModel>().Single(x=> x.Id == Guid.Parse( vm.Id));
+            var model = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(vm.Id));
             AutoMapper.Mapper.Map(vm, model);
             _repository.Update(model);
             vm = AutoMapper.Mapper.Map<ViewModel>(model);
@@ -74,8 +77,18 @@ namespace bS.Sked.Extensions.Common
                where Model : class, IPersisterEntity
             where ViewModel : IExecutableElementBaseViewModel
         {
-            var model = _repository.GetQuery<IExecutableElementModel>().Single(x=> x.Id == Guid.Parse( vm.Id));
+            var model = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(vm.Id));
             _repository.Delete(model);
+        }
+
+        private IExecutableMainObjectBaseViewModel addNewMainObjectGeneric<ViewModel, Model>(IExecutableMainObjectBaseViewModel mainObject)
+            where Model : class, IPersisterEntity
+            where ViewModel : IExecutableMainObjectBaseViewModel
+        {
+            var model = AutoMapper.Mapper.Map<Model>(mainObject);
+            _repository.Add(model);
+            mainObject = AutoMapper.Mapper.Map<ViewModel>(model);
+            return mainObject;
         }
 
 
@@ -85,9 +98,8 @@ namespace bS.Sked.Extensions.Common
         /// <param name="context">The context.</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns></returns>
-        private IExtensionExecuteResult executeFromFlatFlieToTable(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
+        private IExtensionExecuteResult executeFromFlatFlieToTable(IMainObjectModel context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
-
             log.Info($"Start execution of {StaticContent.fromFlatFlieToTable} element with id: {executableElement.Id}");
 
             var element = executableElement as FromFlatFlieToTableElementModel;
@@ -108,7 +120,7 @@ namespace bS.Sked.Extensions.Common
 
             // Add this element to the context for future need.
             context.Elements.Add(element);
-          
+
             // Check if input file exist
             if (!File.Exists(element.InFileObject.FileFullPath))
             {
@@ -117,6 +129,7 @@ namespace bS.Sked.Extensions.Common
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' not exists or access is denied.",
+                    Errors = new string[] { $"Flat File '{element.InFileObject.FileFullPath}' not exists or access is denied." },
                     SourceId = executableElement.Id.ToString(),
                     MessageType = MessageTypeEnum.Error
                 };
@@ -163,17 +176,17 @@ namespace bS.Sked.Extensions.Common
         /// <summary>
         /// Executes the specified executable element in the specified extension's context.
         /// </summary>
-        /// <param name="context">The extension's context.</param>
+        /// <param name="mainObject">The extension's context.</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns>
         /// The result of the execution.
         /// </returns>
-        public override IExtensionExecuteResult Execute(IExtensionContext context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
+        public override IExtensionExecuteResult Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
             switch (executableElement.ElementType.PersistingId)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    return executeFromFlatFlieToTable(context, executableElement, elementInstance);
+                    return executeFromFlatFlieToTable(mainObject, executableElement, elementInstance);
                 default:
                     return new ExtensionExecuteResultModel
                     {
@@ -190,7 +203,7 @@ namespace bS.Sked.Extensions.Common
             switch (elementPID)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    return AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(_repository.GetQuery<FromFlatFlieToTableElementModel>().Single(x=>x.Id == Guid.Parse(elementId)));
+                    return AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(_repository.GetQuery<FromFlatFlieToTableElementModel>().Single(x => x.Id == Guid.Parse(elementId)));
                 default:
                     return null;
             }
@@ -249,7 +262,7 @@ namespace bS.Sked.Extensions.Common
             switch (elementPID)
             {
                 case StaticContent.fromFlatFlieToTable:
-                    var model = _repository.GetQuery<FromFlatFlieToTableElementModel>().Single(x=>x.Id == Guid.Parse(elementId));
+                    var model = _repository.GetQuery<FromFlatFlieToTableElementModel>().Single(x => x.Id == Guid.Parse(elementId));
                     _repository.Delete(model);
                     break;
                 default:
@@ -257,6 +270,20 @@ namespace bS.Sked.Extensions.Common
             }
         }
 
-       
+        public override IExecutableMainObjectBaseViewModel MainObjectAdd(string mainObjectPID, IDictionary<string, IField> properties)
+        {
+            switch (mainObjectPID)
+            {
+                case StaticContent.commonMainObject:
+
+                    var vm = AutoMapper.Mapper.Map<CommonMainObjectViewModel>(properties);
+
+                    return addNewMainObjectGeneric<CommonMainObjectViewModel, CommonMainObjectModel>(vm);
+                default:
+                    return null;
+            }
+        }
+
+
     }
 }
