@@ -73,7 +73,6 @@ namespace bS.Sked.Engine
             return taskInstance;
         }
 
-
         private IJobInstanceModel JobInstanceStart(IJobModel job)
         {
             if (job.Instances == null) job.Instances = new List<IJobInstanceModel>();
@@ -117,7 +116,79 @@ namespace bS.Sked.Engine
             };
         }
 
-       
+        private ITaskExecuteResult executeTask(ITaskModel taskToExecute, IJobInstanceModel jobInstance)
+        {
+            var taskInstance = TaskInstanceStart(taskToExecute, jobInstance.PersistingFullPath);
+
+            var elementsResult = new List<IExtensionExecuteResult>();
+            var elementsToExecute = taskToExecute.Elements.Where(x => x.IsActive).OrderBy(x => x.CreationDate).OrderBy(x => x.Position);
+
+           // var extensionContexts = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
+           // var extensionContext = extensionContexts.Single(x => x.GetType().Name.Contains(taskToExecute.MainObject.ExtensionContextTypePID));
+
+            foreach (var element in elementsToExecute)
+            {
+                var currenElementResult = ExecuteElement(taskToExecute.MainObject, element, taskInstance);
+                elementsResult.Add(currenElementResult);
+
+                if (currenElementResult.MessageType == MessageTypeEnum.Error && element.StopParentIfErrorOccurs)
+                {
+                    // we have to stop the task and send back an error result
+                    taskInstance.HasErrors++;
+                    return new TaskExecuteResultModel
+                    {
+                        Message = $"Task Failed. The element '{element.Name}' ({element.Id}) failed to execute and aborts the parent task.",
+                        IsSuccessfullyCompleted = false,
+                        Errors = GetErrorsFromResults(elementsResult),
+                        SourceId = taskToExecute.Id.ToString(),
+                        MessageType = MessageTypeEnum.Error
+                    };
+                }
+
+                if (currenElementResult.MessageType == MessageTypeEnum.Warning && element.StopParentIfWarningOccurs)
+                {
+                    // we have to stop the task and send back an error result
+                    taskInstance.HasErrors++;
+                    return new TaskExecuteResultModel
+                    {
+                        Message = $"Task Failed. The element '{element.Name}' ({element.Id}) has at least a warn and aborts the parent task.",
+                        IsSuccessfullyCompleted = false,
+                        Errors = GetErrorsFromResults(elementsResult),
+                        SourceId = taskToExecute.Id.ToString(),
+                        MessageType = MessageTypeEnum.Error
+                    };
+                }
+            }
+
+            TaskInstanceStop(taskInstance);
+
+            if (elementsResult.Any(x =>x.Errors!=null && x.Errors.Count() > 0))
+            {
+                taskInstance.HasWarnings++;
+                // All elements was executed but errors occurred
+                return new TaskExecuteResultModel
+                {
+                    Message = "Task executed with errors.",
+                    IsSuccessfullyCompleted = true,
+                    Errors = GetErrorsFromResults(elementsResult),
+                    SourceId = taskToExecute.Id.ToString(),
+                    MessageType = MessageTypeEnum.Warning
+                };
+            }
+
+            return new TaskExecuteResultModel
+            {
+                Message = $"Task Completed. {elementsToExecute.Count()} elements executed.",
+                IsSuccessfullyCompleted = true,
+                SourceId = taskToExecute.Id.ToString(),
+                MessageType = MessageTypeEnum.Info
+            };
+        }
+
+        private static string[] GetErrorsFromResults(List<IExtensionExecuteResult> elementsResult)
+        {
+            return elementsResult.Where(x => x.Errors != null).SelectMany(x => x.Errors).ToArray();
+        }
 
         #endregion
 
@@ -189,78 +260,6 @@ namespace bS.Sked.Engine
                     MessageType = MessageTypeEnum.Fatal
                 };
             }
-        }
-
-        private ITaskExecuteResult executeTask(ITaskModel taskToExecute, IJobInstanceModel jobInstance)
-        {
-            var taskInstance = TaskInstanceStart(taskToExecute, jobInstance.PersistingFullPath);
-
-            var elementsResult = new List<IExtensionExecuteResult>();
-            var elementsToExecute = taskToExecute.Elements.Where(x => x.IsActive).OrderBy(x => x.CreationDate).OrderBy(x => x.Position);
-
-           // var extensionContexts = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
-           // var extensionContext = extensionContexts.Single(x => x.GetType().Name.Contains(taskToExecute.MainObject.ExtensionContextTypePID));
-
-            foreach (var element in elementsToExecute)
-            {
-                var currenElementResult = ExecuteElement(taskToExecute.MainObject, element, taskInstance);
-                elementsResult.Add(currenElementResult);
-
-                if (currenElementResult.MessageType == MessageTypeEnum.Error && element.StopParentIfErrorOccurs)
-                {
-                    // we have to stop the task and send back an error result
-                    taskInstance.HasErrors++;
-                    return new TaskExecuteResultModel
-                    {
-                        Message = $"Task Failed. The element '{element.Name}' ({element.Id}) failed to execute and aborts the parent task.",
-                        IsSuccessfullyCompleted = false,
-                        Errors = GetErrorsFromResults(elementsResult),
-                        SourceId = taskToExecute.Id.ToString(),
-                        MessageType = MessageTypeEnum.Error
-                    };
-                }
-
-                if (currenElementResult.MessageType == MessageTypeEnum.Warning && element.StopParentIfWarningOccurs)
-                {
-                    // we have to stop the task and send back an error result
-                    taskInstance.HasErrors++;
-                    return new TaskExecuteResultModel
-                    {
-                        Message = $"Task Failed. The element '{element.Name}' ({element.Id}) has at least a warn and aborts the parent task.",
-                        IsSuccessfullyCompleted = false,
-                        Errors = GetErrorsFromResults(elementsResult),
-                        SourceId = taskToExecute.Id.ToString(),
-                        MessageType = MessageTypeEnum.Error
-                    };
-                }
-            }
-
-            if (elementsResult.Any(x =>x.Errors!=null && x.Errors.Count() > 0))
-            {
-                taskInstance.HasWarnings++;
-                // All elements was executed but errors occurred
-                return new TaskExecuteResultModel
-                {
-                    Message = "Task executed with errors.",
-                    IsSuccessfullyCompleted = true,
-                    Errors = GetErrorsFromResults(elementsResult),
-                    SourceId = taskToExecute.Id.ToString(),
-                    MessageType = MessageTypeEnum.Warning
-                };
-            }
-
-            return new TaskExecuteResultModel
-            {
-                Message = $"Task Completed. {elementsToExecute.Count()} elements executed.",
-                IsSuccessfullyCompleted = true,
-                SourceId = taskToExecute.Id.ToString(),
-                MessageType = MessageTypeEnum.Info
-            };
-        }
-
-        private static string[] GetErrorsFromResults(List<IExtensionExecuteResult> elementsResult)
-        {
-            return elementsResult.Where(x => x.Errors != null).SelectMany(x => x.Errors).ToArray();
         }
 
         public IJobExecuteResult ExecuteJob(IJobModel jobToExecute)
