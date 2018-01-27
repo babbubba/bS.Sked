@@ -3,6 +3,7 @@ using bS.Sked.Data.Interfaces;
 using bS.Sked.Engine;
 using bS.Sked.Model.Engine;
 using bS.Sked.Services.WMC;
+using bS.Sked.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -91,6 +92,7 @@ namespace bS.Sked.WMC
             Sked. CompositionRoot.CompositionRoot.Instance().Register<ElementService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<TaskService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<Executer>();
+            Sked. CompositionRoot.CompositionRoot.Instance().Register<PersisterHelper>();
 
             //Build the CompositionRoot IOC Container
             Sked.CompositionRoot.CompositionRoot.Instance().BuildContainer();

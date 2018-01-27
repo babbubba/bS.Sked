@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1039,6 +1040,10 @@
     <ProjectReference Include="..\bS.Sked.Services\bS.Sked.Services.csproj">
       <Project>{26a7c7d8-4927-4015-9ea0-39b4d0cd39f5}</Project>
       <Name>bS.Sked.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Shared\bS.Sked.Shared.csproj">
+      <Project>{B87CC6BD-033A-44DB-888A-EE6E1F93529E}</Project>
+      <Name>bS.Sked.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
       <Project>{3e98c6b3-23c6-4c38-b7b3-d18049ad97e5}</Project>

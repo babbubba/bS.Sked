@@ -17,6 +17,7 @@ using bS.Sked.Model.DTO;
 using System.IO;
 using bS.Sked.Model.Elements;
 using bS.Sked.Model.Interfaces.MainObjects;
+using bS.Sked.Shared.Helpers;
 
 namespace bS.Sked.Extensions.Common
 {
@@ -26,16 +27,17 @@ namespace bS.Sked.Extensions.Common
     /// <seealso cref="bS.Sked.Model.Modules.ModuleBase" />
     public class CommonModule : ModuleBase
     {
-        private IRepository<IPersisterEntity> _repository;
+        private readonly IRepository<IPersisterEntity> _repository;
+        private readonly PersisterHelper _persisterHelper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonModule"/> class and define the supported and implemented element types by their PID (persisting identifier).
         /// </summary>
         /// <param name="repository">The repository.</param>
-        public CommonModule(IRepository<IPersisterEntity> repository)
+        public CommonModule(IRepository<IPersisterEntity> repository, PersisterHelper persisterHelper)
         {
             _repository = repository;
-
+            _persisterHelper = persisterHelper;
             implementedElementTypes = new string[]
             {
                 StaticContent.fromFlatFlieToTable,
@@ -54,42 +56,41 @@ namespace bS.Sked.Extensions.Common
         }
 
 
-        private IExecutableElementBaseViewModel addNewElementGeneric<ViewModel, Model>(IExecutableElementBaseViewModel element)
-            where Model : class, IPersisterEntity
-            where ViewModel : IExecutableElementBaseViewModel
-        {
-            var model = AutoMapper.Mapper.Map<Model>(element);
-            _repository.Add(model);
-            element = AutoMapper.Mapper.Map<ViewModel>(model);
-            return element;
-        }
-        private IExecutableElementBaseViewModel editElementGeneric<ViewModel, Model>(ViewModel vm)
-               where Model : class, IPersisterEntity
-            where ViewModel : IExecutableElementBaseViewModel
-        {
-            var model = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(vm.Id));
-            AutoMapper.Mapper.Map(vm, model);
-            _repository.Update(model);
-            vm = AutoMapper.Mapper.Map<ViewModel>(model);
-            return vm;
-        }
-        private void deleteElementGeneric<ViewModel, Model>(ViewModel vm)
-               where Model : class, IPersisterEntity
-            where ViewModel : IExecutableElementBaseViewModel
-        {
-            var model = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(vm.Id));
-            _repository.Delete(model);
-        }
-
-        private IExecutableMainObjectBaseViewModel addNewMainObjectGeneric<ViewModel, Model>(IExecutableMainObjectBaseViewModel mainObject)
-            where Model : class, IPersisterEntity
-            where ViewModel : IExecutableMainObjectBaseViewModel
-        {
-            var model = AutoMapper.Mapper.Map<Model>(mainObject);
-            _repository.Add(model);
-            mainObject = AutoMapper.Mapper.Map<ViewModel>(model);
-            return mainObject;
-        }
+        //private IExecutableElementBaseViewModel addNewElementGeneric<ViewModel, Model>(IExecutableElementBaseViewModel element)
+        //    where Model : class, IPersisterEntity
+        //    where ViewModel : IExecutableElementBaseViewModel
+        //{
+        //    var model = AutoMapper.Mapper.Map<Model>(element);
+        //    _repository.Add(model);
+        //    element = AutoMapper.Mapper.Map<ViewModel>(model);
+        //    return element;
+        //}
+        //private IExecutableElementBaseViewModel editElementGeneric<ViewModel, Model>(ViewModel vm)
+        //       where Model : class, IPersisterEntity
+        //    where ViewModel : IExecutableElementBaseViewModel
+        //{
+        //    var model = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(vm.Id));
+        //    AutoMapper.Mapper.Map(vm, model);
+        //    _repository.Update(model);
+        //    vm = AutoMapper.Mapper.Map<ViewModel>(model);
+        //    return vm;
+        //}
+        //private void deleteElementGeneric<ViewModel, Model>(ViewModel vm)
+        //       where Model : class, IPersisterEntity
+        //    where ViewModel : IExecutableElementBaseViewModel
+        //{
+        //    var model = _repository.GetQuery<IExecutableElementModel>().Single(x => x.Id == Guid.Parse(vm.Id));
+        //    _repository.Delete(model);
+        //}
+        //private IExecutableMainObjectBaseViewModel addNewMainObjectGeneric<ViewModel, Model>(IExecutableMainObjectBaseViewModel mainObject)
+        //    where Model : class, IPersisterEntity
+        //    where ViewModel : IExecutableMainObjectBaseViewModel
+        //{
+        //    var model = AutoMapper.Mapper.Map<Model>(mainObject);
+        //    _repository.Add(model);
+        //    mainObject = AutoMapper.Mapper.Map<ViewModel>(model);
+        //    return mainObject;
+        //}
 
 
         /// <summary>
@@ -224,7 +225,7 @@ namespace bS.Sked.Extensions.Common
 
                     var vm = AutoMapper.Mapper.Map<FromFlatFlieToTableElementViewModel>(properties);
 
-                    return addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
+                    return _persisterHelper.addNewElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
                 default:
                     return null;
             }
@@ -246,7 +247,7 @@ namespace bS.Sked.Extensions.Common
                     vm.Id = elementId;
                     vm.ElementTypePersistingId = elementPID;
 
-                    return editElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
+                    return _persisterHelper.editElementGeneric<FromFlatFlieToTableElementViewModel, FromFlatFlieToTableElementModel>(vm);
                 default:
                     return null;
             }
@@ -278,7 +279,7 @@ namespace bS.Sked.Extensions.Common
 
                     var vm = AutoMapper.Mapper.Map<CommonMainObjectViewModel>(properties);
 
-                    return addNewMainObjectGeneric<CommonMainObjectViewModel, CommonMainObjectModel>(vm);
+                    return _persisterHelper.addNewMainObjectGeneric<CommonMainObjectViewModel, CommonMainObjectModel>(vm);
                 default:
                     return null;
             }

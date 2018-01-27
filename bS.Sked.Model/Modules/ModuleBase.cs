@@ -100,6 +100,8 @@ namespace bS.Sked.Model.Modules
         public abstract void ElementDelete(string elementId, string elementPID);
 
         public abstract IExecutableMainObjectBaseViewModel MainObjectAdd(string mainObjectPID, IDictionary<string, IField> properties);
-       
+
+    
+
     }
 }

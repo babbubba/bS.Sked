@@ -122,6 +122,10 @@
       <Name>bS.Sked.Model</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Shared\bS.Sked.Shared.csproj">
+      <Project>{B87CC6BD-033A-44DB-888A-EE6E1F93529E}</Project>
+      <Name>bS.Sked.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
       <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
       <Name>bS.Sked.ViewModel.Interfaces</Name>
