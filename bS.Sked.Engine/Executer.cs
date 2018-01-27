@@ -123,9 +123,6 @@ namespace bS.Sked.Engine
             var elementsResult = new List<IExtensionExecuteResult>();
             var elementsToExecute = taskToExecute.Elements.Where(x => x.IsActive).OrderBy(x => x.CreationDate).OrderBy(x => x.Position);
 
-           // var extensionContexts = CompositionRoot.CompositionRoot.Instance().Resolve<IEnumerable<IExtensionContext>>();
-           // var extensionContext = extensionContexts.Single(x => x.GetType().Name.Contains(taskToExecute.MainObject.ExtensionContextTypePID));
-
             foreach (var element in elementsToExecute)
             {
                 var currenElementResult = ExecuteElement(taskToExecute.MainObject, element, taskInstance);
@@ -159,12 +156,15 @@ namespace bS.Sked.Engine
                     };
                 }
             }
-
+            taskInstance.IsSuccessfullyCompleted = true;
             TaskInstanceStop(taskInstance);
 
             if (elementsResult.Any(x =>x.Errors!=null && x.Errors.Count() > 0))
             {
                 taskInstance.HasWarnings++;
+                taskInstance.IsSuccessfullyCompleted = true;
+                TaskInstanceStop(taskInstance);
+
                 // All elements was executed but errors occurred
                 return new TaskExecuteResultModel
                 {
@@ -176,6 +176,9 @@ namespace bS.Sked.Engine
                 };
             }
 
+            taskInstance.IsSuccessfullyCompleted = true;
+            TaskInstanceStop(taskInstance);
+
             return new TaskExecuteResultModel
             {
                 Message = $"Task Completed. {elementsToExecute.Count()} elements executed.",
@@ -185,7 +188,7 @@ namespace bS.Sked.Engine
             };
         }
 
-        private static string[] GetErrorsFromResults(List<IExtensionExecuteResult> elementsResult)
+        private static string[] GetErrorsFromResults <T> (List<T> elementsResult) where T : IExecuteResult
         {
             return elementsResult.Where(x => x.Errors != null).SelectMany(x => x.Errors).ToArray();
         }
@@ -234,6 +237,12 @@ namespace bS.Sked.Engine
             }
         }
 
+        /// <summary>
+        /// Executes the task.
+        /// </summary>
+        /// <param name="taskToExecute">The task to execute.</param>
+        /// <param name="jobInstance">The job instance.</param>
+        /// <returns></returns>
         public ITaskExecuteResult ExecuteTask(ITaskModel taskToExecute, IJobInstanceModel jobInstance)
         {
             if (taskToExecute.MainObject == null) return new TaskExecuteResultModel
@@ -262,6 +271,11 @@ namespace bS.Sked.Engine
             }
         }
 
+        /// <summary>
+        /// Executes the job.
+        /// </summary>
+        /// <param name="jobToExecute">The job to execute.</param>
+        /// <returns></returns>
         public IJobExecuteResult ExecuteJob(IJobModel jobToExecute)
         {
             var jobInstance = JobInstanceStart(jobToExecute);
@@ -280,7 +294,7 @@ namespace bS.Sked.Engine
                     {
                         Message = $"Job Failed. The task '{task.Name}' ({task.Id}) failed to execute and aborts the parent job.",
                         IsSuccessfullyCompleted = false,
-                        Errors = taskResults.SelectMany(x => x.Errors).ToArray(),
+                        Errors = GetErrorsFromResults(taskResults),
                         SourceId = jobToExecute.Id.ToString(),
                         MessageType = MessageTypeEnum.Error
                     };
@@ -294,27 +308,33 @@ namespace bS.Sked.Engine
                     {
                         Message = $"Job Failed. The task '{task.Name}' ({task.Id}) has at least a warn and aborts the parent task.",
                         IsSuccessfullyCompleted = false,
-                        Errors = taskResults.SelectMany(x => x.Errors).ToArray(),
+                        Errors = GetErrorsFromResults(taskResults),
                         SourceId = jobToExecute.Id.ToString(),
                         MessageType = MessageTypeEnum.Error
                     };
                 }
             }
+      
 
-            if (taskResults.Any(x => x.Errors.Count() > 0))
+            if (taskResults.Any(x =>x!=null && x.Errors.Count() > 0))
             {
                 // All tasks was executed but errors occurred
                 jobInstance.HasWarnings++;
+                jobInstance.IsSuccessfullyCompleted = true;
+                JobInstanceStop(jobInstance);
 
                 return new JobExecuteResultModel
                 {
                     Message = "Job executed with errors.",
                     IsSuccessfullyCompleted = true,
-                    Errors = taskResults.SelectMany(x => x.Errors).ToArray(),
+                    Errors = GetErrorsFromResults(taskResults),
                     SourceId = jobToExecute.Id.ToString(),
                     MessageType = MessageTypeEnum.Warning
                 };
             }
+
+            jobInstance.IsSuccessfullyCompleted = true;
+            JobInstanceStop(jobInstance);
 
             return new JobExecuteResultModel
             {

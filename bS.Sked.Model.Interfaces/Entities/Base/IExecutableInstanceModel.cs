@@ -11,5 +11,7 @@ namespace bS.Sked.Model.Interfaces.Entities.Base
         int HasWarnings { get; set; }
         int Progress { get; set; }
         string PersistingFullPath { get; set; }
+
+        //TODO: Implementa i messaggi poerlì'istanza prendendoli dai result dei vari oggetti!
     }
 }
