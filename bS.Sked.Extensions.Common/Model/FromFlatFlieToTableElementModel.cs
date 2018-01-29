@@ -3,6 +3,7 @@ using bS.Sked.Model.Elements.Base;
 using bS.Sked.Model.Elements.Properties;
 using bS.Sked.Model.Interfaces.Elements.Properties;
 using FluentNHibernate.Mapping;
+using System.Xml.Serialization;
 
 namespace bS.Sked.Extensions.Common.Model
 {
@@ -43,12 +44,27 @@ namespace bS.Sked.Extensions.Common.Model
         /// </value>
         public virtual bool FirstRowHasHeader { get; set; }
 
+      
 
 
         #region Properties
+        [XmlIgnore]
         public virtual IFileObject InFileObject { get; set; }
+        [XmlIgnore]
         public virtual ITableObject OutTableObject { get; set; }
         #endregion
+
+        public virtual TableObjectModel OutTableObjectInstance
+        {
+            get
+            {
+                return OutTableObject as TableObjectModel;
+            }
+            set
+            {
+                OutTableObject = value;
+            }
+        }
     }
 
     class FromFlatFlieToTableElementModelMap : SubclassMap<FromFlatFlieToTableElementModel>

@@ -303,7 +303,7 @@ namespace bS.Sked.Extensions.Common.Helpers.FlatFiles
             DataTable dtData;
             int intCreatedColumns, intSkipRowsAtEnd;
 
-            dtData = new DataTable();
+            dtData = new DataTable("table");
             dtData.BeginLoadData();
 
             intCreatedColumns = 0;

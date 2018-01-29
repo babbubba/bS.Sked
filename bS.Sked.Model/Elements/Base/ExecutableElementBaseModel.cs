@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Interfaces.Tasks;
 using FluentNHibernate.Mapping;
+using System.Xml.Serialization;
 
 namespace bS.Sked.Model.Elements.Base
 {
@@ -19,11 +20,13 @@ namespace bS.Sked.Model.Elements.Base
         /// <summary>
         /// The element type
         /// </summary>
+       [XmlIgnore()]
         public virtual IElementTypeModel ElementType { get; set; }
         public virtual Guid Id { get; set; }
         /// <summary>
         /// A list of instances of this element. 
         /// </summary>
+       [XmlIgnore()]
         public virtual IList<IElementInstanceModel> Instances { get; set; }
         public virtual bool IsActive { get; set; }
         /// <summary>
@@ -31,6 +34,8 @@ namespace bS.Sked.Model.Elements.Base
         /// </summary>
         public virtual DateTime LastExecution { get; set; }
         public virtual string Name { get; set; }
+
+        [XmlIgnore()]
         public virtual ITaskModel Parent { get; set; }
         public virtual int Position { get; set; }
         public virtual bool StopParentIfErrorOccurs { get; set; }

@@ -10,6 +10,11 @@ namespace bS.Sked.Model.Elements.Properties
 {
     public class TableObjectModel : ITableObjectModel
     {
+        public TableObjectModel()
+        {
+            Table = new DataTable("table");
+        }
+
         public DataTable Table { get ; set ; }
     }
 }
