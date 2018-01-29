@@ -9,8 +9,9 @@ namespace bS.Sked.Model.Interfaces.Entities.Base
     /// <summary>
     /// Base message returned by Extensions, Element, Task and Job after execution.
     /// </summary>
-    public interface IExecuteResult
+    public interface IExecuteResult : IPersisterEntity, IHistoricalEntity
     {
+        
         /// <summary>
         /// Gets or sets a value indicating whether this instance is successfully completed.
         /// </summary>

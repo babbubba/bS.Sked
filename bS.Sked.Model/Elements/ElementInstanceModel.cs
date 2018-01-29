@@ -4,7 +4,7 @@ using FluentNHibernate.Mapping;
 
 namespace bS.Sked.Model.Elements
 {
-    public class ElementInstanceModel : ExecutableInstanceModel   , IElementInstanceModel
+    public class ElementInstanceModel : ExecutableInstanceModel, IElementInstanceModel
     {
     }
 

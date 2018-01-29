@@ -38,7 +38,7 @@ namespace bS.Sked.Model.Interfaces.Modules
         /// <param name="mainObject">The extension's context.</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns>The result of the execution.</returns>
-        IExtensionExecuteResult Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
+        IExecuteResultBaseModel Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance);
 
         /// <summary>
         /// Get the element with the id and the persistent id specified.

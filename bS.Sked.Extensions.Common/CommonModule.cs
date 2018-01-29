@@ -99,7 +99,7 @@ namespace bS.Sked.Extensions.Common
         /// <param name="context">The context.</param>
         /// <param name="executableElement">The executable element.</param>
         /// <returns></returns>
-        private IExtensionExecuteResult executeFromFlatFlieToTable(IMainObjectModel context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
+        private IExecuteResultBaseModel executeFromFlatFlieToTable(IMainObjectModel context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
             log.Info($"Start execution of {StaticContent.fromFlatFlieToTable} element with id: {executableElement.Id}");
 
@@ -109,7 +109,7 @@ namespace bS.Sked.Extensions.Common
             if (!mainObject.InitializeContext())
             {
                 elementInstance.HasErrors++;
-                return new ExtensionExecuteResultModel
+                return new ElementExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
@@ -126,7 +126,7 @@ namespace bS.Sked.Extensions.Common
             if (!File.Exists(element.InFileObject.FileFullPath))
             {
                 elementInstance.HasErrors++;
-                return new ExtensionExecuteResultModel
+                return new ElementExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' not exists or access is denied.",
@@ -153,7 +153,7 @@ namespace bS.Sked.Extensions.Common
             {
                 log.Error("Erorr parsing input flat file.", ex);
                 elementInstance.HasErrors++;
-                return new ExtensionExecuteResultModel
+                return new ElementExecuteResultModel
                 {
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
@@ -164,7 +164,7 @@ namespace bS.Sked.Extensions.Common
             }
 
             elementInstance.IsSuccessfullyCompleted = true;
-            return new ExtensionExecuteResultModel
+            return new ElementExecuteResultModel
             {
                 IsSuccessfullyCompleted = true,
                 Message = $"Flat File '{element.InFileObject.FileFullPath}' has imported {element.OutTableObject.Table?.Rows.Count ?? 0} rows successfully.",
@@ -182,14 +182,14 @@ namespace bS.Sked.Extensions.Common
         /// <returns>
         /// The result of the execution.
         /// </returns>
-        public override IExtensionExecuteResult Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
+        public override IExecuteResultBaseModel Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
             switch (executableElement.ElementType.PersistingId)
             {
                 case StaticContent.fromFlatFlieToTable:
                     return executeFromFlatFlieToTable(mainObject, executableElement, elementInstance);
                 default:
-                    return new ExtensionExecuteResultModel
+                    return new ElementExecuteResultModel
                     {
                         IsSuccessfullyCompleted = false,
                         Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet in this module.",

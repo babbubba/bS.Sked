@@ -98,7 +98,8 @@
     <Compile Include="Jobs\JobModel.cs" />
     <Compile Include="MainObjects\Base\MainObjectBaseModel.cs" />
     <Compile Include="MainObjects\MainObjectTypeModel.cs" />
-    <Compile Include="Modules\ExtensionExecuteResultModel.cs" />
+    <Compile Include="Elements\Base\ExecuteResultBaseModel.cs" />
+    <Compile Include="Elements\ElementExecuteResultModel.cs" />
     <Compile Include="Modules\ModuleBase.cs" />
     <Compile Include="Modules\ModuleInitializerBase.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />

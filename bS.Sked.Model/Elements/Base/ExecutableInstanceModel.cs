@@ -1,11 +1,17 @@
 ﻿using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Model.Modules;
 using FluentNHibernate.Mapping;
 using System;
+using System.Collections.Generic;
 
 namespace bS.Sked.Model.Elements.Base
 {
     public abstract class ExecutableInstanceModel : IExecutableInstanceModel
     {
+        public ExecutableInstanceModel()
+        {
+            ResultMessages = new List<IExecuteResult>();
+        }
         public virtual DateTime? EndTime { get; set; }
 
         public virtual int HasErrors { get; set; }
@@ -23,6 +29,7 @@ namespace bS.Sked.Model.Elements.Base
         public virtual int Progress { get; set; }
 
         public virtual DateTime? StartTime { get; set; }
+        public virtual IList<IExecuteResult> ResultMessages { get; set; }
     }
 
     class ExecutableInstanceModelMap : ClassMap<ExecutableInstanceModel>
@@ -39,6 +46,7 @@ namespace bS.Sked.Model.Elements.Base
             Map(x => x.PersistingFullPath);
             Map(x => x.Progress);
             Map(x => x.StartTime);
+            HasMany<ExecuteResultBaseModel>(x => x.ResultMessages).Cascade.AllDeleteOrphan();
             DiscriminateSubClassesOnColumn("InstanceType");
         }
     }

@@ -5,16 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Model.Elements.Base;
+using FluentNHibernate.Mapping;
 
 namespace bS.Sked.Model.Jobs
 {
-    public class JobExecuteResultModel : IJobExecuteResult
+    public class JobExecuteResultModel : ExecuteResultBaseModel, IJobExecuteResult
     {
-        public bool IsSuccessfullyCompleted { get; set; }
-        public string Message { get; set; }
-        public string[] Errors { get; set; }
-        public string SourceId { get; set; }
-        public MessageTypeEnum MessageType { get; set; }
-        public string[] Warns { get; set; }
+     
+    }
+
+    class JobExecuteResultModelMap : SubclassMap<JobExecuteResultModel>
+    {
+        public JobExecuteResultModelMap()
+        {
+            DiscriminatorValue("JobInstanceMessage");
+
+        }
     }
 }

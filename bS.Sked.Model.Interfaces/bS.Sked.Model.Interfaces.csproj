@@ -62,6 +62,7 @@
     <Compile Include="Core\IRoleModel.cs" />
     <Compile Include="Core\IUserModel.cs" />
     <Compile Include="DTO\IField.cs" />
+    <Compile Include="Elements\IElementExecuteResult.cs" />
     <Compile Include="Elements\IElementInstanceModel.cs" />
     <Compile Include="Elements\IElementTypeModel.cs" />
     <Compile Include="Elements\IEmailComponentModel.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Entities\Base\IPositionalEntity.cs" />
     <Compile Include="Entities\Base\IToggledEntity.cs" />
     <Compile Include="Jobs\IJobExecuteResult.cs" />
+    <Compile Include="Elements\IExecuteResultBaseModel.cs" />
     <Compile Include="Modules\IExtensionContext.cs" />
     <Compile Include="Modules\IExtensionExecuteResult.cs" />
     <Compile Include="Modules\IExtensionModule.cs" />
