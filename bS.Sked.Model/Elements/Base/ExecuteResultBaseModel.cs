@@ -41,7 +41,7 @@ namespace bS.Sked.Model.Elements.Base
             Map(x => x.SourceId);
             Map(x => x.MessageType);
             Map(x => x.CreationDate);
-            Map(x => x.UpdateDate);
+            //Map(x => x.UpdateDate);
             DiscriminateSubClassesOnColumn("InstanceMessageType");
         }
     }
