@@ -56,6 +56,58 @@ namespace bS.Sked.Extensions.Common
            };
         }
 
+        protected IExecuteResultBaseModel preExecutElement(IMainObjectModel context, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
+        {
+            log.Debug($"Start pre execution of element {executableElement.Id}.");
+
+            var mainObject = context as CommonMainObjectModel;
+
+            if (mainObject == null || !mainObject.InitializeContext())
+            {
+                elementInstance.HasErrors++;
+                return new ElementExecuteResultModel
+                {
+                    IsSuccessfullyCompleted = false,
+                    Message = $"Error executing element.",
+                    Errors = new string[] { "Can not init Main Object" },
+                    SourceId = executableElement.Id.ToString(),
+                    MessageType = MessageTypeEnum.Error
+                };
+            }
+
+            // Add this element to the context for future need.
+            context.Elements.Add(executableElement);
+
+            // Execut the element logic
+            IExecuteResultBaseModel result;
+            switch (executableElement.ElementType.PersistingId)
+            {
+                case StaticContent.fromFlatFlieToTable:
+                    result = executeFromFlatFlieToTable(mainObject, executableElement, elementInstance);
+                    break;
+                default:
+                    return new ElementExecuteResultModel
+                    {
+                        IsSuccessfullyCompleted = false,
+                        Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet in this module.",
+                        Errors = new string[] { $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet in this module." },
+                        SourceId = executableElement.Id.ToString()
+                    };
+            }
+
+            // Persist Output Table
+            try
+            {
+                executableElement.ToXmlFile(Path.Combine(elementInstance.PersistingFullPath, executableElement.GetType().FullName + ".xml"));
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Erorr serializing element {executableElement.Id}.", ex);
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Executes From Flat Flie to Table element.
         /// </summary>
@@ -67,23 +119,6 @@ namespace bS.Sked.Extensions.Common
             log.Info($"Start execution of {StaticContent.fromFlatFlieToTable} element with id: {executableElement.Id}");
 
             var element = executableElement as FromFlatFlieToTableElementModel;
-            var mainObject = context as CommonMainObjectModel;
-
-            if (!mainObject.InitializeContext())
-            {
-                elementInstance.HasErrors++;
-                return new ElementExecuteResultModel
-                {
-                    IsSuccessfullyCompleted = false,
-                    Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
-                    Errors = new string[] { "Can not init Main Object" },
-                    SourceId = executableElement.Id.ToString(),
-                    MessageType = MessageTypeEnum.Error
-                };
-            }
-
-            // Add this element to the context for future need.
-            context.Elements.Add(element);
 
             // Check if input file exist
             if (!File.Exists(element.InFileObject.FileFullPath))
@@ -94,7 +129,7 @@ namespace bS.Sked.Extensions.Common
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' not exists or access is denied.",
                     Errors = new string[] { $"Flat File '{element.InFileObject.FileFullPath}' not exists or access is denied." },
-                    SourceId = executableElement.Id.ToString(),
+                    SourceId = element.Id.ToString(),
                     MessageType = MessageTypeEnum.Error
                 };
             }
@@ -121,13 +156,10 @@ namespace bS.Sked.Extensions.Common
                     IsSuccessfullyCompleted = false,
                     Message = $"Flat File '{element.InFileObject.FileFullPath}' has not imported.",
                     Errors = new string[] { $"Error reading Flat File. {ex.GetBaseException().Message}" },
-                    SourceId = executableElement.Id.ToString(),
+                    SourceId = element.Id.ToString(),
                     MessageType = MessageTypeEnum.Error
                 };
             }
-
-            // Persist Output Table
-             element.ToXmlFile(Path.Combine(elementInstance.PersistingFullPath, element.GetType().FullName + ".xml"));
 
             elementInstance.IsSuccessfullyCompleted = true;
             return new ElementExecuteResultModel
@@ -150,19 +182,7 @@ namespace bS.Sked.Extensions.Common
         /// </returns>
         public override IExecuteResultBaseModel Execute(IMainObjectModel mainObject, IExecutableElementModel executableElement, IElementInstanceModel elementInstance)
         {
-            switch (executableElement.ElementType.PersistingId)
-            {
-                case StaticContent.fromFlatFlieToTable:
-                    return executeFromFlatFlieToTable(mainObject, executableElement, elementInstance);
-                default:
-                    return new ElementExecuteResultModel
-                    {
-                        IsSuccessfullyCompleted = false,
-                        Message = $"The element with PID '{executableElement.ElementType.PersistingId}' is not implemented yet in this module.",
-                        Errors = new string[] { "Can not init Main Object" },
-                        SourceId = executableElement.Id.ToString()
-                    };
-            }
+            return preExecutElement(mainObject, executableElement, elementInstance);
         }
 
         public override IExecutableElementBaseViewModel ElementGet(string elementId, string elementPID)
@@ -175,7 +195,6 @@ namespace bS.Sked.Extensions.Common
                     return null;
             }
         }
-
 
         /// <summary>
         /// Adds the specified executable element to the database.
