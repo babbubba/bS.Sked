@@ -42,8 +42,10 @@ namespace bS.Sked.Engine
         private IElementInstanceModel ElementInstanceStart(IExecutableElementModel element, string parentPath)
         {
             if (element.Instances == null) element.Instances = new List<IElementInstanceModel>();
-            var elementInstance = new Model.Elements.ElementInstanceModel();
-            elementInstance.StartTime = DateTime.UtcNow;
+            var elementInstance = new ElementInstanceModel
+            {
+                StartTime = DateTime.UtcNow
+            };
             _repository.Add(elementInstance);
             elementInstance.PersistingFullPath = Path.Combine(parentPath, elementInstance.Id.ToString()); 
             _repository.Update(elementInstance);

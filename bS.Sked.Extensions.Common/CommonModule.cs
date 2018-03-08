@@ -95,7 +95,7 @@ namespace bS.Sked.Extensions.Common
                     };
             }
 
-            // Persist Output Table
+            // Persists Serializing Object
             try
             {
                 executableElement.ToXmlFile(Path.Combine(elementInstance.PersistingFullPath, executableElement.GetType().FullName + ".xml"));
