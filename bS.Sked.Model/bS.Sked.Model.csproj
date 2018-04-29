@@ -62,9 +62,8 @@
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
@@ -100,6 +99,8 @@
     <Compile Include="MainObjects\MainObjectTypeModel.cs" />
     <Compile Include="Elements\Base\ExecuteResultBaseModel.cs" />
     <Compile Include="Elements\ElementExecuteResultModel.cs" />
+    <Compile Include="Modules\ExecutableActionBase.cs" />
+    <Compile Include="Modules\ModuleActionbase.cs" />
     <Compile Include="Modules\ModuleBase.cs" />
     <Compile Include="Modules\ModuleInitializerBase.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
