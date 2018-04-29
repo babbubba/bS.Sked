@@ -91,6 +91,7 @@ namespace bS.Sked.WMC
             Sked. CompositionRoot.CompositionRoot.Instance().Register<DatabaseManagerService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<ElementService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<TaskService>();
+            Sked. CompositionRoot.CompositionRoot.Instance().Register<JobService>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<Executer>();
             Sked. CompositionRoot.CompositionRoot.Instance().Register<PersisterHelper>();
 

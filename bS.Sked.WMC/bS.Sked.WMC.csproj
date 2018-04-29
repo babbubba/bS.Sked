@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\CompositionRootConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\SmtpSettingsController.cs" />
     <Compile Include="Controllers\SidebarController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1003,6 +1004,7 @@
     <Folder Include="CompositionRoot\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Jobs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

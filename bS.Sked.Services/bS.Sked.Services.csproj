@@ -71,6 +71,7 @@
     <Compile Include="WindowsServiceService.cs" />
     <Compile Include="WMC\DatabaseManagerService.cs" />
     <Compile Include="WMC\ElementService.cs" />
+    <Compile Include="WMC\JobService.cs" />
     <Compile Include="WMC\LeftSidebarService.cs" />
     <Compile Include="WMC\SettingService.cs" />
     <Compile Include="WMC\TaskService.cs" />
@@ -100,6 +101,10 @@
       <Project>{D28D9ADA-EFFD-4AB6-AC8A-28DFB261E3CC}</Project>
       <Name>bS.Sked.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.Shared\bS.Sked.Shared.csproj">
+      <Project>{B87CC6BD-033A-44DB-888A-EE6E1F93529E}</Project>
+      <Name>bS.Sked.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bS.Sked.ViewModel.Interfaces\bS.Sked.ViewModel.Interfaces.csproj">
       <Project>{3E98C6B3-23C6-4C38-B7B3-D18049AD97E5}</Project>
       <Name>bS.Sked.ViewModel.Interfaces</Name>
@@ -115,6 +120,10 @@
     <ProjectReference Include="..\bS.Sked.WMC.Model\bS.Sked.WMC.Model.csproj">
       <Project>{8006693B-FC24-4C25-850F-C715D39BDF5D}</Project>
       <Name>bS.Sked.WMC.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.WMC.ViewModel\bS.Sked.WMC.ViewModel.csproj">
+      <Project>{372B8074-64D9-4029-AE8E-91357F63F43B}</Project>
+      <Name>bS.Sked.WMC.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Wrapper.SignalRClient.Interfaces\bS.Wrapper.SignalRClient.Interfaces.csproj">
       <Project>{9BD78715-DDE9-4CCD-A292-5D56A25730D1}</Project>

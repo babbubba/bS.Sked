@@ -80,6 +80,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Engine", "bS.Sked.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.Tests", "bS.Sked.EngineTests\bS.Sked.Tests.csproj", "{2E34FBBE-9D36-4AD9-A9BC-9EE5AC00C511}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bS.Sked.WMC.ViewModel", "bS.Sked.WMC.ViewModel\bS.Sked.WMC.ViewModel.csproj", "{372B8074-64D9-4029-AE8E-91357F63F43B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -287,6 +289,14 @@ Global
 		{2E34FBBE-9D36-4AD9-A9BC-9EE5AC00C511}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E34FBBE-9D36-4AD9-A9BC-9EE5AC00C511}.Release|x64.ActiveCfg = Release|Any CPU
 		{2E34FBBE-9D36-4AD9-A9BC-9EE5AC00C511}.Release|x64.Build.0 = Release|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Debug|x64.Build.0 = Debug|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Release|x64.ActiveCfg = Release|Any CPU
+		{372B8074-64D9-4029-AE8E-91357F63F43B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -323,6 +333,7 @@ Global
 		{3D6B2715-2870-4D0A-B17A-431065FAE029} = {BEDEAFB8-EBCE-4C2A-A6C2-4D3D25CFB77F}
 		{2FFCED55-4721-4EA4-BD2F-6B627D413DBE} = {4ABD77D9-8D25-4590-A794-C8658B600F65}
 		{2E34FBBE-9D36-4AD9-A9BC-9EE5AC00C511} = {CDC42B36-AB3F-4C28-93E5-F11014B4981C}
+		{372B8074-64D9-4029-AE8E-91357F63F43B} = {F31286C3-8D5E-438C-BD5E-5B3C505161A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79E0A6BA-BC66-401D-B119-F3E38931452E}

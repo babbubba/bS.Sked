@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="ElementServiceTest.cs" />
     <Compile Include="ExecuterTests.cs" />
+    <Compile Include="JobServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,10 @@
     <ProjectReference Include="..\bS.Sked.ViewModel\bS.Sked.ViewModel.csproj">
       <Project>{04C55660-B999-4E33-AEC8-B0C95CDFBCE4}</Project>
       <Name>bS.Sked.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bS.Sked.WMC.ViewModel\bS.Sked.WMC.ViewModel.csproj">
+      <Project>{372B8074-64D9-4029-AE8E-91357F63F43B}</Project>
+      <Name>bS.Sked.WMC.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\bS.Sked.WMC\bS.Sked.WMC.csproj">
       <Project>{11edc1d5-8d38-4512-bedd-f2bd87b1b954}</Project>
