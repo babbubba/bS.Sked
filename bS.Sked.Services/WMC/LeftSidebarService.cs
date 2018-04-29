@@ -5,6 +5,7 @@ using bS.Sked.Services.Base;
 using bS.Sked.WMC.Model;
 using bS.Sked.WMC.Model.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace bS.Sked.Services.WMC
 {
@@ -19,7 +20,7 @@ namespace bS.Sked.Services.WMC
 
         private void createJobsSection(List<ISidebarItemBase> aResult)
         {
-            var query = repository.GetQuery<IJobModel>();
+            var query = repository.GetQuery<IJobModel>().OrderBy(x=>x.Position);
 
             aResult.Add(new SidebarItemHeaderModel
             {
@@ -47,7 +48,7 @@ namespace bS.Sked.Services.WMC
                             TextColour = Colours.blue
                         }
                     },
-                    Link = $"/Job/{j.Id}"
+                    Link = $"/Jobs/Details/{j.Id}"
                 });
             }
         }

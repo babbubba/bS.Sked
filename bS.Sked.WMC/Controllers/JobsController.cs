@@ -1,4 +1,6 @@
-﻿using System;
+﻿using bS.Sked.Services.WMC;
+using bS.Sked.WMC.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +10,49 @@ namespace bS.Sked.WMC.Controllers
 {
     public class JobsController : Controller
     {
-        // GET: Jobs
+        private readonly JobService _jobService;
+
+        public JobsController(JobService jobService)
+        {
+            this._jobService = jobService;
+        }
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Jobs/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            var vm = new JobDetailsViewModel();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    vm = _jobService.JobGetDetails(id);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+            return View(vm);
+        }
+
+        public ActionResult JobsTasks(string jobId)
+        {
+            var vm = new List<TaskTeaserViewModel>();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    vm = _jobService.JobGetTasks(jobId);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+            return PartialView("JobsTasks", vm);
         }
 
         // GET: Jobs/Create

@@ -11,6 +11,8 @@ namespace bS.Sked.Model.Modules
 {
     public abstract class ModuleActionbase
     {
+        //TODO: Completa modele action base e l'utilizzo negli elementi
+
         private readonly IRepository<IPersisterEntity> repository;
         private readonly string pid;
         private readonly string name;

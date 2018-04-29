@@ -1,6 +1,7 @@
 ﻿using bs.Sked.Mapping;
 using bS.Sked.Data.Interfaces;
 using bS.Sked.Model.Interfaces.Entities.Base;
+using bS.Sked.Model.Interfaces.Jobs;
 using bS.Sked.Model.Jobs;
 using bS.Sked.Services.Base;
 using bS.Sked.Shared.Extensions;
@@ -16,6 +17,7 @@ namespace bS.Sked.Services.WMC
    public class JobService : ServiceBase
     {
         private readonly IRepository<IPersisterEntity> _repository;
+    
 
         public JobService(IRepository<IPersisterEntity> repository)
         {
@@ -108,6 +110,47 @@ namespace bS.Sked.Services.WMC
 
             return Mapping.Map<JobAddViewModel>(newJob);
 
+        }
+
+        public JobDetailsViewModel JobGetDetails(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentException("Id is mandatory.", nameof(id));
+            }
+
+            Guid gId;
+            if (!Guid.TryParse(id, out gId))
+            {
+                throw new ApplicationException("Invalid Guid fo the id provided.");
+            }
+
+            var job = _repository.GetQuery<JobModel>().SingleOrDefault(x => x.Id == gId);
+
+            return Mapping.Map<JobDetailsViewModel>(job);
+        }
+
+        public List<TaskTeaserViewModel> JobGetTasks(string jobId)
+        {
+            if (string.IsNullOrWhiteSpace(jobId))
+            {
+                throw new ArgumentException("Id is mandatory.", nameof(jobId));
+            }
+
+            Guid gId;
+            if (!Guid.TryParse(jobId, out gId))
+            {
+                throw new ApplicationException("Invalid Guid fo the id provided.");
+            }
+
+            var job = _repository.GetQuery<JobModel>().SingleOrDefault(x => x.Id == gId);
+
+            if (job == null)
+            {
+                throw new ApplicationException("No job found.");
+            }
+
+            return Mapping.Map<List<TaskTeaserViewModel>>(job.Tasks.OrderBy(x=>x.Position));
         }
     }
 }

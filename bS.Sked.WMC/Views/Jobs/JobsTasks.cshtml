@@ -1,0 +1,43 @@
+﻿@model IEnumerable<bS.Sked.WMC.ViewModel.TaskTeaserViewModel>
+
+    @Html.ActionLink("Create New", "TaskAdd", null , new { @class = "btn btn-default pull-right" })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainObjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastExecution)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainObjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastExecution)
+
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

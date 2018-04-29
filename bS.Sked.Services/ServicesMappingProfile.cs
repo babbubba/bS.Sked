@@ -2,6 +2,7 @@
 using bS.Sked.Model.Elements;
 using bS.Sked.Model.Interfaces.Elements;
 using bS.Sked.Model.Jobs;
+using bS.Sked.Model.Tasks;
 using bS.Sked.ViewModel.Elements;
 using bS.Sked.WMC.ViewModel;
 
@@ -21,6 +22,8 @@ namespace bS.Sked.Services
             CreateMap<JobModel, JobTeaserViewModel>();
             CreateMap<JobModel, JobAddViewModel>().ReverseMap();
 
+            CreateMap<JobModel, JobDetailsViewModel>();
+            CreateMap<TaskModel, TaskTeaserViewModel>();
 
         }
     }
