@@ -22,14 +22,53 @@ namespace bS.Sked.Services.WMC
             this._repository = repository;
         }
 
+        private int GetFirstFreePosition()
+        {
+            if (!_repository.GetQuery<JobModel>().Any()) return 1;
+            int pos = _repository.GetQuery<JobModel>().Max(x => x.Position);
+            return pos+=1;
+        }
+
+        private void MovePositionUp(JobModel jobToMove)
+        {
+            var prevJob = _repository.GetQuery<JobModel>().Where(x=> x.Position < jobToMove.Position).OrderByDescending(x=>x.Position).FirstOrDefault();
+            if (prevJob == null)
+            {
+                //This is the first one... do nothing
+                return;
+            }
+            var actualJobToMovePos = jobToMove.Position;
+            jobToMove.Position = prevJob.Position;
+            prevJob.Position = actualJobToMovePos;
+
+            _repository.Update(jobToMove);
+            _repository.Update(prevJob);
+        }
+
+        private void MovePositionDown(JobModel jobToMove)
+        {
+            var nextJob = _repository.GetQuery<JobModel>().Where(x => x.Position > jobToMove.Position).OrderBy(x => x.Position).FirstOrDefault();
+            if (nextJob == null)
+            {
+                //This is the last one... do nothing
+                return;
+            }
+            var actualJobToMovePos = jobToMove.Position;
+            jobToMove.Position = nextJob.Position;
+            nextJob.Position = actualJobToMovePos;
+
+            _repository.Update(jobToMove);
+            _repository.Update(nextJob);
+        }
+
         public List<JobTeaserViewModel> JobAll()
         {
-            var jobs = _repository.GetQuery<JobModel>().OrderBy(x=>x.Position).ToList();
+            var jobs = _repository.GetQuery<JobModel>().OrderBy(x => x.Position).ToList();
             var jobsVM = Mapping.Map<List<JobTeaserViewModel>>(jobs);
             return jobsVM;
         }
 
-        public JobAddViewModel JobAdd(string name, int position = 0)
+        public JobAddViewModel JobAdd(string name)
         {
             //TODO: Riparti da qui
             if (string.IsNullOrWhiteSpace(name))
@@ -42,11 +81,10 @@ namespace bS.Sked.Services.WMC
                 CreationDate = DateTime.Now
             };
 
-            if (position > 0)
-            {
-                // TODO: I have to insert in specified position moving the other jobs
-
-            }
+  
+                // Put after the last one
+                newJob.Position = GetFirstFreePosition();
+        
 
             // Clean name
             name = name.CleanName();
@@ -57,9 +95,16 @@ namespace bS.Sked.Services.WMC
                 throw new ApplicationException("Job name already exists.");
             }
 
-                newJob.Name = name;
+            newJob.Name = name;
 
-            _repository.Add(newJob);
+            try
+            {
+                _repository.Add(newJob);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error creating Job: {ex.GetBaseException().Message}.", ex);
+            }
 
             return Mapping.Map<JobAddViewModel>(newJob);
 

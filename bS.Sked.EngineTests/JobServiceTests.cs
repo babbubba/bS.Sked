@@ -4,6 +4,7 @@ using bS.Sked.Model.Interfaces.DTO;
 using bS.Sked.Services.WMC;
 using bS.Sked.WMC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace bS.Sked.EngineTests
@@ -26,6 +27,13 @@ namespace bS.Sked.EngineTests
         {
             var jobs = jobService.JobAll();
             Assert.IsNotNull(jobs);
+        }
+
+        [TestMethod]
+        public void JobAddTest()
+        {
+            var job = jobService.JobAdd("job di prova " + DateTime.Now.ToLongTimeString());
+            Assert.IsNotNull(job);
         }
     }
 }
