@@ -12,7 +12,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 job-details-details-box">
+        <div class="col-md-8 job-details-tasks-box">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Tasks
+                    <button id="btn-refresh-tasks" class="btn btn-xs pull-right glyphicon glyphicon-refresh"></button>
+                </div>
+                <div id="tasks-table" class="panel-body">
+                    @{Html.RenderPartial("JobsTasks", Model.Tasks);}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 job-details-details-box">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Details
@@ -128,19 +140,6 @@
             </div>
         </div>
 
-        <div class="col-md-6 job-details-tasks-box">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Tasks
-                </div>
-                <div id="" class="panel-body">
-                    @{Html.RenderPartial("JobsTasks", Model.Tasks);}
-                </div>
-                <div class="panel-footer">
-
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -172,3 +171,11 @@
 
 
 </div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btn-refresh-tasks").click(function () {
+            $("#tasks-table").load('@Url.Action("JobsTasks", "Jobs", new {jobId = Model.Id })')
+        });
+    });
+</script>  

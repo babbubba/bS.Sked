@@ -4,6 +4,7 @@ using bS.Sked.Model.Interfaces.DTO;
 using bS.Sked.Services.WMC;
 using bS.Sked.WMC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace bS.Sked.Service.Tests
@@ -80,7 +81,8 @@ namespace bS.Sked.Service.Tests
         [TestMethod]
         public void TaskAddTest()
         {
-            var res = taskService.TaskAdd("Test Task");
+            var res = taskService.TaskAdd("Test Task: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
+            Assert.IsNotNull(res);
         }
 
 

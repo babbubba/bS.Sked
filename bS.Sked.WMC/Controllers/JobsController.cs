@@ -29,10 +29,11 @@ namespace bS.Sked.WMC.Controllers
                 try
                 {
                     vm = _jobService.JobGetDetails(id);
+                    vm.Tasks = GetJobTasks(id);
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError("", "Error retrieving job: " + ex.GetBaseException().Message);
                 }
             }
             return View(vm);
@@ -45,14 +46,19 @@ namespace bS.Sked.WMC.Controllers
             {
                 try
                 {
-                    vm = _jobService.JobGetTasks(jobId);
+                    vm = GetJobTasks(jobId);
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError("", "Error retrieving job's tasks: " +  ex.GetBaseException().Message);
                 }
             }
             return PartialView("JobsTasks", vm);
+        }
+
+        private List<TaskTeaserViewModel> GetJobTasks(string jobId)
+        {
+            return _jobService.JobGetTasks(jobId).OrderBy(x => x.Position).ToList();
         }
 
         // GET: Jobs/Create

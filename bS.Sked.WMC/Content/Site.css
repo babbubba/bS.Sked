@@ -21,4 +21,10 @@ input,
 select,
 textarea {
     max-width: 280px;
-}*/
+}
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
